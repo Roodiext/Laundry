@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFAEC"
+    tools:context=".Laundry">
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:text="Selamat Pagi Atha"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="date"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name"
+        app:layout_constraintBottom_toTopOf="@+id/menu1"
+        android:layout_marginEnd="50dp"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/menu1"
+        android:layout_width="350dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/rounded_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name">
+
+        <TextView
+            android:id="@+id/Estimasi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:text="Estimasi Hari Ini"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/four"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:text="ᴿᵖ.40.000,-"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="15dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Estimasi" />
+
+        <ImageView
+            android:id="@+id/transaksi1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/lending"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/customer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/line" />
+
+        <ImageView
+            android:id="@+id/customer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/customer"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/raport"
+            app:layout_constraintStart_toEndOf="@+id/transaksi1"
+            app:layout_constraintTop_toBottomOf="@+id/line" />
+
+        <ImageView
+            android:id="@+id/raport"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/report"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/customer"
+            app:layout_constraintTop_toBottomOf="@+id/line" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/txt1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Siap melayani pelanggan dengan setulus hati"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:padding="5dp"
+        android:layout_margin="20dp"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/menu1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/txt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jangan kecewakan pelanggan"
+        app:layout_constraintTop_toBottomOf="@+id/txt1"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:rowCount="2"
+        android:columnCount="3"
+        android:alignmentMode="alignMargins"
+        android:padding="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/txt2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp"
+        android:gravity="center">
+
+        <!-- Gambar 1 -->
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="120dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/rounded_bg"
+            android:layout_margin="8dp">
+
+            <ImageButton
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@color/white"
+                android:src="@drawable/user1"
+                android:contentDescription="Gambar 1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Akun"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:background="@color/white"
+                android:textColor="@android:color/black" />
+        </LinearLayout>
+
+        <!-- Gambar 2 -->
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="120dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/rounded_bg"
+            android:layout_margin="8dp">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@color/white"
+                android:src="@drawable/service1"
+                android:contentDescription="Gambar 2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Layanan"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:textColor="@android:color/black" />
+        </LinearLayout>
+
+        <!-- Gambar 3 -->
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="120dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/rounded_bg"
+            android:layout_margin="8dp">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@color/white"
+                android:src="@drawable/add1"
+                android:contentDescription="Gambar 3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tambah"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:textColor="@android:color/black" />
+        </LinearLayout>
+
+        <!-- Gambar 4 -->
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="120dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/rounded_bg"
+            android:layout_margin="8dp">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@color/white"
+                android:src="@drawable/division1"
+                android:contentDescription="Gambar 4" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pegawai"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:textColor="@android:color/black" />
+        </LinearLayout>
+
+        <!-- Gambar 5 -->
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="120dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/rounded_bg"
+            android:layout_margin="8dp">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@color/white"
+                android:src="@drawable/global1"
+                android:contentDescription="Gambar 5" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cabang"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:textColor="@android:color/black" />
+        </LinearLayout>
+
+        <!-- Gambar 6 -->
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="120dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/rounded_bg"
+            android:layout_margin="8dp">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@color/white"
+                android:src="@drawable/printer1"
+                android:contentDescription="Gambar 6" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Printer"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:textColor="@android:color/black" />
+        </LinearLayout>
+    </GridLayout>
+
+
+
+
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

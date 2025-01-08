@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">belajar</string>
+        <string-array name="ekstra">
+            <item>"voli"</item>
+            <item>"Basket"</item>
+            <item>"Futsal</item>
+            <item>"Mading"</item>
+            <item>"Naviska"</item>
+            <item>"PMR"</item>
+        </string-array>
+
+    <string-array name="operasiAritmatika">
+        <item>"Tambah"</item>
+        <item>"Kurang"</item>
+
+
+        <item>"Bagi</item>
+        <item>"Mading"</item>
+        <item>"Naviska"</item>
+        <item>"PMR"</item>
+    </string-array>
+</resources>

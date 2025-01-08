@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="350dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="200dp"
+    android:layout_marginBottom="20dp"
+    android:layout_marginEnd="20dp"
+    app:cardCornerRadius="30dp"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/tvProfil1"
+            android:layout_width="wrap_content"
+            android:layout_height="58dp"
+            android:background="@color/white"
+            android:backgroundTint="#C80D0D"
+            android:padding="15dp"
+            android:paddingStart="20dp"
+            android:textColor="@color/white"
+            android:paddingEnd="300dp"
+            android:text="Profil Saya"
+            android:textSize="20sp"
+             />
+
+        <TextView
+            android:id="@+id/NIS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="10dp"
+           android:paddingEnd="5dp"
+            android:layout_marginTop="80dp"
+            android:text="NIS"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/NISN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NISN"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_below="@id/NIS"
+            android:textStyle="bold"
+            android:textSize="15dp"
+           />
+        <TextView
+            android:id="@+id/kelas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kelas"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_below="@id/NISN"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            />
+        <TextView
+            android:id="@+id/jurusan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jurusan"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_below="@id/kelas"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            />
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Status"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_below="@id/jurusan"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            />
+        <TextView
+            android:id="@+id/masuk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tahun Masuk"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_below="@id/status"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            />
+        <TextView
+            android:id="@+id/lulus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tahun Lulus"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_below="@id/masuk"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            />
+
+        <TextView
+            android:id="@+id/satu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12345"
+            android:layout_marginLeft="250dp"
+            android:layout_toRightOf="@id/masuk"
+            android:layout_marginTop="80dp"
+            />
+        <TextView
+            android:id="@+id/dua"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="16435634"
+            android:layout_marginLeft="250dp"
+            android:layout_toRightOf="@id/masuk"
+            android:layout_marginTop="12dp"
+            android:layout_below="@id/satu"
+            />
+        <TextView
+            android:id="@+id/tiga"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="XI-RPL"
+            android:layout_marginLeft="250dp"
+            android:layout_toRightOf="@id/masuk"
+            android:layout_marginTop="12dp"
+            android:layout_below="@id/dua"
+            />
+        <TextView
+            android:id="@+id/empat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RPL"
+            android:layout_marginLeft="250dp"
+            android:layout_toRightOf="@id/masuk"
+            android:layout_marginTop="12dp"
+            android:layout_below="@id/tiga"
+            />
+        <TextView
+            android:id="@+id/lima"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Siswa"
+            android:layout_marginLeft="250dp"
+            android:layout_toRightOf="@id/masuk"
+            android:layout_marginTop="12dp"
+            android:layout_below="@id/empat"
+            />
+        <TextView
+            android:id="@+id/enam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2023"
+            android:layout_toRightOf="@id/masuk"
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="250dp"
+            android:layout_below="@id/lima"
+            />
+        <TextView
+            android:id="@+id/tujuh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2026"
+            android:layout_marginLeft="250dp"
+            android:layout_toRightOf="@id/masuk"
+            android:layout_marginTop="12dp"
+            android:layout_below="@id/enam"
+            />
+
+
+
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

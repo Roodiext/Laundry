@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:foregroundTint="#000000"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:padding="50dp">
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="FORMULIR PENDAFTARAN"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        android:textStyle="bold" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="EKSTRA KULIKULER"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"
+        android:textStyle="bold"/>
+
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Masukkan Nama Lengkap"
+        android:layout_marginTop="40dp"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Masukkan Alamat"
+        android:layout_marginTop="20dp"
+        android:inputType="textPostalAddress" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:hint="Masukkan Nomor Telp"
+        android:inputType="phone" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:hint="Masukkan Jenis Kelamin"
+        android:inputType="text" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Pilih Ekstra Kulikuler"/>
+
+<Spinner
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:entries="@array/ekstra"
+    android:layout_marginTop="20dp"/>
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:hint="SIMPAN"
+        android:inputType="text"
+        android:textAllCaps="false"
+        android:layout_gravity="center_horizontal"/>
+
+</LinearLayout>

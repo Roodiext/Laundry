@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+
+    tools:context=".RelativeActivity">
+
+    <ImageView
+        android:id="@+id/ivlogo"
+        android:layout_width="277dp"
+        android:layout_height="195dp"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:foregroundGravity="left"
+        android:src="@drawable/login1" />
+
+    <TextView
+        android:id="@+id/LOGIN"
+        android:layout_width="297dp"
+        android:layout_height="65dp"
+        android:layout_below="@id/ivlogo"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:hint="  HI USER!"
+        android:inputType="text"
+        android:textColor="@color/black"
+        android:textSize="34sp"
+        android:textStyle="bold" />
+
+
+    <EditText
+        android:id="@+id/etusername"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_above="@id/etpassword"
+        android:layout_marginStart="20dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:layout_marginTop="50dp"
+        android:layout_toRightOf="@id/ivlogo"
+        android:drawableStart="@drawable/baseline_person_24"
+        android:hint="Masukkan Username"
+        android:background="@drawable/border"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/etpassword"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:background="@drawable/border"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="25dp"
+        android:layout_toRightOf="@id/ivlogo"
+        android:drawableStart="@drawable/baseline_lock_24"
+        android:hint="Masukkan Password"
+        android:inputType="textVisiblePassword" />
+
+    <Button
+        android:id="@+id/btlogin"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/etpassword"
+        android:layout_marginLeft="124dp"
+        android:layout_marginTop="48dp"
+        android:layout_toRightOf="@id/LOGIN"
+        android:hint="LOGIN" />
+</RelativeLayout>

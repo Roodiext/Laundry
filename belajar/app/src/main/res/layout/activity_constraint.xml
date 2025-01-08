@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ConstraintActivity">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        app:cardCornerRadius="16dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/cirFoto"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="5dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/Why" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="130dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="45dp"
+                android:text="089510514233"
+                android:textSize="10dp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="130dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="65dp"
+            android:text="Roodiext112315@gmail.com"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="@id/main"
+        app:cardCornerRadius="30dp"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+
+            <TextView
+                android:id="@+id/tvProfil1"
+                android:layout_width="wrap_content"
+                android:layout_height="58dp"
+                android:background="@color/white"
+                android:backgroundTint="#C80D0D"
+                android:padding="15dp"
+                android:paddingStart="20dp"
+                android:textColor="@color/white"
+                android:paddingEnd="300dp"
+                android:text="Profil Saya"
+                android:textSize="20sp"
+                />
+
+            <TextView
+                android:id="@+id/NIS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="10dp"
+                android:paddingEnd="5dp"
+                android:layout_marginTop="80dp"
+                android:text="NIS"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/NISN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NISN"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_below="@id/NIS"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                />
+            <TextView
+                android:id="@+id/kelas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kelas"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_below="@id/NISN"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                />
+            <TextView
+                android:id="@+id/jurusan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jurusan"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_below="@id/kelas"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                />
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Status"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_below="@id/jurusan"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                />
+            <TextView
+                android:id="@+id/masuk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tahun Masuk"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_below="@id/status"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                />
+            <TextView
+                android:id="@+id/lulus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tahun Lulus"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_below="@id/masuk"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                />
+
+            <TextView
+                android:id="@+id/satu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12345"
+                android:layout_marginLeft="250dp"
+                android:layout_toRightOf="@id/masuk"
+                android:layout_marginTop="80dp"
+                />
+            <TextView
+                android:id="@+id/dua"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="16435634"
+                android:layout_marginLeft="250dp"
+                android:layout_toRightOf="@id/masuk"
+                android:layout_marginTop="12dp"
+                android:layout_below="@id/satu"
+                />
+            <TextView
+                android:id="@+id/tiga"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="XI-RPL"
+                android:layout_marginLeft="250dp"
+                android:layout_toRightOf="@id/masuk"
+                android:layout_marginTop="12dp"
+                android:layout_below="@id/dua"
+                />
+            <TextView
+                android:id="@+id/empat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="RPL"
+                android:layout_marginLeft="250dp"
+                android:layout_toRightOf="@id/masuk"
+                android:layout_marginTop="12dp"
+                android:layout_below="@id/tiga"
+                />
+            <TextView
+                android:id="@+id/lima"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Siswa"
+                android:layout_marginLeft="250dp"
+                android:layout_toRightOf="@id/masuk"
+                android:layout_marginTop="12dp"
+                android:layout_below="@id/empat"
+                />
+            <TextView
+                android:id="@+id/enam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2023"
+                android:layout_toRightOf="@id/masuk"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="250dp"
+                android:layout_below="@id/lima"
+                />
+            <TextView
+                android:id="@+id/tujuh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2026"
+                android:layout_marginLeft="250dp"
+                android:layout_toRightOf="@id/masuk"
+                android:layout_marginTop="12dp"
+                android:layout_below="@id/enam"
+                />
+
+
+
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

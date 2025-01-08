@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">BelajarRudi</string>
+
+
+    <string-array name="suhu">
+        <item>Celsius</item>
+        <item>Fahrenheit</item>
+        <item>Kelvin</item>
+    </string-array>
+
+</resources>
