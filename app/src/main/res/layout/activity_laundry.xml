@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFAEC"
+    android:background="#A5BFCC"
     tools:context=".Laundry">
 
     <TextView
@@ -59,7 +59,7 @@
             android:id="@+id/four"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="20dp"
             android:text="ᴿᵖ.40.000,-"
             android:textColor="@color/black"
@@ -87,6 +87,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/line" />
 
+        <TextView
+            android:id="@+id/transaksi_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Transaksi"
+            android:textStyle="normal"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@+id/transaksi1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/customer_txt"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
         <ImageView
             android:id="@+id/customer"
             android:layout_width="wrap_content"
@@ -97,6 +109,18 @@
             app:layout_constraintStart_toEndOf="@+id/transaksi1"
             app:layout_constraintTop_toBottomOf="@+id/line" />
 
+        <TextView
+            android:id="@+id/customer_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Layanan"
+            android:textColor="@color/black"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toStartOf="@+id/report_txt"
+            app:layout_constraintTop_toBottomOf="@+id/customer"
+            app:layout_constraintStart_toEndOf="@+id/transaksi_txt"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
         <ImageView
             android:id="@+id/raport"
             android:layout_width="wrap_content"
@@ -106,6 +130,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/customer"
             app:layout_constraintTop_toBottomOf="@+id/line" />
+
+        <TextView
+            android:id="@+id/report_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Laporan"
+            android:textColor="@color/black"
+            android:textStyle="normal"
+            app:layout_constraintTop_toBottomOf="@+id/transaksi1"
+            app:layout_constraintStart_toEndOf="@id/customer_txt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -129,11 +165,13 @@
         android:id="@+id/txt2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Jangan kecewakan pelanggan"
+        android:textColor="@color/white"
+        android:text="Jangan kecewakan pelanggan!"
         app:layout_constraintTop_toBottomOf="@+id/txt1"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="25dp"
         android:layout_marginTop="10dp"
+        android:textSize="15dp"
         />
 
     <GridLayout
@@ -159,8 +197,8 @@
             android:layout_margin="8dp">
 
             <ImageButton
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:background="@color/white"
                 android:src="@drawable/user1"
                 android:contentDescription="Gambar 1" />
@@ -185,8 +223,8 @@
             android:layout_margin="8dp">
 
             <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:background="@color/white"
                 android:src="@drawable/service1"
                 android:contentDescription="Gambar 2" />
@@ -210,8 +248,8 @@
             android:layout_margin="8dp">
 
             <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:background="@color/white"
                 android:src="@drawable/add1"
                 android:contentDescription="Gambar 3" />
@@ -235,8 +273,8 @@
             android:layout_margin="8dp">
 
             <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:background="@color/white"
                 android:src="@drawable/division1"
                 android:contentDescription="Gambar 4" />
@@ -260,8 +298,8 @@
             android:layout_margin="8dp">
 
             <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:background="@color/white"
                 android:src="@drawable/global1"
                 android:contentDescription="Gambar 5" />
@@ -285,8 +323,8 @@
             android:layout_margin="8dp">
 
             <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:background="@color/white"
                 android:src="@drawable/printer1"
                 android:contentDescription="Gambar 6" />
