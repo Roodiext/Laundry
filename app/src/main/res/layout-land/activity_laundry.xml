@@ -12,14 +12,14 @@
         android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="60dp"
         android:text="Selamat Pagi Atha"
         android:textAlignment="textStart"
         android:textColor="@color/black"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/menu1"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
@@ -28,18 +28,22 @@
         android:layout_height="wrap_content"
         android:text="date"
         android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/menu2"
         app:layout_constraintTop_toBottomOf="@+id/name"
         app:layout_constraintBottom_toTopOf="@+id/menu1"
-        android:layout_marginEnd="50dp"/>
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="20dp"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/menu1"
-        android:layout_width="350dp"
-        android:layout_height="180dp"
-        android:layout_marginTop="44dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
         android:background="@drawable/rounded_bg"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingBottom="10dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/menu2"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name">
 
@@ -81,9 +85,12 @@
             android:id="@+id/transaksi1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="10dp"
             android:src="@drawable/lending"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/customer"
+            app:layout_constraintBottom_toTopOf="@+id/customer"
+            app:layout_constraintEnd_toStartOf="@+id/transaksi_txt"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/line" />
 
@@ -91,45 +98,53 @@
             android:id="@+id/transaksi_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="0dp"
             android:text="Transaksi"
-            android:textStyle="normal"
             android:textColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@+id/transaksi1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/customer_txt"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            android:textSize="20dp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toTopOf="@id/customer_txt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/transaksi1"
+            app:layout_constraintTop_toTopOf="@+id/line" />
 
         <ImageView
             android:id="@+id/customer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/customer"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/raport"
-            app:layout_constraintStart_toEndOf="@+id/transaksi1"
-            app:layout_constraintTop_toBottomOf="@+id/line" />
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            app:layout_constraintBottom_toTopOf="@+id/raport"
+            app:layout_constraintEnd_toStartOf="@id/customer_txt"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/transaksi1" />
 
         <TextView
             android:id="@+id/customer_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
             android:text="Layanan"
             android:textColor="@color/black"
+            android:textSize="20dp"
             android:textStyle="normal"
-            app:layout_constraintEnd_toStartOf="@+id/report_txt"
-            app:layout_constraintTop_toBottomOf="@+id/customer"
-            app:layout_constraintStart_toEndOf="@+id/transaksi_txt"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toTopOf="@+id/report_txt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/customer"
+            app:layout_constraintTop_toBottomOf="@+id/transaksi_txt" />
 
         <ImageView
             android:id="@+id/raport"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/report"
+            android:layout_marginBottom="5dp"
+            app:layout_constraintEnd_toStartOf="@id/report_txt"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/customer"
-            app:layout_constraintTop_toBottomOf="@+id/line" />
+            app:layout_constraintTop_toBottomOf="@+id/customer" />
 
         <TextView
             android:id="@+id/report_txt"
@@ -137,205 +152,181 @@
             android:layout_height="wrap_content"
             android:text="Laporan"
             android:textColor="@color/black"
+            android:textSize="20dp"
             android:textStyle="normal"
-            app:layout_constraintTop_toBottomOf="@+id/transaksi1"
-            app:layout_constraintStart_toEndOf="@id/customer_txt"
+            android:layout_marginTop="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintStart_toEndOf="@id/raport"
+            app:layout_constraintTop_toBottomOf="@+id/customer_txt" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/txt1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Siap melayani pelanggan dengan setulus hati"
-        android:textColor="@color/black"
-        android:textAlignment="center"
-        android:padding="5dp"
-        android:layout_margin="20dp"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        app:layout_constraintTop_toBottomOf="@+id/menu1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <TextView
-        android:id="@+id/txt2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:text="Jangan kecewakan pelanggan!"
-        app:layout_constraintTop_toBottomOf="@+id/txt1"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="10dp"
-        android:textSize="15dp"
-        />
-
     <GridLayout
+        android:id="@+id/menu2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:rowCount="2"
-        android:columnCount="3"
         android:alignmentMode="alignMargins"
+        android:columnCount="3"
+        android:gravity="center"
         android:padding="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/txt2"
-        app:layout_constraintStart_toStartOf="parent"
+        android:rowCount="2"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="16dp"
-        android:gravity="center">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name"
+        app:layout_constraintStart_toEndOf="@+id/menu1"
+        tools:layout_editor_absoluteY="369dp">
 
         <!-- Gambar 1 -->
         <LinearLayout
             android:layout_width="100dp"
             android:layout_height="120dp"
-            android:orientation="vertical"
-            android:gravity="center"
+            android:layout_margin="8dp"
             android:background="@drawable/rounded_bg"
-            android:layout_margin="8dp">
+            android:gravity="center"
+            android:orientation="vertical">
 
             <ImageButton
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:background="@color/white"
-                android:src="@drawable/user1"
-                android:contentDescription="Gambar 1" />
+                android:contentDescription="Gambar 1"
+                android:src="@drawable/user1" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Akun"
-                android:textSize="14sp"
-                android:gravity="center"
                 android:background="@color/white"
-                android:textColor="@android:color/black" />
+                android:gravity="center"
+                android:text="Akun"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <!-- Gambar 2 -->
         <LinearLayout
             android:layout_width="100dp"
             android:layout_height="120dp"
-            android:orientation="vertical"
-            android:gravity="center"
+            android:layout_margin="8dp"
             android:background="@drawable/rounded_bg"
-            android:layout_margin="8dp">
+            android:gravity="center"
+            android:orientation="vertical">
 
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:background="@color/white"
-                android:src="@drawable/service1"
-                android:contentDescription="Gambar 2" />
+                android:contentDescription="Gambar 2"
+                android:src="@drawable/service1" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Layanan"
-                android:textSize="14sp"
                 android:gravity="center"
-                android:textColor="@android:color/black" />
+                android:text="Layanan"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <!-- Gambar 3 -->
         <LinearLayout
             android:layout_width="100dp"
             android:layout_height="120dp"
-            android:orientation="vertical"
-            android:gravity="center"
+            android:layout_margin="8dp"
             android:background="@drawable/rounded_bg"
-            android:layout_margin="8dp">
+            android:gravity="center"
+            android:orientation="vertical">
 
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:background="@color/white"
-                android:src="@drawable/add1"
-                android:contentDescription="Gambar 3" />
+                android:contentDescription="Gambar 3"
+                android:src="@drawable/add1" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tambah"
-                android:textSize="14sp"
                 android:gravity="center"
-                android:textColor="@android:color/black" />
+                android:text="Tambah"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <!-- Gambar 4 -->
         <LinearLayout
             android:layout_width="100dp"
             android:layout_height="120dp"
-            android:orientation="vertical"
-            android:gravity="center"
+            android:layout_margin="8dp"
             android:background="@drawable/rounded_bg"
-            android:layout_margin="8dp">
+            android:gravity="center"
+            android:orientation="vertical">
 
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:background="@color/white"
-                android:src="@drawable/division1"
-                android:contentDescription="Gambar 4" />
+                android:contentDescription="Gambar 4"
+                android:src="@drawable/division1" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pegawai"
-                android:textSize="14sp"
                 android:gravity="center"
-                android:textColor="@android:color/black" />
+                android:text="Pegawai"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <!-- Gambar 5 -->
         <LinearLayout
             android:layout_width="100dp"
             android:layout_height="120dp"
-            android:orientation="vertical"
-            android:gravity="center"
+            android:layout_margin="8dp"
             android:background="@drawable/rounded_bg"
-            android:layout_margin="8dp">
+            android:gravity="center"
+            android:orientation="vertical">
 
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:background="@color/white"
-                android:src="@drawable/global1"
-                android:contentDescription="Gambar 5" />
+                android:contentDescription="Gambar 5"
+                android:src="@drawable/global1" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cabang"
-                android:textSize="14sp"
                 android:gravity="center"
-                android:textColor="@android:color/black" />
+                android:text="Cabang"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <!-- Gambar 6 -->
         <LinearLayout
             android:layout_width="100dp"
             android:layout_height="120dp"
-            android:orientation="vertical"
-            android:gravity="center"
+            android:layout_margin="8dp"
             android:background="@drawable/rounded_bg"
-            android:layout_margin="8dp">
+            android:gravity="center"
+            android:orientation="vertical">
 
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:background="@color/white"
-                android:src="@drawable/printer1"
-                android:contentDescription="Gambar 6" />
+                android:contentDescription="Gambar 6"
+                android:src="@drawable/printer1" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Printer"
-                android:textSize="14sp"
                 android:gravity="center"
-                android:textColor="@android:color/black" />
+                android:text="Printer"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
         </LinearLayout>
     </GridLayout>
 
