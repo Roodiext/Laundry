@@ -1,5 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- Light Mode Colors -->
+    <color name="background">#A5BFCC</color>
+    <color name="text_primary">#000000</color>
+    <color name="text_secondary">#000000</color>
+    <color name="button">#FFFFFF</color>
+
+
+    <!-- Dark Mode Colors -->
+    <color name="background_dark">#2E5077</color>
+    <color name="text_primary_dark">#FFFFFF</color>
+    <color name="text_secondary_dark">#000000</color>
+    <color name="button_dark">#FFFFFF</color>
+
+    <color name="white">#FFFFFF</color>
+
 </resources>
+
+

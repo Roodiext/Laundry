@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A5BFCC"
+    android:background="?attr/colorBackground"
     tools:context=".Laundry">
 
     <TextView
@@ -16,8 +16,8 @@
         android:layout_marginTop="30dp"
         android:text="Selamat Pagi Atha"
         android:textAlignment="textStart"
-        android:textColor="@color/black"
         android:textSize="20dp"
+        android:textColor="?attr/colorTextPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="date"
-        android:textColor="@color/black"
+        android:textColor="?attr/colorTextPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name"
         app:layout_constraintBottom_toTopOf="@+id/menu1"
@@ -50,7 +50,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:text="Estimasi Hari Ini"
-            android:textColor="@color/black"
+            android:textColor="?attr/colorTextSecondary"
             android:textSize="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -62,7 +62,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginEnd="20dp"
             android:text="ᴿᵖ.212.000,-"
-            android:textColor="@color/black"
+            android:textColor="?attr/colorTextSecondary"
             android:textSize="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -93,7 +93,7 @@
             android:layout_height="wrap_content"
             android:text="Transaksi"
             android:textStyle="normal"
-            android:textColor="@color/black"
+            android:textColor="?attr/colorTextSecondary"
             app:layout_constraintTop_toBottomOf="@+id/transaksi1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/customer_txt"
@@ -114,7 +114,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Layanan"
-            android:textColor="@color/black"
+            android:textColor="?attr/colorTextSecondary"
             android:textStyle="normal"
             app:layout_constraintEnd_toStartOf="@+id/report_txt"
             app:layout_constraintTop_toBottomOf="@+id/customer"
@@ -136,7 +136,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Laporan"
-            android:textColor="@color/black"
+            android:textColor="?attr/colorTextSecondary"
             android:textStyle="normal"
             app:layout_constraintTop_toBottomOf="@+id/transaksi1"
             app:layout_constraintStart_toEndOf="@id/customer_txt"
@@ -151,7 +151,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Siap melayani pelanggan dengan setulus hati"
-        android:textColor="@color/black"
+        android:textColor="?attr/colorTextPrimary"
         android:textAlignment="center"
         android:padding="5dp"
         android:layout_margin="20dp"
@@ -165,7 +165,7 @@
         android:id="@+id/txt2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
+        android:textColor="?attr/colorTextPrimary"
         android:text="Jangan kecewakan pelanggan!"
         app:layout_constraintTop_toBottomOf="@+id/txt1"
         app:layout_constraintStart_toStartOf="parent"
@@ -199,8 +199,8 @@
             <ImageButton
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:background="@color/white"
                 android:src="@drawable/user1"
+                android:background="@color/white"
                 android:contentDescription="Gambar 1" />
 
             <TextView
@@ -209,8 +209,7 @@
                 android:text="Akun"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:background="@color/white"
-                android:textColor="@android:color/black" />
+                android:textColor="?attr/colorTextSecondary" />
         </LinearLayout>
 
         <!-- Gambar 2 -->
@@ -225,7 +224,6 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:background="@color/white"
                 android:src="@drawable/service1"
                 android:contentDescription="Gambar 2" />
 
@@ -235,7 +233,7 @@
                 android:text="Layanan"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:textColor="@android:color/black" />
+                android:textColor="?attr/colorTextSecondary"/>
         </LinearLayout>
 
         <!-- Gambar 3 -->
@@ -250,7 +248,6 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:background="@color/white"
                 android:src="@drawable/add1"
                 android:contentDescription="Gambar 3" />
 
@@ -260,7 +257,7 @@
                 android:text="Tambah"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:textColor="@android:color/black" />
+                android:textColor="?attr/colorTextSecondary" />
         </LinearLayout>
 
         <!-- Gambar 4 -->
@@ -275,7 +272,6 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:background="@color/white"
                 android:src="@drawable/division1"
                 android:contentDescription="Gambar 4" />
 
@@ -285,7 +281,7 @@
                 android:text="Pegawai"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:textColor="@android:color/black" />
+                android:textColor="?attr/colorTextSecondary" />
         </LinearLayout>
 
         <!-- Gambar 5 -->
@@ -300,7 +296,6 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:background="@color/white"
                 android:src="@drawable/global1"
                 android:contentDescription="Gambar 5" />
 
@@ -310,7 +305,7 @@
                 android:text="Cabang"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:textColor="@android:color/black" />
+                android:textColor="?attr/colorTextSecondary" />
         </LinearLayout>
 
         <!-- Gambar 6 -->
@@ -325,7 +320,6 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:background="@color/white"
                 android:src="@drawable/printer1"
                 android:contentDescription="Gambar 6" />
 
@@ -335,7 +329,7 @@
                 android:text="Printer"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:textColor="@android:color/black" />
+                android:textColor="?attr/colorTextSecondary" />
         </LinearLayout>
     </GridLayout>
 

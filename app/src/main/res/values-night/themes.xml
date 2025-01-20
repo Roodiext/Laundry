@@ -1,7 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.Laundry" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+    <style name="Theme.Laundry" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorBackground">@color/background_dark</item>
+        <item name="colorTextPrimary">@color/text_primary_dark</item>
+        <item name="colorTextSecondary">@color/text_secondary_dark</item>
+        <item name="colorButton">@color/button_dark</item>
     </style>
+
 </resources>
+

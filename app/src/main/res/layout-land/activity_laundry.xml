@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A5BFCC"
+    android:background="?attr/colorBackground"
     tools:context=".Laundry">
 
     <TextView
@@ -15,7 +15,7 @@
         android:layout_marginStart="60dp"
         android:text="Selamat Pagi Atha"
         android:textAlignment="textStart"
-        android:textColor="@color/black"
+        android:textColor="?attr/colorTextPrimary"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="date"
-        android:textColor="@color/black"
+        android:textColor="?attr/colorTextPrimary"
         app:layout_constraintEnd_toEndOf="@+id/menu2"
         app:layout_constraintTop_toBottomOf="@+id/name"
         app:layout_constraintBottom_toTopOf="@+id/menu1"
@@ -54,7 +54,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:text="Estimasi Hari Ini"
-            android:textColor="@color/black"
+            android:textColor="?attr/colorTextSecondary"
             android:textSize="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -66,7 +66,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginEnd="20dp"
             android:text="ᴿᵖ.212.000,-"
-            android:textColor="@color/black"
+            android:textColor="?attr/colorTextSecondary"
             android:textSize="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -101,7 +101,7 @@
             android:layout_marginBottom="20dp"
             android:layout_marginTop="0dp"
             android:text="Transaksi"
-            android:textColor="@color/black"
+            android:textColor="?attr/colorTextSecondary"
             android:textSize="20dp"
             android:textStyle="normal"
             app:layout_constraintBottom_toTopOf="@id/customer_txt"
@@ -127,7 +127,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="0dp"
             android:text="Layanan"
-            android:textColor="@color/black"
+            android:textColor="?attr/colorTextSecondary"
             android:textSize="20dp"
             android:textStyle="normal"
             app:layout_constraintBottom_toTopOf="@+id/report_txt"
@@ -151,7 +151,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Laporan"
-            android:textColor="@color/black"
+            android:textColor="?attr/colorTextSecondary"
             android:textSize="20dp"
             android:textStyle="normal"
             android:layout_marginTop="20dp"
@@ -190,17 +190,16 @@
             <ImageButton
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:background="@color/white"
                 android:contentDescription="Gambar 1"
+                android:background="@color/white"
                 android:src="@drawable/user1" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
                 android:gravity="center"
                 android:text="Akun"
-                android:textColor="@android:color/black"
+                android:textColor="?attr/colorTextSecondary"
                 android:textSize="14sp" />
         </LinearLayout>
 
@@ -216,7 +215,6 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:background="@color/white"
                 android:contentDescription="Gambar 2"
                 android:src="@drawable/service1" />
 
@@ -225,7 +223,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Layanan"
-                android:textColor="@android:color/black"
+                android:textColor="?attr/colorTextSecondary"
                 android:textSize="14sp" />
         </LinearLayout>
 
@@ -241,7 +239,6 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:background="@color/white"
                 android:contentDescription="Gambar 3"
                 android:src="@drawable/add1" />
 
@@ -250,7 +247,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Tambah"
-                android:textColor="@android:color/black"
+                android:textColor="?attr/colorTextSecondary"
                 android:textSize="14sp" />
         </LinearLayout>
 
@@ -266,7 +263,6 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:background="@color/white"
                 android:contentDescription="Gambar 4"
                 android:src="@drawable/division1" />
 
@@ -275,7 +271,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Pegawai"
-                android:textColor="@android:color/black"
+                android:textColor="?attr/colorTextSecondary"
                 android:textSize="14sp" />
         </LinearLayout>
 
@@ -291,7 +287,6 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:background="@color/white"
                 android:contentDescription="Gambar 5"
                 android:src="@drawable/global1" />
 
@@ -300,7 +295,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Cabang"
-                android:textColor="@android:color/black"
+                android:textColor="?attr/colorTextSecondary"
                 android:textSize="14sp" />
         </LinearLayout>
 
@@ -316,7 +311,6 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:background="@color/white"
                 android:contentDescription="Gambar 6"
                 android:src="@drawable/printer1" />
 
@@ -325,7 +319,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Printer"
-                android:textColor="@android:color/black"
+                android:textColor="?attr/colorTextSecondary"
                 android:textSize="14sp" />
         </LinearLayout>
     </GridLayout>
