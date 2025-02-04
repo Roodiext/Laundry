@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Pengaturan Switch -->
+    <SwitchPreferenceCompat
+        app:key="dark_mode"
+        app:title="Mode Gelap"
+        app:summary="Aktifkan mode gelap untuk tampilan yang lebih nyaman" />
+
+    <!-- Pengaturan List -->
+    <ListPreference
+        app:key="language"
+        app:title="Bahasa"
+        app:summary="Pilih bahasa aplikasi"
+        app:dialogTitle="Pilih bahasa"
+        app:entries="@array/languages"
+        app:entryValues="@array/language_values"
+        app:defaultValue="id"/>
+
+</PreferenceScreen>
