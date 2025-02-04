@@ -5,143 +5,125 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/colorBackground"
     tools:context=".akun">
+
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        app:cardCornerRadius="10dp"
-        android:background="@color/purple"
-        app:cardElevation="5dp"
+        android:layout_margin="20dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="6dp"
+        android:background="@drawable/rounded_bg"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="10dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-
-            android:text="DAFTAR AKUN"
-            android:textColor="@android:color/black"
-            android:textSize="14sp"
-            android:textStyle="bold" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="15dp"
-            android:gravity="center_vertical">
+            android:orientation="vertical"
+            android:padding="20dp">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Daftar Akun"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:gravity="center"
+                android:paddingBottom="10dp"/>
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nama Akun :"
-                android:layout_marginEnd="10dp" />
+                android:text="Nama Lengkap"
+                android:textStyle="bold"
+                android:paddingTop="10dp"/>
 
             <EditText
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="Masukkan nama" />
-        </LinearLayout>
+                android:hint="Masukkan nama lengkap"
+                android:background="@android:color/white"
+                android:padding="10dp"
+                android:elevation="2dp"/>
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="15dp"
-            android:gravity="center_vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Alamat :"
-                android:layout_marginEnd="10dp" />
+                android:text="Email"
+                android:textStyle="bold"
+                android:paddingTop="10dp"/>
 
             <EditText
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="Masukkan alamat" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="15dp"
-            android:gravity="center_vertical">
+                android:hint="Masukkan email"
+                android:background="@android:color/white"
+                android:padding="10dp"
+                android:elevation="2dp"
+                android:inputType="textEmailAddress"/>
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="No. HP :"
-                android:layout_marginEnd="10dp" />
+                android:text="Password"
+                android:textStyle="bold"
+                android:paddingTop="10dp"/>
 
             <EditText
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="Masukkan no hp" />
-        </LinearLayout>
+                android:hint="Masukkan password"
+                android:background="@android:color/white"
+                android:padding="10dp"
+                android:elevation="2dp"
+                android:inputType="textPassword"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="15dp"
-            android:gravity="center_vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Email :"
-                android:layout_marginEnd="10dp" />
+                android:text="Konfirmasi Password"
+                android:textStyle="bold"
+                android:paddingTop="10dp"/>
 
             <EditText
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="Masukkan email" />
-        </LinearLayout>
+                android:hint="Masukkan kembali password"
+                android:background="@android:color/white"
+                android:padding="10dp"
+                android:elevation="2dp"
+                android:inputType="textPassword"/>
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="15dp">
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="SIMPAN"
-                android:background="@drawable/rounded_bg"
-                android:layout_marginEnd="10dp" />
+                android:text="DAFTAR"
+                android:backgroundTint="@color/black"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="20dp"/>
 
-            <Button
-                android:layout_width="wrap_content"
+
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Lihat"
-                android:background="@drawable/rounded_bg" />
-
+                android:text="Sudah punya akun? Masuk"
+                android:textSize="14sp"
+                android:textColor="@android:color/holo_blue_dark"
+                android:gravity="center"
+                android:paddingTop="15dp"
+                android:clickable="true"/>
         </LinearLayout>
-
-
-    </LinearLayout>
-
     </androidx.cardview.widget.CardView>
 
 

@@ -1,6 +1,8 @@
 package com.rudi.laundry
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -55,4 +57,19 @@ class Laundry : AppCompatActivity() {
     }
 
 
+    fun account(view: View?) {
+        val intent: Intent = Intent(
+            this@Laundry,
+            profile::class.java
+        )
+        startActivity(intent)
+    }
+
+    fun signup(view: View?) {
+        val intent: Intent = Intent(
+            this@Laundry,
+            akun::class.java
+        )
+        startActivity(intent)
+    }
 }

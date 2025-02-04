@@ -8,13 +8,13 @@
     android:background="?attr/colorBackground"
     tools:context=".profile">
 
-    <!-- CardView untuk informasi akun -->
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         app:cardCornerRadius="12dp"
         app:cardElevation="6dp"
+        android:background="@drawable/rounded_bg"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -26,7 +26,6 @@
             android:background="@drawable/rounded_bg"
             android:padding="20dp">
 
-            <!-- Judul -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -37,7 +36,6 @@
                 android:gravity="center"
                 android:paddingBottom="10dp"/>
 
-            <!-- Nama Akun -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -53,7 +51,6 @@
                 android:padding="10dp"
                 android:elevation="2dp"/>
 
-            <!-- Alamat -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -69,7 +66,6 @@
                 android:padding="10dp"
                 android:elevation="2dp"/>
 
-            <!-- Nomor HP -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -98,7 +94,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="SIMPAN"
-                    android:backgroundTint="@color/purple_500"
+                    android:backgroundTint="@color/black"
                     android:textColor="@android:color/white"
                     android:layout_marginEnd="10dp"/>
 
@@ -106,7 +102,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="EDIT"
-                    android:backgroundTint="@color/teal_700"
+                    android:backgroundTint="@color/black"
                     android:textColor="@android:color/white"/>
             </LinearLayout>
         </LinearLayout>
