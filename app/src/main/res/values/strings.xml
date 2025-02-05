@@ -10,5 +10,19 @@
         <item>id</item>
         <item>en</item>
     </string-array>
+    <string name="card_pelanggan_id">ID_pelanggan</string>
+    <string name="card_akun_id">ID_akun</string>
+    <string name="card_akun">akun</string>
+    <string name="card_pegawai_id">ID_pegawai</string>
+    <string name="card_pegawai">Nama Pegawai</string>
+    <string name="card_pegawai_Alamat">Alamat_pegawai</string>
+    <string name="card_pegawai_noHP">No Hp</string>
+    <string name="card_pegawai_data">Data Pegawai</string>
+    <string name="button_simpan">SImpan</string>
+    <string name="button_lihat">Lihat</string>
+    <string name="card_pelanggan_nama">Nama Pelanggan</string>
+    <string name="card_pelanggan_alamat">Alamat</string>
+    <string name="card_pelanggan_Hp">No Hp</string>
+    <string name="card_pelanggan_cabang">Nama Cabang</string>
 
 </resources>
