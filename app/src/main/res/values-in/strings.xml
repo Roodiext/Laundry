@@ -11,4 +11,9 @@
     <string name="card_pegawai_data">Data Pegawai</string>
     <string name="button_simpan">Simpan</string>
     <string name="button_lihat">Lihat</string>
+    <string name="card_pelanggan_nama">nama pelanggan</string>
+    <string name="card_pelanggan_alamat">Alamat</string>
+    <string name="card_pelanggan_Hp">No Hp</string>
+    <string name="card_pelanggan_cabang">Nama Cabang</string>
+    <string name="card_pelanggan_tambah">Tambah Pelanggan</string>
 </resources>

@@ -24,5 +24,6 @@
     <string name="card_pelanggan_alamat">Alamat</string>
     <string name="card_pelanggan_Hp">No Hp</string>
     <string name="card_pelanggan_cabang">Nama Cabang</string>
+    <string name="card_pelanggan_tambah">Tambah Pelanggan</string>
 
 </resources>
