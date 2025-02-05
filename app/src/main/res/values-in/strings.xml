@@ -18,4 +18,8 @@
     <string name="card_pelanggan_tambah">Tambah Pelanggan</string>
     <string name="card_pelanggan_data">Data Pelanggan</string>
     <string name="card_pelanggan_terdaftar">Terdaftar</string>
+    <string name="card_layanan_id">ID Layanan</string>
+    <string name="card_layanan_nama">Nama Layanan</string>
+    <string name="card_layanan_harga">Harga</string>
+    <string name="card_layanan_cabang">Cabang</string>
 </resources>
