@@ -16,4 +16,6 @@
     <string name="card_pelanggan_Hp">No Hp</string>
     <string name="card_pelanggan_cabang">Nama Cabang</string>
     <string name="card_pelanggan_tambah">Tambah Pelanggan</string>
+    <string name="card_pelanggan_data">Data Pelanggan</string>
+    <string name="card_pelanggan_terdaftar">Terdaftar</string>
 </resources>

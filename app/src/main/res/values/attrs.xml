@@ -4,4 +4,5 @@
     <attr name="colorTextPrimary" format="color" />
     <attr name="colorTextSecondary" format="color" />
     <attr name="colorButton" format="color" />
+    <attr name="colorFirst" format="color"/>
 </resources>

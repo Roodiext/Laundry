@@ -37,9 +37,10 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:src="@drawable/adduser"
-            android:background="@color/background"
+            android:background="?attr/colorBackground"
             android:layout_gravity="end"
             android:onClick="signup"
+            android:clickable="true"
             />
 
 
@@ -131,6 +132,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/customer"
+            android:clickable="true"
+            android:onClick="pelanggan"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/raport"
             app:layout_constraintStart_toEndOf="@+id/transaksi1"

@@ -4,6 +4,7 @@
     <color name="text_primary">#000000</color>
     <color name="text_secondary">#000000</color>
     <color name="button">#FFFFFF</color>
+    <color name="colorFirst">#AEB8FE</color>
 
 
     <!-- Dark Mode Colors -->
@@ -11,6 +12,7 @@
     <color name="text_primary_dark">#FFFFFF</color>
     <color name="text_secondary_dark">#000000</color>
     <color name="button_dark">#FFFFFF</color>
+    <color name="colorFirst_dark">#AEB8FE</color>
 
 
         <color name="black">#FF000000</color>
