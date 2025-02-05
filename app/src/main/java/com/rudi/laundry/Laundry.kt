@@ -72,4 +72,12 @@ class Laundry : AppCompatActivity() {
         )
         startActivity(intent)
     }
+
+    fun Cabang(view: View?) {
+        val intent: Intent = Intent(
+            this@Laundry,
+            cabang::class.java
+        )
+        startActivity(intent)
+    }
 }
