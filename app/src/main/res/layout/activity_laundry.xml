@@ -39,7 +39,6 @@
             android:src="@drawable/adduser"
             android:background="?attr/colorBackground"
             android:layout_gravity="end"
-            android:onClick="signup"
             android:clickable="true"
             />
 
@@ -143,7 +142,7 @@
             android:id="@+id/customer_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Layanan"
+            android:text="Pelanggan"
             android:textColor="?attr/colorTextSecondary"
             android:textStyle="normal"
             app:layout_constraintEnd_toStartOf="@+id/report_txt"
@@ -304,6 +303,8 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:src="@drawable/division1"
+                android:clickable="true"
+                android:onClick="pegawai"
                 android:contentDescription="Gambar 4" />
 
             <TextView

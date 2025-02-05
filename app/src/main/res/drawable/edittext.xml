@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Background atau isi komponen -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#00FFFFFF" /> <!-- Warna isi -->
+        </shape>
+    </item>
+
+    <!-- Border dengan sudut melengkung -->
+    <item android:top="0dp" android:left="0dp" android:right="0dp" android:bottom="0dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#00FFFFFF" /> <!-- Isi kosong -->
+            <corners android:radius="8dp" /> <!-- Sudut melengkung -->
+            <stroke
+                android:width="2dp"
+                android:color="#03A9F4" /> <!-- Warna border -->
+        </shape>
+    </item>
+</layer-list>
