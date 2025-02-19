@@ -9,7 +9,7 @@
     tools:context=".Pegawai.TambahPegawaiActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewPegawai"
+        android:id="@+id/rvPegawai"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"

@@ -1,44 +1,47 @@
 package com.rudi.laundry.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.google.firebase.database.core.view.View
-import androidx.core.view.WindowInsetsCompat
 import com.rudi.laundry.R
-import androidx.core.view.ViewCompat
 import com.rudi.laundry.modeldata.modelPelanggan
 
-class AdapterDataPelanggan (
-    private val listPelanggan: ArrayList<modelPelanggan>)
-    : RecyclerView.Adapter<AdapterDataPelanggan.ViewHolder>()  {
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): ViewHolder {
-        val  view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.card_data_pelanggan,parent, false)
+class AdapterDataPelanggan(
+    private val listPelanggan: ArrayList<modelPelanggan>
+) : RecyclerView.Adapter<AdapterDataPelanggan.ViewHolder>() {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.card_data_pelanggan, parent, false)
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: AdapterDataPelanggan.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = listPelanggan[position]
-        holder.tvID.text = item.idPelanggan
-        holder.tvnama.text = item.namaPelanggan
-        holder.tvAlamat.text = item.alamatPelanggan
-        holder.tvBoHP.text = item.noHPPelanggan
-        holder.tvTerdaftar.text = item.terdaftar
-        holder.cvCARD.setOnClick
+
+        // Mengatasi data null agar tidak menyebabkan error
+        holder.tvNama.text = item.namaPelanggan ?: "Tidak Ada Nama"
+        holder.tvAlamat.text = item.alamatPelanggan ?: "Tidak Ada Alamat"
+        holder.tvNoHP.text = item.noHPPelanggan ?: "Tidak Ada No HP"
+        holder.tvTerdaftar.text = if (item.terdaftar.isNotEmpty()) item.terdaftar else "Belum Terdaftar"
+
+        holder.cvCARD.setOnClickListener {
+            // Tambahkan aksi ketika card diklik
+        }
     }
 
     override fun getItemCount(): Int {
         return listPelanggan.size
     }
 
-    class  ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val  cvCARD= itemView.findviewByid<View>(R.id.cvCard_PELANGGAN)
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val tvNama: TextView = itemView.findViewById(R.id.tvNamaPelanggan)
+        val tvAlamat: TextView = itemView.findViewById(R.id.tvAlamatPelanggan)
+        val tvNoHP: TextView = itemView.findViewById(R.id.tvNoHPPelanggan)
+        val tvTerdaftar: TextView = itemView.findViewById(R.id.tvTerdaftarPelanggan)
+        val cvCARD: CardView = itemView.findViewById(R.id.cvCARD_pelanggan)
     }
-    }
-
-
+}
