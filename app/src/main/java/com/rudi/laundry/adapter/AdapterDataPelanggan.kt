@@ -22,14 +22,14 @@ class AdapterDataPelanggan(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = listPelanggan[position]
 
-        // Mengatasi data null agar tidak menyebabkan error
+
         holder.tvNama.text = item.namaPelanggan ?: "Tidak Ada Nama"
         holder.tvAlamat.text = item.alamatPelanggan ?: "Tidak Ada Alamat"
         holder.tvNoHP.text = item.noHPPelanggan ?: "Tidak Ada No HP"
         holder.tvTerdaftar.text = if (item.terdaftar.isNotEmpty()) item.terdaftar else "Belum Terdaftar"
 
         holder.cvCARD.setOnClickListener {
-            // Tambahkan aksi ketika card diklik
+
         }
     }
 

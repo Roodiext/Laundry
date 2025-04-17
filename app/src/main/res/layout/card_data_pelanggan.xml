@@ -3,21 +3,21 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/cvCARD_pelanggan"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        >
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             app:cardCornerRadius="12dp"
             android:paddingStart="10dp">
 
@@ -36,10 +36,7 @@
                     android:paddingVertical="10dp"
                     android:text="@string/card_pelanggan_data"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -48,37 +45,98 @@
                     android:paddingStart="10dp"
                     android:layout_marginTop="10dp">
 
-                    <TextView
-                        android:id="@+id/tvNamaPelanggan"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/card_pelanggan_nama"
-                        android:textSize="20dp"
-                        android:layout_marginEnd="10dp" />
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/tvAlamatPelanggan"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/card_pelanggan_alamat"
-                        android:textSize="15dp"
-                        android:layout_marginEnd="10dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Nama Pelanggan :"
+                            android:textSize="20dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/black"/>
 
-                    <TextView
-                        android:id="@+id/tvNoHPPelanggan"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/card_pegawai_noHP"
-                        android:textSize="15dp"
-                        android:layout_marginEnd="10dp" />
+                        <TextView
+                            android:id="@+id/tvNamaPelanggan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/card_pelanggan_nama"
+                            android:textSize="20dp"
+                            android:gravity="end"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="10dp" />
+                    </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/tvTerdaftarPelanggan"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/card_pelanggan_terdaftar"
-                        android:textSize="15dp"
-                        android:layout_marginEnd="10dp" />
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Alamat :"
+                            android:textColor="@color/black"
+                            android:layout_weight="1"/>
+
+                        <TextView
+                            android:id="@+id/tvAlamatPelanggan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/card_pelanggan_alamat"
+                            android:textSize="15dp"
+                            android:gravity="end"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="10dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="No HP :"
+                            android:textColor="@color/black"
+                            android:layout_weight="1"/>
+
+                        <TextView
+                            android:id="@+id/tvNoHPPelanggan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/card_pelanggan_Hp"
+                            android:layout_weight="1"
+                            android:textSize="15dp"
+                            android:gravity="end"
+                            android:layout_marginEnd="10dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Terdaftar :"
+                            android:textColor="@color/black"
+                            android:layout_weight="1"/>
+
+                        <TextView
+                            android:id="@+id/tvTerdaftarPelanggan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/card_pelanggan_terdaftar"
+                            android:layout_weight="1"
+                            android:textSize="15dp"
+                            android:gravity="end"
+                            android:layout_marginEnd="10dp" />
+                    </LinearLayout>
 
                     <LinearLayout
                         android:orientation="horizontal"
@@ -104,19 +162,10 @@
                             android:layout_weight="1"
                             android:text="@string/button_lihat"
                             android:layout_margin="10dp"
-                            android:background="@drawable/rounded_bg"
-                            />
+                            android:background="@drawable/rounded_bg" />
                     </LinearLayout>
-
                 </LinearLayout>
-
             </LinearLayout>
-
         </androidx.cardview.widget.CardView>
-
-
-
-
     </LinearLayout>
-
 </androidx.cardview.widget.CardView>

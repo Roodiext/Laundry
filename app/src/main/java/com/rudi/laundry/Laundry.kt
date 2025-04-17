@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.rudi.laundry.Layanan.DataLayananActivity
 import com.rudi.laundry.Pegawai.DataPegawaiActivity
 import com.rudi.laundry.pelanggan.DataPelangganActivity
 import java.text.SimpleDateFormat
@@ -89,6 +90,14 @@ class Laundry : AppCompatActivity() {
         val intent: Intent = Intent(
             this@Laundry,
             DataPegawaiActivity::class.java
+        )
+        startActivity(intent)
+    }
+
+    fun layanan(view: View?) {
+        val intent: Intent = Intent(
+            this@Laundry,
+            DataLayananActivity::class.java
         )
         startActivity(intent)
     }

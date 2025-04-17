@@ -18,7 +18,8 @@
     <string name="card_pegawai_Alamat">Alamat_pegawai</string>
     <string name="card_pegawai_noHP">No Hp</string>
     <string name="card_pegawai_data">Data Pegawai</string>
-    <string name="button_simpan">SImpan</string>
+    <string name="card_pegawai_cabang">cabang</string>
+    <string name="button_simpan">Simpan</string>
     <string name="button_lihat">Lihat</string>
     <string name="card_pelanggan_nama">Nama Pelanggan</string>
     <string name="card_pelanggan_alamat">Alamat</string>
@@ -31,5 +32,7 @@
     <string name="card_layanan_nama">Nama Layanan</string>
     <string name="card_layanan_harga">Harga</string>
     <string name="card_layanan_cabang">Cabang</string>
+    <string name="activity_tambah_pegawai">Tambah Pegawai</string>
+
 
 </resources>

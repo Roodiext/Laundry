@@ -255,7 +255,10 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:src="@drawable/service1"
-                android:contentDescription="Gambar 2" />
+                android:onClick="layanan"
+                android:clickable="true"
+                android:contentDescription="Gambar 2"
+                tools:ignore="OnClick" />
 
             <TextView
                 android:layout_width="wrap_content"
