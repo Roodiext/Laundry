@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.rudi.laundry.Layanan.DataLayananActivity
-import com.rudi.laundry.Pegawai.DataPegawaiActivity
+import com.rudi.laundry.pelanggan.DataPegawaiActivity
 import com.rudi.laundry.pelanggan.DataPelangganActivity
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -89,7 +89,7 @@ class Laundry : AppCompatActivity() {
     fun pegawai(view: View?) {
         val intent: Intent = Intent(
             this@Laundry,
-            DataPegawaiActivity::class.java
+           DataPegawaiActivity::class.java
         )
         startActivity(intent)
     }
