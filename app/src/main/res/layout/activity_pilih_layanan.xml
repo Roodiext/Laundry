@@ -5,8 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-    tools:context=".pelanggan.PilihPelangganActivity">
+    tools:context=".Layanan.PilihLayananActivity">
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/searchView"
@@ -25,7 +24,7 @@
         android:layout_marginBottom="8dp" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvPelanggan"
+        android:id="@+id/rvLayanan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="false"
@@ -33,7 +32,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:listitem="@layout/card_pilih_pelanggan"
+        tools:listitem="@layout/card_pilih_layanan"
         android:paddingTop="8dp"
         android:paddingBottom="8dp" />
 

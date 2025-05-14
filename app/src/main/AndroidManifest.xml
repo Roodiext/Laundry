@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Laundry"
         tools:targetApi="31">
         <activity
-            android:name=".pelanggan.PilihPelangganActivity"
+            android:name=".LayananTambahan.PilihLayananTambahan"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,11 +22,17 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".Layanan.PilihLayananActivity"
+            android:exported="true"></activity>
+        <activity
+            android:name=".pelanggan.PilihPelangganActivity"
+            android:exported="true" />
+        <activity
             android:name=".transaksi.transaksi"
             android:exported="false" />
         <activity
             android:name=".register"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".login"
             android:exported="true">
@@ -65,10 +71,10 @@
             android:exported="false" />
         <activity
             android:name=".Laundry"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.rudi.laundry.pelanggan
+package com.rudi.laundry.Layanan
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,25 +11,25 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import com.rudi.laundry.R
-import com.rudi.laundry.adapter.AdapterPilihPelanggan
-import com.rudi.laundry.modeldata.modelPelanggan
+import com.rudi.laundry.adapter.AdapterPilihLayanan
+import com.rudi.laundry.modeldata.modelLayanan
 
-class PilihPelangganActivity : AppCompatActivity() {
+class PilihLayananActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var searchView: SearchView
-    private lateinit var adapter: AdapterPilihPelanggan
+    private lateinit var adapter: AdapterPilihLayanan
 
     private val database = FirebaseDatabase.getInstance()
-    private val myRef: DatabaseReference = database.getReference("pelanggan")
-    private val listPelanggan = arrayListOf<modelPelanggan>()
-    private val listPelangganFull = arrayListOf<modelPelanggan>()
+    private val myRef: DatabaseReference = database.getReference("layanan")
+    private val listLayanan = arrayListOf<modelLayanan>()
+    private val listLayananFull = arrayListOf<modelLayanan>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_pilih_pelanggan)
+        setContentView(R.layout.activity_pilih_layanan)
 
-        recyclerView = findViewById(R.id.rvPelanggan)
+        recyclerView = findViewById(R.id.rvLayanan)
         searchView = findViewById(R.id.searchView)
 
         setupRecyclerView()
@@ -45,10 +45,10 @@ class PilihPelangganActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = AdapterPilihPelanggan(listPelanggan) { selectedPelanggan ->
+        adapter = AdapterPilihLayanan(listLayanan) { selectedLayanan ->
             val intent = Intent()
-            intent.putExtra("nama", selectedPelanggan.namaPelanggan)
-            intent.putExtra("hp", selectedPelanggan.noHPPelanggan)
+            intent.putExtra("nama", selectedLayanan.namaLayanan)
+            intent.putExtra("harga", selectedLayanan.hargaLayanan)
             setResult(RESULT_OK, intent)
             finish()
         }
@@ -58,20 +58,20 @@ class PilihPelangganActivity : AppCompatActivity() {
     private fun loadDataFirebase() {
         myRef.orderByChild("nama").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                listPelanggan.clear()
-                listPelangganFull.clear()
+                listLayanan.clear()
+                listLayananFull.clear()
                 for (data in snapshot.children) {
-                    val pelanggan = data.getValue(modelPelanggan::class.java)
-                    if (pelanggan != null) {
-                        listPelanggan.add(pelanggan)
-                        listPelangganFull.add(pelanggan)
+                    val layanan = data.getValue(modelLayanan::class.java)
+                    if (layanan != null) {
+                        listLayanan.add(layanan)
+                        listLayananFull.add(layanan)
                     }
                 }
-                adapter.updateList(listPelanggan)
+                adapter.updateList(listLayanan)
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@PilihPelangganActivity, error.message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@PilihLayananActivity, error.message, Toast.LENGTH_SHORT).show()
             }
         })
     }
@@ -82,10 +82,10 @@ class PilihPelangganActivity : AppCompatActivity() {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 val filteredList = if (!newText.isNullOrBlank()) {
-                    listPelangganFull.filter {
-                        it.namaPelanggan?.contains(newText, ignoreCase = true) == true
+                    listLayananFull.filter {
+                        it.namaLayanan?.contains(newText, ignoreCase = true) == true
                     }
-                } else listPelangganFull
+                } else listLayananFull
 
                 adapter.updateList(ArrayList(filteredList))
                 return true

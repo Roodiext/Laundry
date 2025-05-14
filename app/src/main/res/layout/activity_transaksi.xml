@@ -58,7 +58,9 @@
                 android:text="Pilih Pelanggan"
                 android:textColor="#FFFFFF"
                 android:layout_marginTop="12dp"
-                android:background="@drawable/rounded_button_blue"/>
+                android:onClick="PilihPelanggan"
+                android:background="@drawable/rounded_button_blue"
+                tools:ignore="OnClick" />
 
             <!-- Layanan Utama -->
             <TextView
@@ -72,7 +74,7 @@
                 android:layout_marginTop="16dp"/>
 
             <TextView
-                android:id="@+id/label_nama_layanan"
+                android:id="@+id/label_layanan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nama Layanan:"
@@ -94,6 +96,7 @@
                 android:text="Pilih Layanan"
                 android:textColor="#FFFFFF"
                 android:layout_marginTop="12dp"
+                android:onClick="PilihLayanan"
                 android:background="@drawable/rounded_button_blue"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

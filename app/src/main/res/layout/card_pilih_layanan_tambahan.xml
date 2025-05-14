@@ -58,7 +58,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="@string/card_layanan_nama"
+                            android:text="Nama Layanan Tambahan"
                             android:textSize="20dp"
                             android:gravity="start"
                             android:layout_gravity=""
@@ -82,7 +82,7 @@
                             android:id="@+id/tvharga_layanan"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/card_layanan_harga"
+                            android:text="harga layanan tambahan"
                             android:textSize="15dp"
                             android:gravity="end"
                             android:layout_marginEnd="10dp" />
