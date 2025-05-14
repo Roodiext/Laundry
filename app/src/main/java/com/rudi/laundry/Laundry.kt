@@ -12,6 +12,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.rudi.laundry.Layanan.DataLayananActivity
 import com.rudi.laundry.pelanggan.DataPegawaiActivity
 import com.rudi.laundry.pelanggan.DataPelangganActivity
+import com.rudi.laundry.transaksi.transaksi
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -98,6 +99,14 @@ class Laundry : AppCompatActivity() {
         val intent: Intent = Intent(
             this@Laundry,
             DataLayananActivity::class.java
+        )
+        startActivity(intent)
+    }
+
+    fun transaksi(view: View?) {
+        val intent: Intent = Intent(
+            this@Laundry,
+            transaksi::class.java
         )
         startActivity(intent)
     }

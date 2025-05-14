@@ -44,4 +44,11 @@ class AdapterDataPelanggan(
         val tvTerdaftar: TextView = itemView.findViewById(R.id.tvTerdaftarPelanggan)
         val cvCARD: CardView = itemView.findViewById(R.id.cvCARD_pelanggan)
     }
+
+    fun updateList(newList: List<modelPelanggan>) {
+        listPelanggan.clear()
+        listPelanggan.addAll(newList)
+        notifyDataSetChanged()
+    }
+
 }

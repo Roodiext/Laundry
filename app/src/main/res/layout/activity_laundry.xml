@@ -105,10 +105,11 @@
             app:layout_constraintTop_toBottomOf="@+id/Estimasi" />
 
         <ImageView
-            android:id="@+id/transaksi1"
+            android:id="@+id/transaksi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/lending"
+            android:onClick="transaksi"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/customer"
             app:layout_constraintStart_toStartOf="parent"
@@ -135,7 +136,7 @@
             android:onClick="pelanggan"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/raport"
-            app:layout_constraintStart_toEndOf="@+id/transaksi1"
+            app:layout_constraintStart_toEndOf="@+id/transaksi"
             app:layout_constraintTop_toBottomOf="@+id/line" />
 
         <TextView
