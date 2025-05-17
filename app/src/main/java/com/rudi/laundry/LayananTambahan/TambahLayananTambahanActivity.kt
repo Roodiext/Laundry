@@ -1,4 +1,4 @@
-package com.rudi.laundry.Layanan
+package com.rudi.laundry.LayananTambahan
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,12 +8,11 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.FirebaseDatabase
-import com.rudi.laundry.LayananTambahan.TambahLayananTambahan
+import com.rudi.laundry.Layanan.TambahLayananActivity
 import com.rudi.laundry.R
 import com.rudi.laundry.modeldata.modelLayanan
-import com.rudi.laundry.pelanggan.PilihPelangganActivity
 
-class TambahLayananActivity : AppCompatActivity() {
+class TambahLayananTambahan : AppCompatActivity() {
 
     private lateinit var etNama: EditText
     private lateinit var etHarga: EditText
@@ -22,7 +21,7 @@ class TambahLayananActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_tambah_layanan)
+        setContentView(R.layout.activity_tambah_layanan_tambahan)
 
         etNama = findViewById(R.id.etnama_layanan)
         etHarga = findViewById(R.id.etharga_layanan)
@@ -40,13 +39,13 @@ class TambahLayananActivity : AppCompatActivity() {
             }
 
             val database = FirebaseDatabase.getInstance()
-            val ref = database.getReference("layanan").push()
+            val ref = database.getReference("layanan_tambahan").push()
             val id = ref.key ?: ""
 
             val data = modelLayanan(id, nama, harga, cabang)
             ref.setValue(data)
                 .addOnSuccessListener {
-                    Toast.makeText(this, "Layanan berhasil disimpan!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Layanan Tambahan berhasil disimpan!", Toast.LENGTH_SHORT).show()
                     finish()
                 }
                 .addOnFailureListener {
@@ -55,9 +54,10 @@ class TambahLayananActivity : AppCompatActivity() {
         }
     }
 
-    fun LayananTambahan(view: View) {
-        val intent = Intent(this@TambahLayananActivity, TambahLayananTambahan::class.java)
+    fun layanan(view: View) {
+        val intent = Intent(this@TambahLayananTambahan, TambahLayananActivity::class.java)
         startActivity(intent)
     }
+
 
 }

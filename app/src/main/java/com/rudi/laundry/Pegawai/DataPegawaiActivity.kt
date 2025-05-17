@@ -1,4 +1,4 @@
-    package com.rudi.laundry.pelanggan
+    package com.rudi.laundry.Pegawai
 
     import android.content.Intent
     import android.os.Bundle

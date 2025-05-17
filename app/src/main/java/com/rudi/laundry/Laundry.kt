@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.rudi.laundry.Layanan.DataLayananActivity
-import com.rudi.laundry.pelanggan.DataPegawaiActivity
+import com.rudi.laundry.Pegawai.DataPegawaiActivity
 import com.rudi.laundry.pelanggan.DataPelangganActivity
 import com.rudi.laundry.transaksi.transaksi
 import java.text.SimpleDateFormat

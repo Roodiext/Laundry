@@ -7,4 +7,33 @@
     android:layout_height="match_parent"
     tools:context=".LayananTambahan.PilihLayananTambahan">
 
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:queryHint="Cari Data Layanan"
+        android:hint="Cari Data Layanan"
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:iconifiedByDefault="false"
+        android:background="@drawable/searchview_background"
+        android:elevation="2dp"
+        android:padding="1dp"
+        android:layout_marginBottom="8dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvLayanan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        app:layout_constraintTop_toBottomOf="@id/searchView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:listitem="@layout/card_pilih_layanan_tambahan"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

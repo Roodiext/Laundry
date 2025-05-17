@@ -24,6 +24,7 @@
             android:text="LAYANAN UTAMA"
             android:textAlignment="center"
             android:textSize="15sp"
+            android:onClick="layanan"
             android:textStyle="bold"
             android:padding="10dp"
             android:layout_margin="8dp"/>
@@ -36,7 +37,6 @@
             android:text="TAMBAH LAYANAN"
             android:textAlignment="center"
             android:textSize="15sp"
-            android:onClick="LayananTambahan"
             android:textStyle="bold"
             android:padding="10dp"
             android:layout_margin="8dp"/>
@@ -45,11 +45,11 @@
 
 
     <TextView
-        android:id="@+id/tvnama_layanan"
+        android:id="@+id/tvnama_layanan_Tambahan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="35dp"
-        android:text="Nama Layanan"
+        android:text="Nama Layanan Tambahan"
         android:textSize="18sp"
         android:padding="5dp"
         android:layout_marginTop="10dp"/>

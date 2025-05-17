@@ -1,6 +1,7 @@
 package com.rudi.laundry.Pegawai
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -184,5 +185,8 @@ class TambahPegawaiActivity : AppCompatActivity() {
                 Toast.makeText(this@TambahPegawaiActivity, "Data Pegawai Gagal Diperbarui", Toast.LENGTH_SHORT).show()
             }
     }
+
+    fun LayananTambahan(view: View) {}
+    fun layanan(view: View) {}
 
 }

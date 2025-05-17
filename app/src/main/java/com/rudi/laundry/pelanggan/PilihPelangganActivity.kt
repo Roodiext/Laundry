@@ -32,9 +32,14 @@ class PilihPelangganActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.rvPelanggan)
         searchView = findViewById(R.id.searchView)
 
+        // Setup RecyclerView terlebih dahulu
         setupRecyclerView()
+
+        // Konfigurasikan SearchView
+        setupSearchView()
+
+        // Terakhir, muat data dari Firebase
         loadDataFirebase()
-        setupSearchListener()
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -55,11 +60,41 @@ class PilihPelangganActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
     }
 
+    private fun setupSearchView() {
+        // Buat SearchView tidak auto-focus
+        searchView.clearFocus()
+        searchView.setIconifiedByDefault(false)
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean = false
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                filterData(newText)
+                return true
+            }
+        })
+    }
+
+    private fun filterData(query: String?) {
+        val filteredList = if (!query.isNullOrBlank()) {
+            listPelangganFull.filter {
+                it.namaPelanggan?.contains(query, ignoreCase = true) == true
+            }
+        } else listPelangganFull
+
+        adapter.updateList(ArrayList(filteredList))
+    }
+
     private fun loadDataFirebase() {
+        // Tampilkan indikator loading jika perlu
+
         myRef.orderByChild("nama").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                // Bersihkan data lama
                 listPelanggan.clear()
                 listPelangganFull.clear()
+
+                // Proses data baru
                 for (data in snapshot.children) {
                     val pelanggan = data.getValue(modelPelanggan::class.java)
                     if (pelanggan != null) {
@@ -67,29 +102,34 @@ class PilihPelangganActivity : AppCompatActivity() {
                         listPelangganFull.add(pelanggan)
                     }
                 }
-                adapter.updateList(listPelanggan)
+
+                // Update RecyclerView dengan semua data
+                if (listPelangganFull.isNotEmpty()) {
+                    adapter.updateList(listPelangganFull)
+                }
+
+                // Sembunyikan indikator loading jika perlu
+
+                // Pastikan SearchView tidak mendapat fokus setelah data dimuat
+                searchView.clearFocus()
             }
 
             override fun onCancelled(error: DatabaseError) {
+                // Sembunyikan indikator loading jika perlu
                 Toast.makeText(this@PilihPelangganActivity, error.message, Toast.LENGTH_SHORT).show()
             }
         })
     }
 
-    private fun setupSearchListener() {
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean = false
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                val filteredList = if (!newText.isNullOrBlank()) {
-                    listPelangganFull.filter {
-                        it.namaPelanggan?.contains(newText, ignoreCase = true) == true
-                    }
-                } else listPelangganFull
-
-                adapter.updateList(ArrayList(filteredList))
-                return true
-            }
-        })
+    override fun onResume() {
+        super.onResume()
+        // Pastikan data ditampilkan saat activity kembali aktif
+        // dan reset filter agar semua data ditampilkan
+        if (listPelangganFull.isNotEmpty()) {
+            adapter.updateList(ArrayList(listPelangganFull))
+        }
+        // Reset search query dan clear focus
+        searchView.setQuery("", false)
+        searchView.clearFocus()
     }
 }

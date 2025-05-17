@@ -15,6 +15,7 @@ import com.rudi.laundry.adapter.AdapterDataLayanan
 import com.rudi.laundry.modeldata.modelLayanan
 import com.rudi.laundry.Layanan.TambahLayananActivity
 import android.util.Log
+import com.rudi.laundry.LayananTambahan.DataLayananTambahanActivity
 
 class DataLayananActivity : AppCompatActivity() {
 
@@ -89,5 +90,11 @@ class DataLayananActivity : AppCompatActivity() {
                 Log.e("FirebaseData", "Database error: ${error.message}")
             }
         })
+
+        val intentTambahan = Intent(this, DataLayananTambahanActivity::class.java)
+        startActivity(intentTambahan)
+
     }
+
+
 }

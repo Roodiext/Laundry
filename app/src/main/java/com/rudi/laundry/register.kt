@@ -43,7 +43,7 @@ class RegisterActivity : AppCompatActivity() {
                     FirebaseDatabase.getInstance().getReference("users").child(uid).setValue(userData)
                         .addOnSuccessListener {
                             Toast.makeText(this, "Register berhasil", Toast.LENGTH_SHORT).show()
-                            startActivity(Intent(this, login::class.java))
+                            startActivity(Intent(this, Login::class.java))
                             finish()
                         }
                 } else {

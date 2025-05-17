@@ -1,12 +1,10 @@
 package com.rudi.laundry.modeldata
-import java.io.Serializable
 
-data class modelLayanan(
+data class modelLayananTambahan(
     val idLayanan: String = "",
     val namaLayanan: String? = null,
     val hargaLayanan: String? = null,
-    val cabang: String = "",
-    val jenisLayanan: String = ""
-) : Serializable {
+    val cabang: String = ""
+) {
     constructor() : this("", null, null, "")
 }

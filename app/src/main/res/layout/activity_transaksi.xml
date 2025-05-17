@@ -118,7 +118,7 @@
             android:padding="16dp">
 
             <TextView
-                android:id="@+id/title_layanan_tambahan"
+                android:id="@+id/label_layanan_tambahan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Layanan Tambahan"
@@ -128,7 +128,7 @@
                 android:layout_marginBottom="12dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_layanan_tambahan"
+                android:id="@+id/rvLayananTambahan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:nestedScrollingEnabled="false"/>
@@ -160,6 +160,7 @@
                 android:layout_height="60dp"
                 android:layout_weight="1"
                 android:text="Tambahan"
+                android:onClick="DataLayananTambahan"
                 android:textColor="#FFFFFF"
                 android:backgroundTint="#FFC107"
                 android:background="@drawable/rounded_button_yellow"/>
