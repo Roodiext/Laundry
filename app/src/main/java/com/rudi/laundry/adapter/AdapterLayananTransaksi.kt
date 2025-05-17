@@ -9,6 +9,8 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.rudi.laundry.R
 import com.rudi.laundry.modeldata.modelLayanan
+import java.text.NumberFormat
+import java.util.*
 
 class AdapterLayananTransaksi(
     private val listLayanan: MutableList<modelLayanan>,
@@ -24,13 +26,17 @@ class AdapterLayananTransaksi(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = listLayanan[position]
 
-        // Set nomor urut dengan format [n]
         holder.tvNomor.text = "[${position + 1}]"
-
         holder.tvNamaLayanan.text = item.namaLayanan ?: "Tidak Ada Nama"
-        holder.tvHargaLayanan.text = "Harga: ${item.hargaLayanan ?: "Rp0"}"
 
-        // Set listener untuk tombol hapus
+        val harga = item.hargaLayanan?.toDoubleOrNull()
+        val formattedHarga = if (harga != null) {
+            NumberFormat.getCurrencyInstance(Locale("in", "ID")).format(harga)
+        } else {
+            "Rp0,00"
+        }
+        holder.tvHargaLayanan.text = "Harga: $formattedHarga"
+
         holder.btnHapus.setOnClickListener {
             onItemClick(item)
         }

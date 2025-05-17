@@ -8,8 +8,10 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.rudi.laundry.R
 import com.rudi.laundry.modeldata.modelLayanan
+import java.text.NumberFormat
+import java.util.*
 
-class AdapterDataLayanan (
+class AdapterDataLayanan(
     private val listLayanan: ArrayList<modelLayanan>
 ) : RecyclerView.Adapter<AdapterDataLayanan.ViewHolder>() {
 
@@ -23,11 +25,19 @@ class AdapterDataLayanan (
         val item = listLayanan[position]
 
         holder.tvNamaLayanan.text = item.namaLayanan ?: "Tidak Ada Nama"
-        holder.tvHargaLayanan.text = item.hargaLayanan ?: "Tidak Ada Alamat"
-        holder.tvcabang.text = item.cabang ?: "Tidak Ada No HP"
+
+        val harga = item.hargaLayanan?.toDoubleOrNull()
+        val formattedHarga = if (harga != null) {
+            NumberFormat.getCurrencyInstance(Locale("in", "ID")).format(harga)
+        } else {
+            "Tidak Ada Harga"
+        }
+        holder.tvHargaLayanan.text = formattedHarga
+
+        holder.tvcabang.text = item.cabang ?: "Tidak Ada Cabang"
 
         holder.cvCARD.setOnClickListener {
-
+            // Optional: Tambahkan aksi jika perlu
         }
     }
 
@@ -36,10 +46,9 @@ class AdapterDataLayanan (
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tvNamaLayanan: TextView = itemView.findViewById(R.id.tvNamaPelanggan)  // Sesuai XML
-        val tvHargaLayanan: TextView = itemView.findViewById(R.id.tvAlamatPelanggan)  // Sesuai XML
-        val tvcabang: TextView = itemView.findViewById(R.id.tvNoHPPelanggan)  // Sesuai XML
+        val tvNamaLayanan: TextView = itemView.findViewById(R.id.tvNamaPelanggan)
+        val tvHargaLayanan: TextView = itemView.findViewById(R.id.tvAlamatPelanggan)
+        val tvcabang: TextView = itemView.findViewById(R.id.tvNoHPPelanggan)
         val cvCARD: CardView = itemView.findViewById(R.id.cvCARD_layanan)
     }
-
 }

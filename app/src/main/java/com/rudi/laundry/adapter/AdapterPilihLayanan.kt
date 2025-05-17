@@ -8,6 +8,8 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.rudi.laundry.R
 import com.rudi.laundry.modeldata.modelLayanan
+import java.text.NumberFormat
+import java.util.*
 
 class AdapterPilihLayanan(
     private val listLayanan: MutableList<modelLayanan>,
@@ -22,8 +24,16 @@ class AdapterPilihLayanan(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = listLayanan[position]
+
         holder.tvNamaLayanan.text = item.namaLayanan ?: "Tidak Ada Nama"
-        holder.tvHargaLayanan.text = item.hargaLayanan ?: "Tidak Ada Harga"
+
+        val harga = item.hargaLayanan?.toDoubleOrNull()
+        val formattedHarga = if (harga != null) {
+            NumberFormat.getCurrencyInstance(Locale("in", "ID")).format(harga)
+        } else {
+            "Tidak Ada Harga"
+        }
+        holder.tvHargaLayanan.text = formattedHarga
 
         holder.cvCARD.setOnClickListener {
             onItemClick(item)

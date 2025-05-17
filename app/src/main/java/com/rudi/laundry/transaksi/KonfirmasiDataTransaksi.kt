@@ -36,7 +36,6 @@ class KonfirmasiDataTransaksi : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_konfirmasi_data_transaksi)
 
-        // Inisialisasi view
         textViewNamaPelanggan = findViewById(R.id.textViewNamaPelanggan)
         textViewNomorHP = findViewById(R.id.textViewNomorHP)
         textViewNamaLayanan = findViewById(R.id.textViewNamaLayanan)
@@ -46,13 +45,8 @@ class KonfirmasiDataTransaksi : AppCompatActivity() {
         buttonBatal = findViewById(R.id.buttonBatal)
         buttonPembayaran = findViewById(R.id.buttonPembayaran)
 
-        // Setup RecyclerView
         setupRecyclerView()
-
-        // Ambil data dari intent
         getDataFromIntent()
-
-        // Setup button listener
         setupButtonListeners()
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.konfirmasi_transaksi)) { v, insets ->
@@ -63,8 +57,7 @@ class KonfirmasiDataTransaksi : AppCompatActivity() {
     }
 
     private fun setupRecyclerView() {
-        // Setup adapter dengan callback kosong karena hanya untuk menampilkan, tidak perlu delete
-        adapterLayananTambahan = AdapterLayananTransaksi(listLayananTambahan) { /* tidak perlu action */ }
+        adapterLayananTambahan = AdapterLayananTransaksi(listLayananTambahan) { }
         recyclerViewLayananTambahan.layoutManager = LinearLayoutManager(this)
         recyclerViewLayananTambahan.adapter = adapterLayananTambahan
     }
@@ -82,7 +75,7 @@ class KonfirmasiDataTransaksi : AppCompatActivity() {
         textViewNamaPelanggan.text = namaPelanggan
         textViewNomorHP.text = nomorHP
         textViewNamaLayanan.text = namaLayanan
-        textViewHargaLayanan.text = hargaLayanan
+        textViewHargaLayanan.text = formatRupiah(extractNumber(hargaLayanan))
 
         listLayananTambahan.clear()
         listLayananTambahan.addAll(layananTambahanList)
@@ -91,46 +84,39 @@ class KonfirmasiDataTransaksi : AppCompatActivity() {
         hitungTotalHarga(hargaLayanan, layananTambahanList)
     }
 
-
     private fun hitungTotalHarga(hargaLayanan: String, layananTambahan: ArrayList<modelLayanan>) {
         var total = extractNumber(hargaLayanan)
 
-
         for (layanan in layananTambahan) {
-            val hargaLayanan: String = intent.getStringExtra("harga_layanan") ?: "Rp0"
-
+            total += extractNumber(layanan.hargaLayanan ?: "0")
         }
 
-        // Format total harga
-        val localeID = Locale("in", "ID")
-        val formatRupiah = NumberFormat.getCurrencyInstance(localeID)
-        textViewTotalHarga.text = formatRupiah.format(total).replace("Rp", "Rp")
+        textViewTotalHarga.text = formatRupiah(total)
     }
 
     private fun extractNumber(hargaString: String): Double {
-        // Extract angka dari string harga (contoh: "Rp40.000,00" -> 40000.0)
-        val regex = Regex("[^0-9]")
-        val numberString = regex.replace(hargaString, "")
-        return if (numberString.isNotEmpty()) {
-            numberString.toDouble()
+        val cleaned = hargaString.replace("Rp", "").trim()
+        return if (cleaned.contains(",")) {
+            // Format "Rp 15.000,00" → "15000.00"
+            cleaned.replace(".", "").replace(",", ".").toDoubleOrNull() ?: 0.0
         } else {
-            0.0
+            // Format "15000" → langsung toDouble
+            cleaned.toDoubleOrNull() ?: 0.0
         }
+    }
+
+    private fun formatRupiah(amount: Double): String {
+        val localeID = Locale("in", "ID")
+        return NumberFormat.getCurrencyInstance(localeID).format(amount)
     }
 
     private fun setupButtonListeners() {
         buttonBatal.setOnClickListener {
-            // Kembali ke halaman sebelumnya
             finish()
         }
 
         buttonPembayaran.setOnClickListener {
-            // Proses pembayaran (bisa dibuat intent ke activity pembayaran nantinya)
             Toast.makeText(this, "Proses pembayaran", Toast.LENGTH_SHORT).show()
-            // Contoh: Intent ke activity pembayaran
-            // val intent = Intent(this, PembayaranActivity::class.java)
-            // intent.putExtra("total_harga", textViewTotalHarga.text.toString())
-            // startActivity(intent)
         }
     }
 }
