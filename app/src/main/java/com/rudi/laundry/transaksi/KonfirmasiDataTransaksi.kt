@@ -1,6 +1,7 @@
 package com.rudi.laundry.transaksi
 
 import android.app.Dialog
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -20,7 +21,7 @@ import com.rudi.laundry.R
 import com.rudi.laundry.adapter.AdapterLayananTransaksi
 import com.rudi.laundry.modeldata.modelLayanan
 import java.text.NumberFormat
-import java.util.Locale
+import java.util.*
 
 class KonfirmasiDataTransaksi : AppCompatActivity() {
 
@@ -102,10 +103,8 @@ class KonfirmasiDataTransaksi : AppCompatActivity() {
     private fun extractNumber(hargaString: String): Double {
         val cleaned = hargaString.replace("Rp", "").trim()
         return if (cleaned.contains(",")) {
-            // Format "Rp 15.000,00" → "15000.00"
             cleaned.replace(".", "").replace(",", ".").toDoubleOrNull() ?: 0.0
         } else {
-            // Format "15000" → langsung toDouble
             cleaned.toDoubleOrNull() ?: 0.0
         }
     }
@@ -113,6 +112,14 @@ class KonfirmasiDataTransaksi : AppCompatActivity() {
     private fun formatRupiah(amount: Double): String {
         val localeID = Locale("in", "ID")
         return NumberFormat.getCurrencyInstance(localeID).format(amount)
+    }
+
+    private fun extractHargaFromText(harga: String): String {
+        return harga.replace("Rp", "").replace(".", "").replace(",", ".").trim()
+    }
+
+    private fun generateRandomId(): String {
+        return "-INV" + UUID.randomUUID().toString().take(8)
     }
 
     private fun setupButtonListeners() {
@@ -130,14 +137,12 @@ class KonfirmasiDataTransaksi : AppCompatActivity() {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.dialog_payment_method)
 
-        // Set ukuran dialog
         val window = dialog.window
         if (window != null) {
             window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
             window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
 
-        // Inisialisasi semua tombol
         val btnBayarNanti = dialog.findViewById<Button>(R.id.btnBayarNanti)
         val btnTunai = dialog.findViewById<Button>(R.id.btnTunai)
         val btnQris = dialog.findViewById<Button>(R.id.btnQris)
@@ -146,47 +151,28 @@ class KonfirmasiDataTransaksi : AppCompatActivity() {
         val btnOvo = dialog.findViewById<Button>(R.id.btnOvo)
         val tvBatal = dialog.findViewById<TextView>(R.id.tvBatal)
 
-        // Set listener untuk setiap tombol
-        btnBayarNanti.setOnClickListener {
-            Toast.makeText(this, "Metode Bayar Nanti dipilih", Toast.LENGTH_SHORT).show()
-            // Tambahkan kode untuk memproses pembayaran dengan metode Bayar Nanti
+        val metodePembayaranListener = View.OnClickListener {
+            val intent = Intent(this, InvoiceTransaksiActivity::class.java)
+            intent.putExtra("nama_pelanggan", textViewNamaPelanggan.text.toString())
+            intent.putExtra("nama_layanan", textViewNamaLayanan.text.toString())
+            intent.putExtra("harga_layanan", extractNumber(textViewHargaLayanan.text.toString()))
+            intent.putExtra("total_bayar", extractNumber(textViewTotalHarga.text.toString()))
+            intent.putExtra("layanan_tambahan", listLayananTambahan)
+            intent.putExtra("id_transaksi", generateRandomId())
+
             dialog.dismiss()
+            startActivity(intent)
         }
 
-        btnTunai.setOnClickListener {
-            Toast.makeText(this, "Metode Tunai dipilih", Toast.LENGTH_SHORT).show()
-            // Tambahkan kode untuk memproses pembayaran dengan metode Tunai
-            dialog.dismiss()
-        }
-
-        btnQris.setOnClickListener {
-            Toast.makeText(this, "Metode QRIS dipilih", Toast.LENGTH_SHORT).show()
-            // Tambahkan kode untuk memproses pembayaran dengan metode QRIS
-            dialog.dismiss()
-        }
-
-        btnDana.setOnClickListener {
-            Toast.makeText(this, "Metode DANA dipilih", Toast.LENGTH_SHORT).show()
-            // Tambahkan kode untuk memproses pembayaran dengan metode DANA
-            dialog.dismiss()
-        }
-
-        btnGopay.setOnClickListener {
-            Toast.makeText(this, "Metode GoPay dipilih", Toast.LENGTH_SHORT).show()
-            // Tambahkan kode untuk memproses pembayaran dengan metode GoPay
-            dialog.dismiss()
-        }
-
-        btnOvo.setOnClickListener {
-            Toast.makeText(this, "Metode OVO dipilih", Toast.LENGTH_SHORT).show()
-            // Tambahkan kode untuk memproses pembayaran dengan metode OVO
-            dialog.dismiss()
-        }
-
-        tvBatal.setOnClickListener {
-            dialog.dismiss()
-        }
+        btnBayarNanti.setOnClickListener(metodePembayaranListener)
+        btnTunai.setOnClickListener(metodePembayaranListener)
+        btnQris.setOnClickListener(metodePembayaranListener)
+        btnDana.setOnClickListener(metodePembayaranListener)
+        btnGopay.setOnClickListener(metodePembayaranListener)
+        btnOvo.setOnClickListener(metodePembayaranListener)
+        tvBatal.setOnClickListener { dialog.dismiss() }
 
         dialog.show()
     }
+
 }
