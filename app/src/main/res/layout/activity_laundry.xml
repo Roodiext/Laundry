@@ -122,7 +122,7 @@
             android:text="Transaksi"
             android:textStyle="normal"
             android:textColor="?attr/colorTextSecondary"
-            app:layout_constraintTop_toBottomOf="@+id/transaksi1"
+            app:layout_constraintTop_toBottomOf="@+id/transaksi"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/customer_txt"
             app:layout_constraintBottom_toBottomOf="parent"/>
@@ -168,7 +168,7 @@
             android:text="Laporan"
             android:textColor="?attr/colorTextSecondary"
             android:textStyle="normal"
-            app:layout_constraintTop_toBottomOf="@+id/transaksi1"
+            app:layout_constraintTop_toBottomOf="@+id/raport"
             app:layout_constraintStart_toEndOf="@id/customer_txt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>

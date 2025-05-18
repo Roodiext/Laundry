@@ -5,22 +5,25 @@
     android:id="@+id/transaksi"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF6FC"
+    android:background="?attr/colorBackground"
     tools:context=".MainActivity">
 
-    <!-- CardView 1: Data Pelanggan & Layanan Utama -->
+    <!-- CARD: Data Pelanggan & Layanan Utama -->
     <androidx.cardview.widget.CardView
         android:id="@+id/card_data_layanan"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:cardElevation="4dp"
-        app:cardCornerRadius="12dp"
+        app:cardCornerRadius="16dp"
+        android:background="@drawable/rounded_bg"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:background="@drawable/rounded_bg"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp">
@@ -32,8 +35,8 @@
                 android:layout_height="wrap_content"
                 android:text="Data Pelanggan"
                 android:textStyle="bold"
-                android:textSize="24sp"
-                android:textColor="#333333" />
+                android:textSize="20sp"
+                android:textColor="?attr/colorTextSecondary" />
 
             <TextView
                 android:id="@+id/label_nama"
@@ -41,6 +44,7 @@
                 android:layout_height="wrap_content"
                 android:text="Nama Pelanggan:"
                 android:textSize="16sp"
+                android:textColor="?attr/colorTextSecondary"
                 android:layout_marginTop="12dp"/>
 
             <TextView
@@ -49,18 +53,19 @@
                 android:layout_height="wrap_content"
                 android:text="No HP:"
                 android:textSize="16sp"
+                android:textColor="?attr/colorTextSecondary"
                 android:layout_marginTop="4dp"/>
 
             <Button
                 android:id="@+id/btn_pilih_pelanggan"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="48dp"
                 android:text="Pilih Pelanggan"
                 android:textColor="#FFFFFF"
                 android:layout_marginTop="12dp"
                 android:onClick="PilihPelanggan"
                 android:background="@drawable/rounded_button_blue"
-                tools:ignore="OnClick" />
+                />
 
             <!-- Layanan Utama -->
             <TextView
@@ -69,9 +74,9 @@
                 android:layout_height="wrap_content"
                 android:text="Layanan Utama"
                 android:textStyle="bold"
-                android:textSize="24sp"
-                android:textColor="#333333"
-                android:layout_marginTop="16dp"/>
+                android:textSize="20sp"
+                android:textColor="?attr/colorTextSecondary"
+                android:layout_marginTop="20dp"/>
 
             <TextView
                 android:id="@+id/label_layanan"
@@ -79,6 +84,7 @@
                 android:layout_height="wrap_content"
                 android:text="Nama Layanan:"
                 android:textSize="16sp"
+                android:textColor="?attr/colorTextSecondary"
                 android:layout_marginTop="12dp"/>
 
             <TextView
@@ -86,21 +92,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Harga:"
+                android:textColor="?attr/colorTextSecondary"
                 android:textSize="16sp"
                 android:layout_marginTop="4dp"/>
 
             <Button
                 android:id="@+id/btn_pilih_layanan"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="48dp"
                 android:text="Pilih Layanan"
                 android:textColor="#FFFFFF"
-                android:layout_marginTop="12dp"
                 android:onClick="PilihLayanan"
-                android:background="@drawable/rounded_button_blue"/>
+                android:layout_marginTop="12dp"
+                android:background="@drawable/rounded_button_blue" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
+    <!-- SCROLL: Layanan Tambahan -->
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScroll"
         android:layout_width="0dp"
@@ -123,26 +131,27 @@
                 android:layout_height="wrap_content"
                 android:text="Layanan Tambahan"
                 android:textStyle="bold"
-                android:textSize="24sp"
-                android:textColor="#333333"
-                android:layout_marginBottom="12dp"/>
+                android:textSize="20sp"
+                android:textColor="?attr/colorTextSecondary"
+                android:layout_marginBottom="12dp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvLayananTambahan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="?attr/colorBackground"
                 android:nestedScrollingEnabled="false"/>
-
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
+    <!-- CARD: Tombol Aksi -->
     <androidx.cardview.widget.CardView
         android:id="@+id/button_container"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        app:cardElevation="4dp"
-        app:cardCornerRadius="12dp"
+        app:cardElevation="6dp"
+        app:cardCornerRadius="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -152,18 +161,19 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center"
-            android:padding="12dp">
+            android:background="?attr/colorBackground"
+            android:padding="12dp"
+            android:weightSum="2">
 
             <Button
                 android:id="@+id/btn_tambahan"
                 android:layout_width="0dp"
-                android:layout_height="60dp"
+                android:layout_height="48dp"
                 android:layout_weight="1"
+                android:background="@drawable/rounded_button_yellow"
                 android:text="Tambahan"
                 android:onClick="DataLayananTambahan"
-                android:textColor="#FFFFFF"
-                android:backgroundTint="#FFC107"
-                android:background="@drawable/rounded_button_yellow"/>
+                android:textColor="#FFFFFF" />
 
             <Space
                 android:layout_width="16dp"
@@ -172,11 +182,11 @@
             <Button
                 android:id="@+id/btn_proses"
                 android:layout_width="0dp"
-                android:layout_height="60dp"
+                android:layout_height="48dp"
                 android:layout_weight="1"
                 android:text="Proses"
                 android:textColor="#FFFFFF"
-                android:background="@drawable/rounded_button_blue"/>
+                android:background="@drawable/rounded_button_blue" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
