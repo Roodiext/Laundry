@@ -1,6 +1,9 @@
 package com.rudi.laundry.transaksi
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,6 +25,7 @@ class InvoiceTransaksiActivity : AppCompatActivity() {
     private lateinit var rvTambahan: RecyclerView
     private lateinit var tvSubtotalTambahan: TextView
     private lateinit var tvTotalBayar: TextView
+    private lateinit var btnKirimWhatsapp: Button
 
     private val listTambahan = ArrayList<modelLayanan>()
     private lateinit var adapter: AdapterLayananTransaksi
@@ -38,9 +42,11 @@ class InvoiceTransaksiActivity : AppCompatActivity() {
         rvTambahan = findViewById(R.id.rvRincianTambahan)
         tvSubtotalTambahan = findViewById(R.id.tvSubtotalTambahan)
         tvTotalBayar = findViewById(R.id.tvTotalBayar)
+        btnKirimWhatsapp = findViewById(R.id.btnKirimWhatsapp)
 
         setupRecyclerView()
         loadDataFromIntent()
+        setupWhatsappButton()
     }
 
     private fun setupRecyclerView() {
@@ -60,7 +66,7 @@ class InvoiceTransaksiActivity : AppCompatActivity() {
         val tambahan = intent.getSerializableExtra("layanan_tambahan") as? ArrayList<modelLayanan> ?: arrayListOf()
 
         val formatter = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
-        val tanggal = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
+        val tanggal = SimpleDateFormat("yyyy-MM-dd | HH:mm:ss", Locale.getDefault()).format(Date())
 
         tvTanggal.text = tanggal
         tvIdTransaksi.text = idTransaksi
@@ -83,5 +89,40 @@ class InvoiceTransaksiActivity : AppCompatActivity() {
             .replace(",", ".")
             .trim()
         return cleaned.toDoubleOrNull() ?: 0.0
+    }
+
+    private fun setupWhatsappButton() {
+        btnKirimWhatsapp.setOnClickListener {
+            val nama = tvNamaPelanggan.text.toString()
+            val layanan = tvLayananUtama.text.toString()
+            val harga = tvHargaLayanan.text.toString()
+            val total = tvTotalBayar.text.toString()
+
+            val pesan = buildString {
+                append("*Halo* $nama 👋\n")
+                append("*Berikut rincian laundry Anda:*\n")
+                append("• Layanan Utama: $layanan\n")
+                append("• Harga: $harga\n")
+
+                if (listTambahan.isNotEmpty()) {
+                    append("\n*Rincian Tambahan:*\n")
+                    val formatter = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
+
+                    listTambahan.forEachIndexed { index, item ->
+                        val hargaFormatted = formatter.format(extractHargaFromString(item.hargaLayanan ?: "0"))
+                        append("${index + 1}. ${item.namaLayanan} - $hargaFormatted\n")
+                    }
+
+                }
+
+                append("\n*Total Bayar*: $total\n")
+                append("\nTerima kasih telah menggunakan layanan Athh Laundry 💙")
+            }
+
+            val url = "https://wa.me/?text=" + Uri.encode(pesan)
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(url)
+            startActivity(intent)
+        }
     }
 }

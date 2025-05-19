@@ -90,10 +90,6 @@ class DataLayananActivity : AppCompatActivity() {
                 Log.e("FirebaseData", "Database error: ${error.message}")
             }
         })
-
-        val intentTambahan = Intent(this, DataLayananTambahanActivity::class.java)
-        startActivity(intentTambahan)
-
     }
 
 

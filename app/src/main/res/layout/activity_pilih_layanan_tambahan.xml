@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:background="?attr/colorBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LayananTambahan.PilihLayananTambahan">
@@ -18,7 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:iconifiedByDefault="false"
-        android:background="@drawable/searchview_background"
+        android:background="?attr/colorBackground"
         android:elevation="2dp"
         android:padding="1dp"
         android:layout_marginBottom="8dp" />
@@ -28,6 +29,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="false"
+        android:background="?attr/colorBackground"
+        android:backgroundTint="?attr/colorBackground"
         app:layout_constraintTop_toBottomOf="@id/searchView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

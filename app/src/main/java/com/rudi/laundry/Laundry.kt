@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.rudi.laundry.Layanan.DataLayananActivity
+import com.rudi.laundry.LayananTambahan.DataLayananTambahanActivity
 import com.rudi.laundry.Pegawai.DataPegawaiActivity
 import com.rudi.laundry.pelanggan.DataPelangganActivity
 import com.rudi.laundry.transaksi.transaksi
@@ -99,6 +100,14 @@ class Laundry : AppCompatActivity() {
         val intent: Intent = Intent(
             this@Laundry,
             DataLayananActivity::class.java
+        )
+        startActivity(intent)
+    }
+
+    fun layanantambahan(view: View) {
+        val intent: Intent = Intent(
+            this@Laundry,
+            DataLayananTambahanActivity::class.java
         )
         startActivity(intent)
     }

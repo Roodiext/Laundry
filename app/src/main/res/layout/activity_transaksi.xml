@@ -8,7 +8,6 @@
     android:background="?attr/colorBackground"
     tools:context=".MainActivity">
 
-    <!-- CARD: Data Pelanggan & Layanan Utama -->
     <androidx.cardview.widget.CardView
         android:id="@+id/card_data_layanan"
         android:layout_width="0dp"
@@ -108,16 +107,30 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
+    <TextView
+        android:id="@+id/label_layanan_tambahan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Layanan Tambahan"
+        android:textStyle="bold"
+        android:padding="16dp"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card_data_layanan"
+        android:textColor="?attr/colorTextSecondary"
+        android:layout_marginBottom="12dp" />
+
     <!-- SCROLL: Layanan Tambahan -->
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScroll"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_constraintTop_toBottomOf="@id/card_data_layanan"
+        app:layout_constraintTop_toBottomOf="@id/label_layanan_tambahan"
         app:layout_constraintBottom_toTopOf="@id/button_container"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -125,15 +138,7 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <TextView
-                android:id="@+id/label_layanan_tambahan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Layanan Tambahan"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:textColor="?attr/colorTextSecondary"
-                android:layout_marginBottom="12dp" />
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvLayananTambahan"
