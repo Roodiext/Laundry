@@ -1,19 +1,29 @@
 package com.rudi.laundry.transaksi
 
+import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothDevice
+import android.bluetooth.BluetoothSocket
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rudi.laundry.R
 import com.rudi.laundry.adapter.AdapterLayananTransaksi
 import com.rudi.laundry.modeldata.modelLayanan
+import java.io.OutputStream
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.UUID
 
 class InvoiceTransaksiActivity : AppCompatActivity() {
 
@@ -25,10 +35,19 @@ class InvoiceTransaksiActivity : AppCompatActivity() {
     private lateinit var rvTambahan: RecyclerView
     private lateinit var tvSubtotalTambahan: TextView
     private lateinit var tvTotalBayar: TextView
+    private lateinit var btnCetak: Button
     private lateinit var btnKirimWhatsapp: Button
 
     private val listTambahan = ArrayList<modelLayanan>()
     private lateinit var adapter: AdapterLayananTransaksi
+
+    private val bluetoothAdapter: BluetoothAdapter? = BluetoothAdapter.getDefaultAdapter()
+    private var bluetoothSocket: BluetoothSocket? = null
+    private var outputStream: OutputStream? = null
+
+    private val printerMAC = "DC:0D:51:A7:FF:7A"
+    // Ganti dengan alamat MAC printermu
+    private val printerUUID: UUID = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,10 +61,17 @@ class InvoiceTransaksiActivity : AppCompatActivity() {
         rvTambahan = findViewById(R.id.rvRincianTambahan)
         tvSubtotalTambahan = findViewById(R.id.tvSubtotalTambahan)
         tvTotalBayar = findViewById(R.id.tvTotalBayar)
+        btnCetak = findViewById(R.id.btnCetak)
         btnKirimWhatsapp = findViewById(R.id.btnKirimWhatsapp)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S &&
+            checkSelfPermission(android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(arrayOf(android.Manifest.permission.BLUETOOTH_CONNECT), 100)
+        }
 
         setupRecyclerView()
         loadDataFromIntent()
+        setupPrintButton()
         setupWhatsappButton()
     }
 
@@ -66,7 +92,7 @@ class InvoiceTransaksiActivity : AppCompatActivity() {
         val tambahan = intent.getSerializableExtra("layanan_tambahan") as? ArrayList<modelLayanan> ?: arrayListOf()
 
         val formatter = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
-        val tanggal = SimpleDateFormat("yyyy-MM-dd | HH:mm:ss", Locale.getDefault()).format(Date())
+        val tanggal = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
 
         tvTanggal.text = tanggal
         tvIdTransaksi.text = idTransaksi
@@ -91,38 +117,94 @@ class InvoiceTransaksiActivity : AppCompatActivity() {
         return cleaned.toDoubleOrNull() ?: 0.0
     }
 
+    private fun setupPrintButton() {
+        btnCetak.setOnClickListener {
+            val message = buildString {
+                append("\n========= INVOICE =========\n")
+                append("ID: ${tvIdTransaksi.text}\n")
+                append("Tanggal: ${tvTanggal.text}\n")
+                append("Pelanggan: ${tvNamaPelanggan.text}\n")
+                append("-----------------------------\n")
+                append("${tvLayananUtama.text} : ${tvHargaLayanan.text}\n")
+                append("\nRincian Tambahan:\n")
+                listTambahan.forEachIndexed { index, item ->
+                    append("${index + 1}. ${item.namaLayanan} - ${item.hargaLayanan}\n")
+                }
+                append("-----------------------------\n")
+                append("Subtotal: ${tvSubtotalTambahan.text}\n")
+                append("TOTAL BAYAR: ${tvTotalBayar.text}\n")
+                append("============================\n")
+                append("\nTerima kasih!\n")
+            }
+            printToBluetooth(message)
+        }
+    }
+
     private fun setupWhatsappButton() {
         btnKirimWhatsapp.setOnClickListener {
-            val nama = tvNamaPelanggan.text.toString()
-            val layanan = tvLayananUtama.text.toString()
-            val harga = tvHargaLayanan.text.toString()
-            val total = tvTotalBayar.text.toString()
-
-            val pesan = buildString {
-                append("*Halo* $nama 👋\n")
+            val message = buildString {
+                append("*Hai Halo* ${tvNamaPelanggan.text} 👋\n\n")
                 append("*Berikut rincian laundry Anda:*\n")
-                append("• Layanan Utama: $layanan\n")
-                append("• Harga: $harga\n")
+                append("• Layanan Utama: ${tvLayananUtama.text}\n")
+                append("• Harga: ${tvHargaLayanan.text}\n\n")
+                append("*Rincian Tambahan:*\n")
+                val formatter = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
 
-                if (listTambahan.isNotEmpty()) {
-                    append("\n*Rincian Tambahan:*\n")
-                    val formatter = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
-
-                    listTambahan.forEachIndexed { index, item ->
-                        val hargaFormatted = formatter.format(extractHargaFromString(item.hargaLayanan ?: "0"))
-                        append("${index + 1}. ${item.namaLayanan} - $hargaFormatted\n")
-                    }
-
+                listTambahan.forEachIndexed { index, item ->
+                    val hargaFormatted = formatter.format(extractHargaFromString(item.hargaLayanan ?: "0"))
+                    append("${index + 1}. ${item.namaLayanan} - $hargaFormatted\n")
                 }
 
-                append("\n*Total Bayar*: $total\n")
-                append("\nTerima kasih telah menggunakan layanan Athh Laundry 💙")
+                append("\n*Total Bayar:* ${tvTotalBayar.text}\n\n")
+                append("Terima kasih telah menggunakan layanan Athh Laundry 💟")
             }
 
-            val url = "https://wa.me/?text=" + Uri.encode(pesan)
             val intent = Intent(Intent.ACTION_VIEW)
-            intent.data = Uri.parse(url)
+            intent.data = Uri.parse("https://wa.me/?text=" + Uri.encode(message))
             startActivity(intent)
+        }
+    }
+
+    private fun printToBluetooth(text: String) {
+        Thread {
+            try {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S &&
+                    checkSelfPermission(android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                    Handler(Looper.getMainLooper()).post {
+                        Toast.makeText(this, "Izin Bluetooth diperlukan untuk mencetak", Toast.LENGTH_SHORT).show()
+                    }
+                    return@Thread
+                }
+
+                val device: BluetoothDevice? = bluetoothAdapter?.getRemoteDevice(printerMAC)
+                bluetoothSocket = device?.createRfcommSocketToServiceRecord(printerUUID)
+                bluetoothSocket?.connect()
+                outputStream = bluetoothSocket?.outputStream
+
+                outputStream?.write(text.toByteArray())
+                outputStream?.flush()
+
+                Handler(Looper.getMainLooper()).post {
+                    Toast.makeText(this, "Berhasil mencetak invoice", Toast.LENGTH_SHORT).show()
+                }
+
+                outputStream?.close()
+                bluetoothSocket?.close()
+            } catch (e: Exception) {
+                Handler(Looper.getMainLooper()).post {
+                    Toast.makeText(this, "Gagal mencetak: ${e.message}", Toast.LENGTH_LONG).show()
+                }
+                e.printStackTrace()
+            }
+        }.start()
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 100 && grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(this, "Izin Bluetooth diberikan", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this, "Izin Bluetooth ditolak", Toast.LENGTH_SHORT).show()
         }
     }
 }
