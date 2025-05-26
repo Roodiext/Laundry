@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
-
 class RegisterActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
 
@@ -32,7 +31,7 @@ class RegisterActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val email = "$nohpStr@laundry.com" //
+            val email = "$nohpStr@laundry.com" // pakai nohp sebagai email dummy
             auth.createUserWithEmailAndPassword(email, passwordStr).addOnCompleteListener {
                 if (it.isSuccessful) {
                     val uid = auth.currentUser?.uid ?: ""
@@ -40,8 +39,13 @@ class RegisterActivity : AppCompatActivity() {
                         "nama" to namaStr,
                         "nohp" to nohpStr
                     )
-                    FirebaseDatabase.getInstance().getReference("users").child(uid).setValue(userData)
+                    FirebaseDatabase.getInstance().getReference("users")
+                        .child(uid).setValue(userData)
                         .addOnSuccessListener {
+                            // Simpan session nama
+                            val prefs = getSharedPreferences("session", MODE_PRIVATE)
+                            prefs.edit().putString("nama", namaStr).apply()
+
                             Toast.makeText(this, "Register berhasil", Toast.LENGTH_SHORT).show()
                             startActivity(Intent(this, Login::class.java))
                             finish()

@@ -42,7 +42,7 @@
             android:name=".transaksi.transaksi"
             android:exported="false" />
         <activity
-            android:name=".register"
+            android:name=".RegisterActivity"
             android:exported="true" />
         <activity
             android:name=".Login"

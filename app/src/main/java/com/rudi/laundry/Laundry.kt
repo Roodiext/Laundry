@@ -27,40 +27,34 @@ class Laundry : AppCompatActivity() {
 
         enableEdgeToEdge()
 
-        // Mengatur padding untuk edge-to-edge UI
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        // Menemukan TextView berdasarkan ID di layout
         val greetingTextView = findViewById<TextView>(R.id.name)
         val dateTextView = findViewById<TextView>(R.id.date)
 
-        // Mendapatkan waktu saat ini
         val calendar = Calendar.getInstance()
         val hour = calendar.get(Calendar.HOUR_OF_DAY)
 
-        // Menentukan teks salam berdasarkan waktu
+        val prefs = getSharedPreferences("session", MODE_PRIVATE)
+        val nama = prefs.getString("nama", "Pengguna")
+
         val greeting = when (hour) {
-            in 4..10 -> "Selamat Pagi, Rudi"
-            in 11..15 -> "Selamat Siang, Rudi"
-            in 16..18 -> "Selamat Sore, Rudi"
-            else -> "Selamat Malam, Rudi"
+            in 4..10 -> "Selamat Pagi, $nama"
+            in 11..15 -> "Selamat Siang, $nama"
+            in 16..18 -> "Selamat Sore, $nama"
+            else -> "Selamat Malam, $nama"
         }
 
-        // Menampilkan teks salam di TextView
         greetingTextView.text = greeting
 
-        // Menentukan format tanggal (Hari, Bulan, Tahun)
         val dateFormat = SimpleDateFormat("EEEE, dd MMMM yyyy", Locale.getDefault())
         val currentDate = dateFormat.format(calendar.time)
-
-        // Menampilkan tanggal di TextView
         dateTextView.text = currentDate
     }
-
 
     fun account(view: View?) {
         val intent: Intent = Intent(
@@ -69,8 +63,6 @@ class Laundry : AppCompatActivity() {
         )
         startActivity(intent)
     }
-
-
 
     fun Cabang(view: View?) {
         val intent: Intent = Intent(
@@ -91,7 +83,7 @@ class Laundry : AppCompatActivity() {
     fun pegawai(view: View?) {
         val intent: Intent = Intent(
             this@Laundry,
-           DataPegawaiActivity::class.java
+            DataPegawaiActivity::class.java
         )
         startActivity(intent)
     }
@@ -119,7 +111,4 @@ class Laundry : AppCompatActivity() {
         )
         startActivity(intent)
     }
-
-
-
 }

@@ -120,25 +120,43 @@ class InvoiceTransaksiActivity : AppCompatActivity() {
     private fun setupPrintButton() {
         btnCetak.setOnClickListener {
             val message = buildString {
-                append("\n========= INVOICE =========\n")
+                val formatter = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
+
+                append("\nAthh Laundry\n")
+                append("Manahan - Solo\n")
+                append("============================\n")
                 append("ID: ${tvIdTransaksi.text}\n")
                 append("Tanggal: ${tvTanggal.text}\n")
                 append("Pelanggan: ${tvNamaPelanggan.text}\n")
-                append("-----------------------------\n")
-                append("${tvLayananUtama.text} : ${tvHargaLayanan.text}\n")
-                append("\nRincian Tambahan:\n")
+                append("----------------------------\n")
+
+
+                val namaUtama = tvLayananUtama.text.toString().take(20).padEnd(20)
+                val hargaUtama = formatter.format(extractHargaFromString(tvHargaLayanan.text.toString())).padStart(12)
+                append("$namaUtama$hargaUtama\n\n")
+
+                // Rincian Tambahan
+                append("Rincian Tambahan:\n")
                 listTambahan.forEachIndexed { index, item ->
-                    append("${index + 1}. ${item.namaLayanan} - ${item.hargaLayanan}\n")
+                    val nama = "${index + 1}. ${item.namaLayanan}".take(20).padEnd(20)
+                    val harga = "Rp${extractHargaFromString(item.hargaLayanan ?: "0").toInt()}".padStart(12)
+                    append("$nama$harga\n")
                 }
-                append("-----------------------------\n")
-                append("Subtotal: ${tvSubtotalTambahan.text}\n")
-                append("TOTAL BAYAR: ${tvTotalBayar.text}\n")
+
+                append("----------------------------\n")
+                val subtotalFormatted = formatter.format(extractHargaFromString(tvSubtotalTambahan.text.toString()))
+                val totalFormatted = formatter.format(extractHargaFromString(tvTotalBayar.text.toString()))
+                append("Subtotal:           $subtotalFormatted\n")
+                append("TOTAL BAYAR:        $totalFormatted\n")
                 append("============================\n")
-                append("\nTerima kasih!\n")
+                append("Terima kasih telah memilih\n")
+                append("Athh Laundry\n")
+                append("\n\n\n")
             }
             printToBluetooth(message)
         }
     }
+
 
     private fun setupWhatsappButton() {
         btnKirimWhatsapp.setOnClickListener {

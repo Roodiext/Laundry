@@ -48,4 +48,9 @@
             val intent = Intent(this@Login, Laundry::class.java)
             startActivity(intent)
         }
+        fun Registrasi(view: View?) {
+            val intent = Intent(this@Login, RegisterActivity::class.java)
+            startActivity(intent)
+        }
+
     }
