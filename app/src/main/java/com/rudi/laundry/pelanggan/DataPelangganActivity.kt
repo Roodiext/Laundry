@@ -3,6 +3,7 @@ package com.rudi.laundry.pelanggan
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -22,6 +23,18 @@ class DataPelangganActivity : AppCompatActivity() {
     private lateinit var rvDataPelanggan: RecyclerView
     private lateinit var fabTambahPelanggan: FloatingActionButton
     private var listPelanggan = arrayListOf<modelPelanggan>()
+    private var adapter: AdapterDataPelanggan? = null
+
+    // Activity Result Launcher untuk menangani hasil dari EditPelangganActivity
+    private val editPelangganLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == RESULT_OK) {
+            // Refresh data setelah edit berhasil
+            Toast.makeText(this, "Data pelanggan berhasil diperbarui", Toast.LENGTH_SHORT).show()
+            // Data akan otomatis terupdate melalui Firebase listener
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,20 +77,64 @@ class DataPelangganActivity : AppCompatActivity() {
         query.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 listPelanggan.clear()
+
                 if (snapshot.exists()) {
                     for (dataSnapshot in snapshot.children) {
                         val pelanggan = dataSnapshot.getValue(modelPelanggan::class.java) ?: modelPelanggan()
                         listPelanggan.add(pelanggan)
                     }
-                    val adapter = AdapterDataPelanggan(listPelanggan)
-                    rvDataPelanggan.adapter = adapter
-                    adapter.notifyDataSetChanged()
                 }
+
+                // Buat adapter baru untuk memastikan data terupdate
+                val newAdapter = AdapterDataPelanggan(
+                    listPelanggan,
+                    onDeleteClick = { pelanggan ->
+                        hapusPelanggan(pelanggan)
+                    },
+                    onEditClick = { pelanggan ->
+                        editPelanggan(pelanggan)
+                    }
+                )
+
+                // Set adapter dan simpan referensi
+                adapter = newAdapter
+                rvDataPelanggan.adapter = newAdapter
+                newAdapter.notifyDataSetChanged()
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@DataPelangganActivity, error.message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@DataPelangganActivity, "Error: ${error.message}", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    private fun hapusPelanggan(pelanggan: modelPelanggan) {
+        if (pelanggan.idPelanggan.isNotEmpty()) {
+            // Hapus dari Firebase berdasarkan ID pelanggan
+            myRef.child(pelanggan.idPelanggan).removeValue()
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Pelanggan ${pelanggan.namaPelanggan} berhasil dihapus", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener { error ->
+                    Toast.makeText(this, "Gagal menghapus pelanggan: ${error.message}", Toast.LENGTH_SHORT).show()
+                }
+        } else {
+            Toast.makeText(this, "ID pelanggan tidak valid", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun editPelanggan(pelanggan: modelPelanggan) {
+        // Buka EditPelangganActivity dengan data pelanggan
+        val intent = Intent(this, EditPelangganActivity::class.java).apply {
+            putExtra(EditPelangganActivity.EXTRA_ID_PELANGGAN, pelanggan.idPelanggan)
+            putExtra(EditPelangganActivity.EXTRA_NAMA_PELANGGAN, pelanggan.namaPelanggan)
+            putExtra(EditPelangganActivity.EXTRA_ALAMAT_PELANGGAN, pelanggan.alamatPelanggan)
+            putExtra(EditPelangganActivity.EXTRA_NO_HP_PELANGGAN, pelanggan.noHPPelanggan)
+            putExtra(EditPelangganActivity.EXTRA_CABANG_PELANGGAN, pelanggan.cabang)
+            putExtra(EditPelangganActivity.EXTRA_TERDAFTAR_PELANGGAN, pelanggan.terdaftar)
+        }
+
+        // Gunakan launcher untuk mendapatkan hasil dari EditPelangganActivity
+        editPelangganLauncher.launch(intent)
     }
 }

@@ -2,31 +2,33 @@
     <!-- Light Mode Colors -->
     <color name="background">#A5BFCC</color>
     <color name="text_primary">#000000</color>
-    <color name="text_secondary">#000000</color>
+    <color name="text_secondary">#666666</color>
     <color name="button">#FFFFFF</color>
     <color name="colorFirst">#AEB8FE</color>
-
 
     <!-- Dark Mode Colors -->
     <color name="background_dark">#2E5077</color>
     <color name="text_primary_dark">#FFFFFF</color>
-    <color name="text_secondary_dark">#000000</color>
+    <color name="text_secondary_dark">#CCCCCC</color>
     <color name="button_dark">#FFFFFF</color>
     <color name="colorFirst_dark">#AEB8FE</color>
 
+    <!-- Base Colors -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="purple">#AEB8FE</color>
+    <color name="orange">#FF7F3E</color>
+    <color name="grin">#DCE4C9</color>
+    <color name="beige">#E8B86D</color>
+    <color name="spinner_text_color">#FF0000</color>
 
-        <color name="black">#FF000000</color>
-        <color name="white">#FFFFFFFF</color>
-        <color name="purple">#AEB8FE</color>
-        <color name="orange">#FF7F3E</color>
-        <color name="grin">#DCE4C9</color>
-        <color name="beige">#E8B86D</color>
-        <color name="spinner_text_color">#FF0000</color>
+    <!-- Card Specific Colors - Dynamic -->
+    <color name="primary_color">@color/purple</color>
+    <color name="card_background">@color/white</color>
+    <color name="icon_tint">#757575</color>
+    <color name="divider_color">#E0E0E0</color>
 
-
-
-
-
+    <!-- Neutral colors for better contrast -->
+    <color name="text_on_card">#212121</color>
+    <color name="text_secondary_on_card">#666666</color>
 </resources>
-
-

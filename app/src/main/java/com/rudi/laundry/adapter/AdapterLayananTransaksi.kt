@@ -26,19 +26,29 @@ class AdapterLayananTransaksi(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = listLayanan[position]
 
-        holder.tvNomor.text = "[${position + 1}]"
+        // Set nomor urut (tanpa kurung siku karena layout sudah circular)
+        holder.tvNomor.text = (position + 1).toString()
+
+        // Set nama layanan
         holder.tvNamaLayanan.text = item.namaLayanan ?: "Tidak Ada Nama"
 
+        // Format harga dengan NumberFormat Indonesia
         val harga = item.hargaLayanan?.toDoubleOrNull()
         val formattedHarga = if (harga != null) {
             NumberFormat.getCurrencyInstance(Locale("in", "ID")).format(harga)
         } else {
-            "Rp0,00"
+            "Rp 0"
         }
-        holder.tvHargaLayanan.text = "Harga: $formattedHarga"
+        holder.tvHargaLayanan.text = formattedHarga
 
+        // Set click listener untuk tombol hapus
         holder.btnHapus.setOnClickListener {
             onItemClick(item)
+        }
+
+        // Optional: Set click listener untuk seluruh card
+        holder.cvLayananTambahan.setOnClickListener {
+            // Bisa digunakan untuk edit atau detail
         }
     }
 
@@ -48,6 +58,7 @@ class AdapterLayananTransaksi(
         val tvNomor: TextView = itemView.findViewById(R.id.tvNomor)
         val tvNamaLayanan: TextView = itemView.findViewById(R.id.tvNamaLayanan)
         val tvHargaLayanan: TextView = itemView.findViewById(R.id.tvHargaLayanan)
+        // PERBAIKAN: btnHapus adalah ImageView, bukan CardView
         val btnHapus: ImageView = itemView.findViewById(R.id.btnHapus)
         val cvLayananTambahan: CardView = itemView.findViewById(R.id.cvLayananTambahan)
     }
@@ -56,5 +67,21 @@ class AdapterLayananTransaksi(
         listLayanan.clear()
         listLayanan.addAll(newList)
         notifyDataSetChanged()
+    }
+
+    // Helper function untuk menghapus item berdasarkan position
+    fun removeItem(position: Int) {
+        if (position >= 0 && position < listLayanan.size) {
+            listLayanan.removeAt(position)
+            notifyItemRemoved(position)
+            // Update nomor urut untuk item setelahnya
+            notifyItemRangeChanged(position, listLayanan.size)
+        }
+    }
+
+    // Helper function untuk menambah item
+    fun addItem(layanan: modelLayanan) {
+        listLayanan.add(layanan)
+        notifyItemInserted(listLayanan.size - 1)
     }
 }

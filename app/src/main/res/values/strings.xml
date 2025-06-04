@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Laundry</string>
+    <string name="app_name" translatable="false">Laundry</string>
 
     <string-array name="languages">
         <item>Indonesia</item>
@@ -10,14 +10,14 @@
         <item>id</item>
         <item>en</item>
     </string-array>
-    <string name="card_pelanggan_id">ID_pelanggan</string>
-    <string name="card_akun_id">ID_akun</string>
-    <string name="card_akun">akun</string>
-    <string name="card_pegawai_id">ID_pegawai</string>
-    <string name="card_pegawai">Nama Pegawai</string>
-    <string name="card_pegawai_Alamat">Alamat_pegawai</string>
-    <string name="card_pegawai_noHP">No Hp</string>
-    <string name="card_pegawai_data">Data Pegawai</string>
+    <string name="card_pelanggan_id" translatable="false">ID_pelanggan</string>
+    <string name="card_akun_id" translatable="false">ID_akun</string>
+    <string name="card_akun" translatable="false">akun</string>
+    <string name="card_pegawai_id" translatable="false">ID_pegawai</string>
+    <string name="card_pegawai" translatable="false">Nama Pegawai</string>
+    <string name="card_pegawai_Alamat" translatable="false">Alamat_pegawai</string>
+    <string name="card_pegawai_noHP" translatable="false">No Hp</string>
+    <string name="card_pegawai_data" translatable="false">Data Pegawai</string>
     <string name="card_pegawai_cabang">cabang</string>
     <string name="button_simpan">Simpan</string>
     <string name="button_lihat">Lihat</string>

@@ -1,173 +1,274 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/cvCARD_pegawai"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_marginHorizontal="12dp"
+    android:layout_marginVertical="6dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp"
+    android:backgroundTint="@color/card_background">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <androidx.cardview.widget.CardView
+        <!-- Header Section -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            app:cardCornerRadius="15dp"
-            android:paddingStart="10dp">
+            android:background="@color/colorFirst"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp"
+            android:gravity="center_vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_badge"
+                android:tint="@color/black"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:id="@+id/tvprofil1"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingBottom="5dp">
+                android:layout_weight="1"
+                android:text="@string/card_pegawai_data"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="16sp" />
 
-                <TextView
-                    android:id="@+id/tvprofil1"
+            <View
+                android:layout_width="32dp"
+                android:layout_height="2dp"
+                android:background="@color/black"
+                android:alpha="0.3" />
+        </LinearLayout>
+
+        <!-- Content Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <!-- Profile Section -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <!-- Name Section -->
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorFirst"
-                    android:paddingHorizontal="20dp"
-                    android:paddingVertical="10dp"
-                    android:text="@string/card_pegawai_data"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="12dp">
 
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_person_circle"
+                        android:tint="@color/primary_color"
+                        android:layout_marginEnd="12dp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Nama Pegawai"
+                            android:textSize="12sp"
+                            android:textColor="@color/text_secondary_on_card"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvNamaPegawai"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/card_pegawai"
+                            android:textSize="16sp"
+                            android:textColor="@color/text_on_card"
+                            android:textStyle="bold"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:layout_marginTop="2dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Contact Info Grid -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="5dp"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginBottom="16dp">
 
+                    <!-- Address Row -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="8dp">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/ic_location_on"
+                            android:tint="@color/icon_tint"
+                            android:layout_marginEnd="8dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Nama Pegawai :"
-                            android:textSize="20dp"
-                            android:layout_weight="1"
-                            android:textColor="@color/black"/>
-
-                        <TextView
-                            android:id="@+id/tvNamaPegawai"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/card_pegawai"
-                            android:textSize="20dp"
-                            android:gravity="end"
-                            android:layout_weight="1"
-                            android:layout_marginEnd="10dp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Alamat :"
-                            android:textColor="@color/black"
-                            android:layout_weight="1"/>
+                            android:text="Alamat: "
+                            android:textSize="13sp"
+                            android:textColor="@color/text_secondary_on_card"
+                            android:textStyle="bold"
+                            android:minWidth="60dp" />
 
                         <TextView
                             android:id="@+id/tvAlamatPegawai"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="@string/card_pegawai_Alamat"
-                            android:textSize="15dp"
-                            android:gravity="end"
                             android:layout_weight="1"
-                            android:layout_marginEnd="10dp" />
+                            android:text="@string/card_pegawai_Alamat"
+                            android:textSize="13sp"
+                            android:textColor="@color/text_on_card"
+                            android:maxLines="2"
+                            android:ellipsize="end" />
                     </LinearLayout>
 
+                    <!-- Phone Row -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="8dp">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/ic_phone"
+                            android:tint="@color/icon_tint"
+                            android:layout_marginEnd="8dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="No HP :"
-                            android:textColor="@color/black"
-                            android:layout_weight="1"/>
+                            android:text="No HP: "
+                            android:textSize="13sp"
+                            android:textColor="@color/text_secondary_on_card"
+                            android:textStyle="bold"
+                            android:minWidth="60dp" />
 
                         <TextView
                             android:id="@+id/tvNoHPPegawai"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="@string/card_pegawai_noHP"
                             android:layout_weight="1"
-                            android:textSize="15dp"
-                            android:gravity="end"
-                            android:layout_marginEnd="10dp" />
+                            android:text="@string/card_pegawai_noHP"
+                            android:textSize="13sp"
+                            android:textColor="@color/text_on_card"
+                            android:fontFamily="monospace" />
                     </LinearLayout>
 
+                    <!-- Branch Row -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/ic_business"
+                            android:tint="@color/icon_tint"
+                            android:layout_marginEnd="8dp" />
 
                         <TextView
                             android:id="@+id/tvcabang_pegawai"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Cabang :"
-                            android:textColor="@color/black"
-                            android:layout_weight="1"/>
+                            android:text="Cabang: "
+                            android:textSize="13sp"
+                            android:textColor="@color/text_secondary_on_card"
+                            android:textStyle="bold"
+                            android:minWidth="60dp" />
 
                         <TextView
                             android:id="@+id/tvCabangPegawai"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:text="@string/card_pegawai_cabang"
-                            android:layout_weight="1"
-                            android:textSize="15dp"
-                            android:gravity="end"
-                            android:layout_marginEnd="10dp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:layout_marginTop="10dp">
-
-                        <Button
-                            android:id="@+id/btSimpan"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/button_simpan"
-                            android:layout_margin="10dp"
-                            android:background="@drawable/round_beige" />
-
-                        <Button
-                            android:id="@+id/btLihat"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/button_lihat"
-                            android:layout_margin="10dp"
-                            android:background="@drawable/rounded_bg" />
+                            android:textSize="13sp"
+                            android:textColor="@color/text_on_card"
+                            android:maxLines="1"
+                            android:ellipsize="end" />
                     </LinearLayout>
                 </LinearLayout>
+
+                <!-- Action Buttons -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btSimpan"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="8dp"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="8dp"
+                        android:text="hubungi"
+                        android:textColor="@color/primary_color"
+                        android:textSize="12sp"
+                        app:cornerRadius="18dp"
+                        app:strokeColor="@color/primary_color"
+                        app:strokeWidth="1dp"
+                        app:icon="@drawable/ic_save"
+                        app:iconSize="16dp"
+                        app:iconTint="@color/primary_color" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btLihat"
+                        style="@style/Widget.MaterialComponents.Button"
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/button_lihat"
+                        android:textSize="12sp"
+                        android:textColor="@android:color/white"
+                        android:backgroundTint="@color/primary_color"
+                        app:cornerRadius="18dp"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="8dp"
+                        app:icon="@drawable/ic_visibility"
+                        app:iconSize="16dp"
+                        app:iconTint="@android:color/white" />
+                </LinearLayout>
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
+        </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

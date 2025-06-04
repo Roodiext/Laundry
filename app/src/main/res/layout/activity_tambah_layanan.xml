@@ -16,7 +16,7 @@
         android:gravity="center"
         android:weightSum="2">
 
-        <Button
+        <TextView
             android:id="@+id/tvjudul_tambah_Layanan"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -24,19 +24,6 @@
             android:text="LAYANAN UTAMA"
             android:textAlignment="center"
             android:textSize="15sp"
-            android:textStyle="bold"
-            android:padding="10dp"
-            android:layout_margin="8dp"/>
-
-        <Button
-            android:id="@+id/tvjudul_tambah_Layanan_Tambahan"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="TAMBAH LAYANAN"
-            android:textAlignment="center"
-            android:textSize="15sp"
-            android:onClick="LayananTambahan"
             android:textStyle="bold"
             android:padding="10dp"
             android:layout_margin="8dp"/>
