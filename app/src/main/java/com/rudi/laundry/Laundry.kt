@@ -13,6 +13,7 @@ import com.rudi.laundry.Layanan.DataLayananActivity
 import com.rudi.laundry.LayananTambahan.DataLayananTambahanActivity
 import com.rudi.laundry.Pegawai.DataPegawaiActivity
 import com.rudi.laundry.cabang.DataCabangActivity
+import com.rudi.laundry.laporan.DataLaporanActivity
 import com.rudi.laundry.pelanggan.DataPelangganActivity
 import com.rudi.laundry.transaksi.transaksi
 import java.text.SimpleDateFormat
@@ -112,4 +113,13 @@ class Laundry : AppCompatActivity() {
         )
         startActivity(intent)
     }
+
+    fun laporan(view: View?) {
+        val intent: Intent = Intent(
+            this@Laundry,
+            DataLaporanActivity::class.java
+        )
+        startActivity(intent)
+    }
+
 }

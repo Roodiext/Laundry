@@ -26,7 +26,7 @@
             android:id="@+id/fab_tambah_layanan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="Tambah Layanan"
+            android:contentDescription="Tambah Layanan "
             android:src="@android:drawable/ic_input_add"
             app:backgroundTint="@color/purple"
             android:layout_margin="16dp"

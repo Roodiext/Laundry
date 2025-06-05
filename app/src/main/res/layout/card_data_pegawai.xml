@@ -177,10 +177,10 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:fontFamily="monospace"
                             android:text="@string/card_pegawai_noHP"
-                            android:textSize="13sp"
                             android:textColor="@color/text_on_card"
-                            android:fontFamily="monospace" />
+                            android:textSize="13sp" />
                     </LinearLayout>
 
                     <!-- Branch Row -->
@@ -249,7 +249,7 @@
                         app:iconTint="@color/primary_color" />
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btLihat"
+                        android:id="@+id/btnLihatPegawai"
                         style="@style/Widget.MaterialComponents.Button"
                         android:layout_width="0dp"
                         android:layout_height="45dp"

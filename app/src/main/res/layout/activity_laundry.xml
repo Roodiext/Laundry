@@ -84,7 +84,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/four"
+            android:id="@+id/totalPendapatan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -159,6 +159,7 @@
             android:background="@drawable/report"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:onClick="laporan"
             app:layout_constraintStart_toEndOf="@+id/customer"
             app:layout_constraintTop_toBottomOf="@+id/line" />
 

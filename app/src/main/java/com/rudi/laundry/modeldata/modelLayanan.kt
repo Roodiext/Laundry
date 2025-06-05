@@ -1,12 +1,17 @@
 package com.rudi.laundry.modeldata
-import java.io.Serializable
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class modelLayanan(
-    val idLayanan: String = "",
-    val namaLayanan: String? = null,
-    val hargaLayanan: String? = null,
-    val cabang: String = "",
-    val jenisLayanan: String = ""
-) : Serializable {
-    constructor() : this("", null, null, "")
+    var idLayanan: String = "",
+    var namaLayanan: String? = null,
+    var hargaLayanan: String? = null,
+    var jenisLayanan: String = "Utama",
+    var cabang: String = ""
+) : Parcelable {
+
+    // Constructor tanpa parameter untuk Firebase
+    constructor() : this("", null, null, "", "")
 }

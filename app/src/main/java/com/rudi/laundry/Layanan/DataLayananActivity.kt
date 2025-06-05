@@ -92,5 +92,16 @@ class DataLayananActivity : AppCompatActivity() {
         })
     }
 
+    override fun onResume() {
+        super.onResume()
+        // Refresh data saat kembali ke activity ini
+        // getData() akan otomatis dipanggil karena ValueEventListener sudah aktif
+    }
+
+    // Jika ingin refresh manual, tambahkan method ini:
+    private fun refreshData() {
+        getData()
+    }
+
 
 }

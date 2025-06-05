@@ -2,191 +2,310 @@ package com.rudi.laundry.Pegawai
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.google.firebase.database.FirebaseDatabase
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.database.*
 import com.rudi.laundry.R
 import com.rudi.laundry.modeldata.modelPegawai
+import com.rudi.laundry.modeldata.modelCabang
 
 class TambahPegawaiActivity : AppCompatActivity() {
     private val database = FirebaseDatabase.getInstance()
     private val myRef = database.getReference("pegawai")
+    private val cabangRef = database.getReference("cabang")
 
-    private lateinit var tvjudul: TextView
-    private lateinit var etNama: EditText
-    private lateinit var etAlamat: EditText
-    private lateinit var etNoHP: EditText
-    private lateinit var etCabang: EditText
-    private lateinit var btSimpan: Button
+    private lateinit var etNama: TextInputEditText
+    private lateinit var etAlamat: TextInputEditText
+    private lateinit var etNoHP: TextInputEditText
+    private lateinit var etCabang: AutoCompleteTextView
+    private lateinit var btTambah: MaterialButton
+    private lateinit var btBatal: MaterialButton
 
-    var idPegawai:String=""
+    private var idPegawai: String = ""
+    private var isEditMode = false
+    private var listCabang = arrayListOf<modelCabang>()
+    private var cabangAdapter: ArrayAdapter<String>? = null
+    private var selectedCabangId: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tambah_pegawai)
 
         initViews()
+        setupCabangDropdown()
         setupListeners()
-        getData()
-        update()
+        checkEditMode()
+        loadCabangData()
+    }
 
-        btSimpan.setOnClickListener{
-            cekValidasi()
+    private fun initViews() {
+        etNama = findViewById(R.id.etnama_pegawai)
+        etAlamat = findViewById(R.id.etalamat_pegawai)
+        etNoHP = findViewById(R.id.etnohp_pegawai)
+        etCabang = findViewById(R.id.etcabang_pegawai)
+        btTambah = findViewById(R.id.bttambah)
+        btBatal = findViewById(R.id.btbatal)
+    }
+
+    private fun setupCabangDropdown() {
+        // Inisialisasi adapter kosong dulu
+        cabangAdapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, arrayListOf<String>())
+        etCabang.setAdapter(cabangAdapter)
+
+        // Set listener untuk dropdown selection
+        etCabang.setOnItemClickListener { parent, view, position, id ->
+            val selectedCabangName = parent.getItemAtPosition(position) as String
+
+            // Cari ID cabang berdasarkan nama yang dipilih
+            val selectedCabang = listCabang.find {
+                "${it.namaToko} - ${it.namaCabang}" == selectedCabangName
+            }
+
+            selectedCabangId = selectedCabang?.idCabang ?: ""
+
+            // Log untuk debugging
+            android.util.Log.d("CabangSelection", "Selected: $selectedCabangName, ID: $selectedCabangId")
         }
     }
 
-    fun simpan() {
+    private fun loadCabangData() {
+        // Show loading state
+        etCabang.hint = "Memuat data cabang..."
+
+        cabangRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                listCabang.clear()
+                val cabangNames = arrayListOf<String>()
+
+                if (snapshot.exists()) {
+                    for (dataSnapshot in snapshot.children) {
+                        try {
+                            val cabang = dataSnapshot.getValue(modelCabang::class.java)
+
+                            if (cabang != null) {
+                                // Pastikan ID cabang ter-set dari key Firebase
+                                if (cabang.idCabang.isEmpty()) {
+                                    cabang.idCabang = dataSnapshot.key ?: ""
+                                }
+
+                                // Validasi data tidak kosong
+                                if (cabang.namaCabang.isNotEmpty() || cabang.namaToko.isNotEmpty()) {
+                                    listCabang.add(cabang)
+
+                                    // Format nama untuk dropdown: "Nama Toko - Nama Cabang"
+                                    val displayName = if (cabang.namaToko.isNotEmpty() && cabang.namaCabang.isNotEmpty()) {
+                                        "${cabang.namaToko} - ${cabang.namaCabang}"
+                                    } else if (cabang.namaToko.isNotEmpty()) {
+                                        cabang.namaToko
+                                    } else {
+                                        cabang.namaCabang
+                                    }
+
+                                    cabangNames.add(displayName)
+                                }
+                            }
+                        } catch (e: Exception) {
+                            android.util.Log.e("CabangLoad", "Error parsing cabang: ${e.message}")
+                        }
+                    }
+                }
+
+                // Update adapter dengan data baru
+                cabangAdapter?.clear()
+                cabangAdapter?.addAll(cabangNames)
+                cabangAdapter?.notifyDataSetChanged()
+
+                // Update hint
+                etCabang.hint = if (cabangNames.isNotEmpty()) {
+                    "Pilih Cabang"
+                } else {
+                    "Tidak ada data cabang"
+                }
+
+                // Log untuk debugging
+                android.util.Log.d("CabangLoad", "Loaded ${listCabang.size} cabang")
+
+                // Jika dalam mode edit, set cabang yang sudah dipilih sebelumnya
+                if (isEditMode && selectedCabangId.isNotEmpty()) {
+                    setSelectedCabangForEdit()
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                android.util.Log.e("CabangLoad", "Database error: ${error.message}")
+                Toast.makeText(this@TambahPegawaiActivity,
+                    "Gagal memuat data cabang: ${error.message}",
+                    Toast.LENGTH_SHORT).show()
+
+                etCabang.hint = "Error memuat cabang"
+            }
+        })
+    }
+
+    private fun setSelectedCabangForEdit() {
+        // Cari cabang berdasarkan ID yang tersimpan
+        val selectedCabang = listCabang.find { it.idCabang == selectedCabangId }
+
+        if (selectedCabang != null) {
+            val displayName = if (selectedCabang.namaToko.isNotEmpty() && selectedCabang.namaCabang.isNotEmpty()) {
+                "${selectedCabang.namaToko} - ${selectedCabang.namaCabang}"
+            } else if (selectedCabang.namaToko.isNotEmpty()) {
+                selectedCabang.namaToko
+            } else {
+                selectedCabang.namaCabang
+            }
+
+            etCabang.setText(displayName, false)
+        }
+    }
+
+    private fun setupListeners() {
+        btTambah.setOnClickListener {
+            if (validateInput()) {
+                if (isEditMode) {
+                    updatePegawai()
+                } else {
+                    simpanPegawai()
+                }
+            }
+        }
+
+        btBatal.setOnClickListener {
+            finish()
+        }
+    }
+
+    private fun checkEditMode() {
+        val judul = intent.getStringExtra("judul")
+        if (judul == "Edit Pegawai") {
+            isEditMode = true
+            btTambah.text = "Update Pegawai"
+            loadDataForEdit()
+        } else {
+            isEditMode = false
+            btTambah.text = "Tambah Pegawai"
+        }
+    }
+
+    private fun loadDataForEdit() {
+        idPegawai = intent.getStringExtra("idPegawai") ?: ""
+        val nama = intent.getStringExtra("namaPegawai") ?: ""
+        val alamat = intent.getStringExtra("alamatPegawai") ?: ""
+        val noHP = intent.getStringExtra("noHPPegawai") ?: ""
+        selectedCabangId = intent.getStringExtra("idCabang") ?: ""
+
+        etNama.setText(nama)
+        etAlamat.setText(alamat)
+        etNoHP.setText(noHP)
+
+        // selectedCabangId akan digunakan di setSelectedCabangForEdit()
+        // setelah data cabang selesai dimuat
+    }
+
+    private fun validateInput(): Boolean {
+        val nama = etNama.text.toString().trim()
+        val alamat = etAlamat.text.toString().trim()
+        val noHP = etNoHP.text.toString().trim()
+        val cabangText = etCabang.text.toString().trim()
+
+        if (nama.isEmpty()) {
+            etNama.error = "Nama tidak boleh kosong"
+            etNama.requestFocus()
+            return false
+        }
+
+        if (alamat.isEmpty()) {
+            etAlamat.error = "Alamat tidak boleh kosong"
+            etAlamat.requestFocus()
+            return false
+        }
+
+        if (noHP.isEmpty()) {
+            etNoHP.error = "No HP tidak boleh kosong"
+            etNoHP.requestFocus()
+            return false
+        }
+
+        if (cabangText.isEmpty()) {
+            etCabang.error = "Cabang harus dipilih"
+            etCabang.requestFocus()
+            return false
+        }
+
+        // Validasi apakah cabang yang dipilih valid
+        if (selectedCabangId.isEmpty()) {
+            etCabang.error = "Pilih cabang dari daftar yang tersedia"
+            etCabang.requestFocus()
+            return false
+        }
+
+        // Validasi format nomor HP
+        if (!noHP.matches(Regex("^[0-9]{10,13}$"))) {
+            etNoHP.error = "Format nomor HP tidak valid (10-13 digit)"
+            etNoHP.requestFocus()
+            return false
+        }
+
+        return true
+    }
+
+    private fun simpanPegawai() {
         val pegawaiBaru = myRef.push()
-        val pegawaiId = pegawaiBaru.key ?: "Unknown"
+        val pegawaiId = pegawaiBaru.key ?: return
 
         val data = modelPegawai(
-            pegawaiId,
-            etNama.text.toString(),
-            etAlamat.text.toString(),
-            etNoHP.text.toString(),
-            System.currentTimeMillis().toString(),
-            etCabang.text.toString()
+            idPegawai = pegawaiId,
+            namaPegawai = etNama.text.toString().trim(),
+            alamatPegawai = etAlamat.text.toString().trim(),
+            noHPPegawai = etNoHP.text.toString().trim(),
+            cabang = selectedCabangId // Menyimpan ID cabang, bukan nama
         )
+
+        // Disable button untuk mencegah double click
+        btTambah.isEnabled = false
+        btTambah.text = "Menyimpan..."
 
         pegawaiBaru.setValue(data)
             .addOnSuccessListener {
                 Toast.makeText(this, "Pegawai berhasil ditambahkan", Toast.LENGTH_SHORT).show()
                 finish()
             }
-            .addOnFailureListener {
-                Toast.makeText(this, "Gagal menambahkan pegawai", Toast.LENGTH_SHORT).show()
+            .addOnFailureListener { error ->
+                Toast.makeText(this, "Gagal menambahkan pegawai: ${error.message}", Toast.LENGTH_SHORT).show()
+                btTambah.isEnabled = true
+                btTambah.text = "Tambah Pegawai"
             }
     }
 
-
-    private fun initViews() {
-        tvjudul = findViewById(R.id.tvjudul_tambah_pegawai)
-        etNama = findViewById(R.id.etnama_pegawai)
-        etAlamat = findViewById(R.id.etalamat_pegawai)
-        etNoHP = findViewById(R.id.etnohp_pegawai)
-        etCabang = findViewById(R.id.etcabang_pegawai)
-        btSimpan = findViewById(R.id.bttambah)
-    }
-
-    fun cekValidasi() {
-        val nama = etNama.text.toString()
-        val alamat = etAlamat.text.toString()
-        val noHp = etNoHP.text.toString()
-        val cabang = etCabang.text.toString()
-
-        if (nama.isEmpty()) {
-            etNama.error = getString(R.string.card_pegawai)
-            Toast.makeText(this, getString(R.string.card_pegawai), Toast.LENGTH_SHORT).show()
-            etNama.requestFocus()
+    private fun updatePegawai() {
+        if (idPegawai.isEmpty()) {
+            Toast.makeText(this, "ID Pegawai tidak valid", Toast.LENGTH_SHORT).show()
             return
         }
-        if (alamat.isEmpty()) {
-            etAlamat.error = getString(R.string.card_pegawai_Alamat)
-            Toast.makeText(this, getString(R.string.card_pegawai_Alamat), Toast.LENGTH_SHORT).show()
-            etAlamat.requestFocus()
-            return
-        }
-        if (noHp.isEmpty()) {
-            etNoHP.error = getString(R.string.card_pegawai_noHP)
-            Toast.makeText(this, getString(R.string.card_pegawai_noHP), Toast.LENGTH_SHORT).show()
-            etNoHP.requestFocus()
-            return
-        }
-        if (cabang.isEmpty()) {
-            etCabang.error = getString(R.string.card_pegawai_cabang)
-            Toast.makeText(this, getString(R.string.card_pegawai_cabang), Toast.LENGTH_SHORT).show()
-            etCabang.requestFocus()
-            return
-        }
-
-        if (btSimpan.text.toString().equals("simpan", ignoreCase = true)) {
-            simpan()
-        } else if (btSimpan.text.toString().equals("sunting", ignoreCase = true)) {
-            hidup()
-            etNama.requestFocus()
-            btSimpan.text = "Perbarui"
-        } else if (btSimpan.text.toString().equals("Perbarui", ignoreCase = true)) {
-            update()
-        }
-    }
-
-
-
-    private fun setupListeners() {
-        btSimpan.setOnClickListener {
-            val pegawaiBaru = myRef.push()
-            val pegawaiId = pegawaiBaru.key ?: "Unknown"
-            val data = modelPegawai(pegawaiId, etNama.text.toString(), etAlamat.text.toString(), etNoHP.text.toString(), System.currentTimeMillis().toString(), etCabang.text.toString())
-
-            pegawaiBaru.setValue(data)
-                .addOnSuccessListener { finish() }
-                .addOnFailureListener { Toast.makeText(this, "Gagal!", Toast.LENGTH_SHORT).show() }
-        }
-    }
-
-    fun getData(){
-        idPegawai = intent.getStringExtra("idPegawai").toString()
-        val judul = intent.getStringExtra("judul").toString()
-        val nama = intent.getStringExtra("namaPegawai").toString()
-        val alamat = intent.getStringExtra("alamatPegawai").toString()
-        val hp = intent.getStringExtra("noHPPegawai").toString()
-        val cabang = intent.getStringExtra("idCabang").toString()
-        tvjudul.text = judul
-        etNama.setText(nama)
-        etAlamat.setText(alamat)
-        etNoHP.setText(hp)
-        etCabang.setText(cabang)
-        if (!tvjudul.text.equals(this.getString(R.string.activity_tambah_pegawai))){
-            if (judul.equals("Edit Pegawai")){
-                mati()
-                btSimpan.text="sunting"
-            }
-        }else{
-            hidup()
-            etNama.requestFocus()
-            btSimpan.text="Simpan"
-        }
-    }
-
-    fun mati(){
-        etNama.isEnabled=false
-        etAlamat.isEnabled=false
-        etNoHP.isEnabled=false
-        etCabang.isEnabled=false
-    }
-
-    fun hidup(){
-        etNama.isEnabled=true
-        etAlamat.isEnabled=true
-        etNoHP.isEnabled=true
-        etCabang.isEnabled=true
-    }
-
-    fun update(){
-        val pegawaiRef = database.getReference("pegawai").child(idPegawai)
 
         val updateData = mutableMapOf<String, Any>()
-        updateData["namaPegawai"] = etNama.text.toString()
-        updateData["alamatPegawai"] = etAlamat.text.toString()
-        updateData["noHPPegawai"] = etNoHP.text.toString()
-        updateData["idCabang"] = etCabang.text.toString()
+        updateData["namaPegawai"] = etNama.text.toString().trim()
+        updateData["alamatPegawai"] = etAlamat.text.toString().trim()
+        updateData["noHPPegawai"] = etNoHP.text.toString().trim()
+        updateData["cabang"] = selectedCabangId // Menyimpan ID cabang, bukan nama
 
-        pegawaiRef.updateChildren(updateData)
+        // Disable button untuk mencegah double click
+        btTambah.isEnabled = false
+        btTambah.text = "Mengupdate..."
+
+        myRef.child(idPegawai).updateChildren(updateData)
             .addOnSuccessListener {
-                Toast.makeText(this@TambahPegawaiActivity, "Data Berhasil Diperbarui", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Data pegawai berhasil diperbarui", Toast.LENGTH_SHORT).show()
                 finish()
             }
-            .addOnFailureListener {
-                Toast.makeText(this@TambahPegawaiActivity, "Data Pegawai Gagal Diperbarui", Toast.LENGTH_SHORT).show()
+            .addOnFailureListener { error ->
+                Toast.makeText(this, "Gagal memperbarui data: ${error.message}", Toast.LENGTH_SHORT).show()
+                btTambah.isEnabled = true
+                btTambah.text = "Update Pegawai"
             }
     }
-
-    fun LayananTambahan(view: View) {}
-    fun layanan(view: View) {}
-
 }

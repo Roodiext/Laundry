@@ -38,6 +38,11 @@ class InvoiceTransaksiActivity : AppCompatActivity() {
     private lateinit var btnCetak: Button
     private lateinit var btnKirimWhatsapp: Button
 
+    // Tambahan untuk cabang dan pegawai
+    private lateinit var tvCabangInvoice: TextView
+    private lateinit var tvAlamatCabang: TextView
+    private lateinit var tvNamaKaryawan: TextView
+
     private val listTambahan = ArrayList<modelLayanan>()
     private lateinit var adapter: AdapterLayananTransaksi
 
@@ -48,6 +53,12 @@ class InvoiceTransaksiActivity : AppCompatActivity() {
     private val printerMAC = "DC:0D:51:A7:FF:7A"
     // Ganti dengan alamat MAC printermu
     private val printerUUID: UUID = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb")
+
+    // Data cabang dan pegawai
+    private var cabangNama: String = ""
+    private var cabangAlamat: String = ""
+    private var pegawaiNama: String = ""
+    private var metodePembayaran: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,6 +74,11 @@ class InvoiceTransaksiActivity : AppCompatActivity() {
         tvTotalBayar = findViewById(R.id.tvTotalBayar)
         btnCetak = findViewById(R.id.btnCetak)
         btnKirimWhatsapp = findViewById(R.id.btnKirimWhatsapp)
+
+        // Inisialisasi views untuk cabang dan pegawai
+        tvCabangInvoice = findViewById(R.id.tvCabangInvoice)
+        tvAlamatCabang = findViewById(R.id.tvAlamatCabang)
+        tvNamaKaryawan = findViewById(R.id.tvNamaKaryawan)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S &&
             checkSelfPermission(android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
@@ -88,6 +104,12 @@ class InvoiceTransaksiActivity : AppCompatActivity() {
         val totalBayar = intent.getDoubleExtra("total_bayar", 0.0)
         val idTransaksi = intent.getStringExtra("id_transaksi") ?: UUID.randomUUID().toString()
 
+        // Ambil data cabang dan pegawai
+        cabangNama = intent.getStringExtra("cabang_nama") ?: "Manahan"
+        cabangAlamat = intent.getStringExtra("cabang_alamat") ?: ""
+        pegawaiNama = intent.getStringExtra("pegawai_nama") ?: "Admin"
+        metodePembayaran = intent.getStringExtra("metode_pembayaran") ?: "Tunai"
+
         @Suppress("UNCHECKED_CAST")
         val tambahan = intent.getSerializableExtra("layanan_tambahan") as? ArrayList<modelLayanan> ?: arrayListOf()
 
@@ -99,6 +121,11 @@ class InvoiceTransaksiActivity : AppCompatActivity() {
         tvNamaPelanggan.text = namaPelanggan
         tvLayananUtama.text = namaLayanan
         tvHargaLayanan.text = formatter.format(hargaLayanan)
+
+        // Set data cabang dan pegawai ke views
+        tvCabangInvoice.text = cabangNama
+        tvAlamatCabang.text = cabangAlamat
+        tvNamaKaryawan.text = pegawaiNama
 
         listTambahan.clear()
         listTambahan.addAll(tambahan)
@@ -123,57 +150,78 @@ class InvoiceTransaksiActivity : AppCompatActivity() {
                 val formatter = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
 
                 append("\nAthh Laundry\n")
-                append("Manahan - Solo\n")
+                append("$cabangNama\n")
+                if (cabangAlamat.isNotEmpty()) {
+                    append("$cabangAlamat\n")
+                }
                 append("============================\n")
                 append("ID: ${tvIdTransaksi.text}\n")
                 append("Tanggal: ${tvTanggal.text}\n")
                 append("Pelanggan: ${tvNamaPelanggan.text}\n")
+                append("Karyawan: $pegawaiNama\n")
+                append("Pembayaran: $metodePembayaran\n")
                 append("----------------------------\n")
-
 
                 val namaUtama = tvLayananUtama.text.toString().take(20).padEnd(20)
                 val hargaUtama = formatter.format(extractHargaFromString(tvHargaLayanan.text.toString())).padStart(12)
                 append("$namaUtama$hargaUtama\n\n")
 
                 // Rincian Tambahan
-                append("Rincian Tambahan:\n")
-                listTambahan.forEachIndexed { index, item ->
-                    val nama = "${index + 1}. ${item.namaLayanan}".take(20).padEnd(20)
-                    val harga = "Rp${extractHargaFromString(item.hargaLayanan ?: "0").toInt()}".padStart(12)
-                    append("$nama$harga\n")
+                if (listTambahan.isNotEmpty()) {
+                    append("Rincian Tambahan:\n")
+                    listTambahan.forEachIndexed { index, item ->
+                        val nama = "${index + 1}. ${item.namaLayanan}".take(20).padEnd(20)
+                        val harga = "Rp${extractHargaFromString(item.hargaLayanan ?: "0").toInt()}".padStart(12)
+                        append("$nama$harga\n")
+                    }
+                    append("\n")
                 }
 
                 append("----------------------------\n")
-                val subtotalFormatted = formatter.format(extractHargaFromString(tvSubtotalTambahan.text.toString()))
+                if (listTambahan.isNotEmpty()) {
+                    val subtotalFormatted = formatter.format(extractHargaFromString(tvSubtotalTambahan.text.toString()))
+                    append("Subtotal Tmb:       $subtotalFormatted\n")
+                }
                 val totalFormatted = formatter.format(extractHargaFromString(tvTotalBayar.text.toString()))
-                append("Subtotal:           $subtotalFormatted\n")
                 append("TOTAL BAYAR:        $totalFormatted\n")
                 append("============================\n")
                 append("Terima kasih telah memilih\n")
                 append("Athh Laundry\n")
+                append("$cabangNama\n")
                 append("\n\n\n")
             }
             printToBluetooth(message)
         }
     }
 
-
     private fun setupWhatsappButton() {
         btnKirimWhatsapp.setOnClickListener {
             val message = buildString {
                 append("*Hai Halo* ${tvNamaPelanggan.text} 👋\n\n")
+                append("*Invoice Athh Laundry*\n")
+                append("🏪 Cabang: $cabangNama\n")
+                if (cabangAlamat.isNotEmpty()) {
+                    append("📍 Alamat: $cabangAlamat\n")
+                }
+                append("👤 Dilayani oleh: $pegawaiNama\n")
+                append("💳 Pembayaran: $metodePembayaran\n\n")
+
                 append("*Berikut rincian laundry Anda:*\n")
                 append("• Layanan Utama: ${tvLayananUtama.text}\n")
                 append("• Harga: ${tvHargaLayanan.text}\n\n")
-                append("*Rincian Tambahan:*\n")
-                val formatter = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
 
-                listTambahan.forEachIndexed { index, item ->
-                    val hargaFormatted = formatter.format(extractHargaFromString(item.hargaLayanan ?: "0"))
-                    append("${index + 1}. ${item.namaLayanan} - $hargaFormatted\n")
+                if (listTambahan.isNotEmpty()) {
+                    append("*Rincian Tambahan:*\n")
+                    val formatter = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
+
+                    listTambahan.forEachIndexed { index, item ->
+                        val hargaFormatted = formatter.format(extractHargaFromString(item.hargaLayanan ?: "0"))
+                        append("${index + 1}. ${item.namaLayanan} - $hargaFormatted\n")
+                    }
+                    append("\n")
                 }
 
-                append("\n*Total Bayar:* ${tvTotalBayar.text}\n\n")
+                append("*Total Bayar:* ${tvTotalBayar.text}\n\n")
                 append("Terima kasih telah menggunakan layanan Athh Laundry 💟")
             }
 

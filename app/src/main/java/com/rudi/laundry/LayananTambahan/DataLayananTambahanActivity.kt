@@ -1,5 +1,6 @@
 package com.rudi.laundry.LayananTambahan
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -10,7 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import com.rudi.laundry.R
-import com.rudi.laundry.adapter.AdapterDataLayanan
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.rudi.laundry.Layanan.TambahLayananActivity
+import com.rudi.laundry.adapter.AdapterDataLayananTambahan
 import com.rudi.laundry.modeldata.modelLayanan
 
 class DataLayananTambahanActivity : AppCompatActivity() {
@@ -20,6 +23,7 @@ class DataLayananTambahanActivity : AppCompatActivity() {
     private val myRef: DatabaseReference = database.getReference("layanan_tambahan")
 
     private var listLayananTambahan = arrayListOf<modelLayanan>()
+    private lateinit var fabTambahLayananTambahan: FloatingActionButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,9 +37,24 @@ class DataLayananTambahanActivity : AppCompatActivity() {
             insets
         }
 
+        initViews()
+        setupListeners()
         setupRecyclerView()
         loadData()
     }
+
+    private fun initViews() {
+        rvDataLayananTambahan = findViewById(R.id.rvLayananTambahan)
+        fabTambahLayananTambahan = findViewById(R.id.fab_tambah_layanan_tambahan)
+    }
+
+    private fun setupListeners() {
+        fabTambahLayananTambahan.setOnClickListener {
+            val intent = Intent(this, TambahLayananTambahan::class.java)
+            startActivity(intent)
+        }
+    }
+
 
     private fun setupRecyclerView() {
         val layoutManager = LinearLayoutManager(this)
@@ -60,7 +79,7 @@ class DataLayananTambahanActivity : AppCompatActivity() {
                             Log.e("FirebaseDataTambahan", "Data null/tidak sesuai format")
                         }
                     }
-                    val adapter = AdapterDataLayanan(listLayananTambahan)
+                    val adapter = AdapterDataLayananTambahan(listLayananTambahan)
                     rvDataLayananTambahan.adapter = adapter
                     adapter.notifyDataSetChanged()
                 } else {

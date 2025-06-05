@@ -17,13 +17,23 @@
         android:theme="@style/Theme.Laundry"
         tools:targetApi="31">
         <activity
+            android:name=".laporan.DataLaporanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LayananTambahan.EditLayananTambahanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Layanan.EditLayananActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Pegawai.EditPegawaiActivity"
+            android:exported="true" />
+        <activity
             android:name=".cabang.TambahCabangActivity"
             android:exported="false" />
         <activity
             android:name=".cabang.DataCabangActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".pelanggan.EditPelangganActivity"
             android:exported="false" />
