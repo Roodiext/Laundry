@@ -45,7 +45,7 @@
 
 <table>
   <tr><th align="center">Halaman Home</th></tr>
-  <tr><td align="center"><img src="assets/home.jpg" width="400"/></td></tr>
+  <tr><td align="center"><img src="Asset/home.jpg" width="400"/></td></tr>
 </table>
 
 ---
