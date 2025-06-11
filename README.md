@@ -1,5 +1,5 @@
 <h1 align="center">🧺 SukaMakmur Laundry </h1>
-<H1 align="center"> Aplikasi Manajemen Laundry Digital</h1>
+<h1 align="center">Aplikasi Manajemen Laundry Digital</h1>
 
 <p align="center">
   <img src="assets/logo-cleanify.png" width="120" alt="Cleanify Logo" />
@@ -17,7 +17,7 @@
 - 🏠 Dashboard Beranda (Home)
 - 💼 Manajemen Transaksi & Konfirmasi
 - 🧾 Pembuatan Invoice Otomatis
-- 🧑‍🤝‍🧑 Manajemen Pelanggan & Pegawai
+- 👥 Manajemen Pelanggan & Pegawai
 - 🧴 Pengelolaan Layanan & Layanan Tambahan
 - 🏢 Cabang Laundry
 - 📊 Laporan Ringkas & Mendalam
@@ -27,16 +27,19 @@
 
 ## 🖼️ Tampilan Halaman
 
+---
+
 ## 🔐 Login & Register
 
 <table>
-  <tr><th align="center">Halaman Login</th></tr>
-  <tr><td align="center"><img src="Asset/Login.jpg" width="400"/></td></tr>
-</table>
-
-<table>
-  <tr><th align="center">Halaman Register</th></tr>
-  <tr><td align="center"><img src="Asset/Register.jpg" width="400"/></td></tr>
+  <tr>
+    <th align="center">Login</th>
+    <th align="center">Register</th>
+  </tr>
+  <tr>
+    <td align="center"><img src="assets/login.jpg" width="300"/></td>
+    <td align="center"><img src="assets/register.jpg" width="300"/></td>
+  </tr>
 </table>
 
 ---
@@ -44,61 +47,52 @@
 ## 🏠 Home
 
 <table>
-  <tr><th align="center">Halaman Home</th></tr>
-  <tr><td align="center"><img src="Asset/Home.jpg" width="400"/></td></tr>
+  <tr>
+    <th align="center">Home</th>
+  </tr>
+  <tr>
+    <td align="center"><img src="assets/home.jpg" width="400"/></td>
+  </tr>
 </table>
 
 ---
 
-## 💼 Transaksi (5 Foto)
+## 💼 Transaksi
 
 <table>
-  <tr><th align="center">Halaman Transaksi</th></tr>
-  <tr><td align="center"><img src="Asset/Transaksi.png" width="400"/></td></tr>
-</table>
-
-<table>
-  <tr><th align="center">[Judul Transaksi 2]</th></tr>
-  <tr><td align="center"><img src="Asset/Transaksi1.jpg" width="400"/></td></tr>
-</table>
-
-<table>
-  <tr><th align="center">[Judul Transaksi 3]</th></tr>
-  <tr><td align="center"><img src="Asset/Transaksi2.jpg" width="400"/></td></tr>
-</table>
-
-<table>
-  <tr><th align="center">[Judul Transaksi 4]</th></tr>
-  <tr><td align="center"><img src="Asset/Transaksi3.jpg" width="400"/></td></tr>
-</table>
-
-<table>
-  <tr><th align="center">[Judul Transaksi 5]</th></tr>
-  <tr><td align="center"><img src=Asset/Transaksi4.jpg" width="400"/></td></tr>
+  <tr>
+    <th align="center">Transaksi 1</th>
+    <th align="center">Transaksi 2</th>
+    <th align="center">Transaksi 3</th>
+    <th align="center">Transaksi 4</th>
+    <th align="center">Transaksi 5</th>
+  </tr>
+  <tr>
+    <td align="center"><img src="assets/transaksi1.jpg" width="200"/></td>
+    <td align="center"><img src="assets/transaksi2.jpg" width="200"/></td>
+    <td align="center"><img src="assets/transaksi3.jpg" width="200"/></td>
+    <td align="center"><img src="assets/transaksi4.jpg" width="200"/></td>
+    <td align="center"><img src="assets/transaksi5.jpg" width="200"/></td>
+  </tr>
 </table>
 
 ---
 
-## ✅ Konfirmasi Transaksi (4 Foto)
+## ✅ Konfirmasi Transaksi
 
 <table>
-  <tr><th align="center">[Judul Konfirmasi 1]</th></tr>
-  <tr><td align="center"><img src="Asset/Konfirmasi.jpg" width="400"/></td></tr>
-</table>
-
-<table>
-  <tr><th align="center">[Judul Konfirmasi 2]</th></tr>
-  <tr><td align="center"><img src=Asset/Konfirmasi1.jpg" width="400"/></td></tr>
-</table>
-
-<table>
-  <tr><th align="center">[Judul Konfirmasi 3]</th></tr>
-  <tr><td align="center"><img src=Asset/Konfirmasi2.jpg" width="400"/></td></tr>
-</table>
-
-<table>
-  <tr><th align="center">[Judul Konfirmasi 4]</th></tr>
-  <tr><td align="center"><img src=Asset/Konfirmasi3.jpg" width="400"/></td></tr>
+  <tr>
+    <th align="center">Konfirmasi 1</th>
+    <th align="center">Konfirmasi 2</th>
+    <th align="center">Konfirmasi 3</th>
+    <th align="center">Konfirmasi 4</th>
+  </tr>
+  <tr>
+    <td align="center"><img src="assets/konfirmasi1.jpg" width="200"/></td>
+    <td align="center"><img src="assets/konfirmasi2.jpg" width="200"/></td>
+    <td align="center"><img src="assets/konfirmasi3.jpg" width="200"/></td>
+    <td align="center"><img src="assets/konfirmasi4.jpg" width="200"/></td>
+  </tr>
 </table>
 
 ---
@@ -106,46 +100,46 @@
 ## 🧾 Invoice
 
 <table>
-  <tr><th align="center">[Judul Invoice]</th></tr>
-  <tr><td align="center"><img src="Asset/Invoice.jpg" width="400"/></td></tr>
+  <tr>
+    <th align="center">Invoice</th>
+  </tr>
+  <tr>
+    <td align="center"><img src="assets/invoice.jpg" width="400"/></td>
+  </tr>
 </table>
 
 ---
 
-## 👥 Pelanggan (3 Foto)
+## 👥 Pelanggan
 
 <table>
-  <tr><th align="center">[Judul Pelanggan 1]</th></tr>
-  <tr><td align="center"><img src=Asset/pelanggan.jpg" width="400"/></td></tr>
-</table>
-
-<table>
-  <tr><th align="center">[Judul Pelanggan 2]</th></tr>
-  <tr><td align="center"><img src="Asset/pelanggan1.jpg" width="400"/></td></tr>
-</table>
-
-<table>
-  <tr><th align="center">[Judul Pelanggan 3]</th></tr>
-  <tr><td align="center"><img src="assets/pelanggan2.jpg" width="400"/></td></tr>
+  <tr>
+    <th align="center">Pelanggan 1</th>
+    <th align="center">Pelanggan 2</th>
+    <th align="center">Pelanggan 3</th>
+  </tr>
+  <tr>
+    <td align="center"><img src="assets/pelanggan1.jpg" width="200"/></td>
+    <td align="center"><img src="assets/pelanggan2.jpg" width="200"/></td>
+    <td align="center"><img src="assets/pelanggan3.jpg" width="200"/></td>
+  </tr>
 </table>
 
 ---
 
-## 📊 Laporan (3 Foto)
+## 📊 Laporan
 
 <table>
-  <tr><th align="center">[Judul Laporan 1]</th></tr>
-  <tr><td align="center"><img src="assets/laporan1.jpg" width="400"/></td></tr>
-</table>
-
-<table>
-  <tr><th align="center">[Judul Laporan 2]</th></tr>
-  <tr><td align="center"><img src="assets/laporan2.jpg" width="400"/></td></tr>
-</table>
-
-<table>
-  <tr><th align="center">[Judul Laporan 3]</th></tr>
-  <tr><td align="center"><img src="assets/laporan3.jpg" width="400"/></td></tr>
+  <tr>
+    <th align="center">Laporan 1</th>
+    <th align="center">Laporan 2</th>
+    <th align="center">Laporan 3</th>
+  </tr>
+  <tr>
+    <td align="center"><img src="assets/laporan1.jpg" width="200"/></td>
+    <td align="center"><img src="assets/laporan2.jpg" width="200"/></td>
+    <td align="center"><img src="assets/laporan3.jpg" width="200"/></td>
+  </tr>
 </table>
 
 ---
@@ -153,88 +147,87 @@
 ## ⚙️ Akun
 
 <table>
-  <tr><th align="center">[Judul Akun]</th></tr>
-  <tr><td align="center"><img src="assets/akun.jpg" width="400"/></td></tr>
+  <tr>
+    <th align="center">Akun</th>
+  </tr>
+  <tr>
+    <td align="center"><img src="assets/akun.jpg" width="400"/></td>
+  </tr>
 </table>
 
 ---
 
-## 🧴 Layanan (3 Foto)
+## 🧴 Layanan
 
 <table>
-  <tr><th align="center">[Judul Layanan 1]</th></tr>
-  <tr><td align="center"><img src="assets/layanan1.jpg" width="400"/></td></tr>
-</table>
-
-<table>
-  <tr><th align="center">[Judul Layanan 2]</th></tr>
-  <tr><td align="center"><img src="assets/layanan2.jpg" width="400"/></td></tr>
-</table>
-
-<table>
-  <tr><th align="center">[Judul Layanan 3]</th></tr>
-  <tr><td align="center"><img src="assets/layanan3.jpg" width="400"/></td></tr>
-</table>
-
----
-
-## ➕ Layanan Tambahan (3 Foto)
-
-<table>
-  <tr><th align="center">[Judul Tambahan 1]</th></tr>
-  <tr><td align="center"><img src="assets/tambahan1.jpg" width="400"/></td></tr>
-</table>
-
-<table>
-  <tr><th align="center">[Judul Tambahan 2]</th></tr>
-  <tr><td align="center"><img src="assets/tambahan2.jpg" width="400"/></td></tr>
-</table>
-
-<table>
-  <tr><th align="center">[Judul Tambahan 3]</th></tr>
-  <tr><td align="center"><img src="assets/tambahan3.jpg" width="400"/></td></tr>
+  <tr>
+    <th align="center">Layanan 1</th>
+    <th align="center">Layanan 2</th>
+    <th align="center">Layanan 3</th>
+  </tr>
+  <tr>
+    <td align="center"><img src="assets/layanan1.jpg" width="200"/></td>
+    <td align="center"><img src="assets/layanan2.jpg" width="200"/></td>
+    <td align="center"><img src="assets/layanan3.jpg" width="200"/></td>
+  </tr>
 </table>
 
 ---
 
-## 👨‍💼 Pegawai (3 Foto)
+## ➕ Layanan Tambahan
 
 <table>
-  <tr><th align="center">[Judul Pegawai 1]</th></tr>
-  <tr><td align="center"><img src="assets/pegawai1.jpg" width="400"/></td></tr>
-</table>
-
-<table>
-  <tr><th align="center">[Judul Pegawai 2]</th></tr>
-  <tr><td align="center"><img src="assets/pegawai2.jpg" width="400"/></td></tr>
-</table>
-
-<table>
-  <tr><th align="center">[Judul Pegawai 3]</th></tr>
-  <tr><td align="center"><img src="assets/pegawai3.jpg" width="400"/></td></tr>
+  <tr>
+    <th align="center">Tambahan 1</th>
+    <th align="center">Tambahan 2</th>
+    <th align="center">Tambahan 3</th>
+  </tr>
+  <tr>
+    <td align="center"><img src="assets/tambahan1.jpg" width="200"/></td>
+    <td align="center"><img src="assets/tambahan2.jpg" width="200"/></td>
+    <td align="center"><img src="assets/tambahan3.jpg" width="200"/></td>
+  </tr>
 </table>
 
 ---
 
-## 🏢 Cabang (2 Foto)
+## 👨‍💼 Pegawai
 
 <table>
-  <tr><th align="center">[Judul Cabang 1]</th></tr>
-  <tr><td align="center"><img src="assets/cabang1.jpg" width="400"/></td></tr>
+  <tr>
+    <th align="center">Pegawai 1</th>
+    <th align="center">Pegawai 2</th>
+    <th align="center">Pegawai 3</th>
+  </tr>
+  <tr>
+    <td align="center"><img src="assets/pegawai1.jpg" width="200"/></td>
+    <td align="center"><img src="assets/pegawai2.jpg" width="200"/></td>
+    <td align="center"><img src="assets/pegawai3.jpg" width="200"/></td>
+  </tr>
 </table>
 
+---
+
+## 🏢 Cabang
+
 <table>
-  <tr><th align="center">[Judul Cabang 2]</th></tr>
-  <tr><td align="center"><img src="assets/cabang2.jpg" width="400"/></td></tr>
+  <tr>
+    <th align="center">Cabang 1</th>
+    <th align="center">Cabang 2</th>
+  </tr>
+  <tr>
+    <td align="center"><img src="assets/cabang1.jpg" width="250"/></td>
+    <td align="center"><img src="assets/cabang2.jpg" width="250"/></td>
+  </tr>
 </table>
 
 ---
 
 ## 💻 Teknologi yang Digunakan
 
-| Frontend      | Backend         | Database        |
-| ------------- | --------------- | --------------- |
-| HTML + Tailwind CSS | Firebase Authentication | Firebase Firestore |
+| Frontend         | Backend               | Database            |
+| ---------------- | --------------------- | ------------------- |
+| HTML + Tailwind CSS | Firebase Authentication | Firebase Firestore  |
 
 ---
 
