@@ -31,12 +31,12 @@
 
 <table>
   <tr><th align="center">Halaman Login</th></tr>
-  <tr><td align="center"><img src="assets/login.png" width="400"/></td></tr>
+  <tr><td align="center"><img src="assets/login.jpg" width="400"/></td></tr>
 </table>
 
 <table>
   <tr><th align="center">Halaman Register</th></tr>
-  <tr><td align="center"><img src="assets/register.png" width="400"/></td></tr>
+  <tr><td align="center"><img src="assets/register.jpg" width="400"/></td></tr>
 </table>
 
 ---
@@ -45,7 +45,7 @@
 
 <table>
   <tr><th align="center">Halaman Home</th></tr>
-  <tr><td align="center"><img src="assets/home.png" width="400"/></td></tr>
+  <tr><td align="center"><img src="assets/home.jpg" width="400"/></td></tr>
 </table>
 
 ---
