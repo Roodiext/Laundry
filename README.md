@@ -31,12 +31,12 @@
 
 <table>
   <tr><th align="center">Halaman Login</th></tr>
-  <tr><td align="center"><img src="assets/login.jpg" width="400"/></td></tr>
+  <tr><td align="center"><img src="Asset/login.jpg" width="400"/></td></tr>
 </table>
 
 <table>
   <tr><th align="center">Halaman Register</th></tr>
-  <tr><td align="center"><img src="assets/register.jpg" width="400"/></td></tr>
+  <tr><td align="center"><img src="Asset/register.jpg" width="400"/></td></tr>
 </table>
 
 ---
@@ -54,27 +54,27 @@
 
 <table>
   <tr><th align="center">Halaman Transaksi</th></tr>
-  <tr><td align="center"><img src="assets/transaksi1.png" width="400"/></td></tr>
+  <tr><td align="center"><img src="Asset/transaksi.png" width="400"/></td></tr>
 </table>
 
 <table>
   <tr><th align="center">[Judul Transaksi 2]</th></tr>
-  <tr><td align="center"><img src="assets/transaksi2.png" width="400"/></td></tr>
+  <tr><td align="center"><img src="Asset/transaksi1.png" width="400"/></td></tr>
 </table>
 
 <table>
   <tr><th align="center">[Judul Transaksi 3]</th></tr>
-  <tr><td align="center"><img src="assets/transaksi3.png" width="400"/></td></tr>
+  <tr><td align="center"><img src="Asset/transaksi2.png" width="400"/></td></tr>
 </table>
 
 <table>
   <tr><th align="center">[Judul Transaksi 4]</th></tr>
-  <tr><td align="center"><img src="assets/transaksi4.png" width="400"/></td></tr>
+  <tr><td align="center"><img src="Asset/transaksi3.png" width="400"/></td></tr>
 </table>
 
 <table>
   <tr><th align="center">[Judul Transaksi 5]</th></tr>
-  <tr><td align="center"><img src="assets/transaksi5.png" width="400"/></td></tr>
+  <tr><td align="center"><img src=Asset/transaksi4.png" width="400"/></td></tr>
 </table>
 
 ---
@@ -83,22 +83,22 @@
 
 <table>
   <tr><th align="center">[Judul Konfirmasi 1]</th></tr>
-  <tr><td align="center"><img src="assets/konfirmasi1.png" width="400"/></td></tr>
+  <tr><td align="center"><img src="Asset/konfirmasi1.png" width="400"/></td></tr>
 </table>
 
 <table>
   <tr><th align="center">[Judul Konfirmasi 2]</th></tr>
-  <tr><td align="center"><img src="assets/konfirmasi2.png" width="400"/></td></tr>
+  <tr><td align="center"><img src=Asset/konfirmasi2.png" width="400"/></td></tr>
 </table>
 
 <table>
   <tr><th align="center">[Judul Konfirmasi 3]</th></tr>
-  <tr><td align="center"><img src="assets/konfirmasi3.png" width="400"/></td></tr>
+  <tr><td align="center"><img src=Asset/konfirmasi3.png" width="400"/></td></tr>
 </table>
 
 <table>
   <tr><th align="center">[Judul Konfirmasi 4]</th></tr>
-  <tr><td align="center"><img src="assets/konfirmasi4.png" width="400"/></td></tr>
+  <tr><td align="center"><img src=Asset/konfirmasi4.png" width="400"/></td></tr>
 </table>
 
 ---
@@ -107,7 +107,7 @@
 
 <table>
   <tr><th align="center">[Judul Invoice]</th></tr>
-  <tr><td align="center"><img src="assets/invoice.png" width="400"/></td></tr>
+  <tr><td align="center"><img src="Asset/invoice.png" width="400"/></td></tr>
 </table>
 
 ---
@@ -116,12 +116,12 @@
 
 <table>
   <tr><th align="center">[Judul Pelanggan 1]</th></tr>
-  <tr><td align="center"><img src="assets/pelanggan1.png" width="400"/></td></tr>
+  <tr><td align="center"><img src=Asset/pelanggan1.png" width="400"/></td></tr>
 </table>
 
 <table>
   <tr><th align="center">[Judul Pelanggan 2]</th></tr>
-  <tr><td align="center"><img src="assets/pelanggan2.png" width="400"/></td></tr>
+  <tr><td align="center"><img src="Asset/pelanggan2.png" width="400"/></td></tr>
 </table>
 
 <table>
