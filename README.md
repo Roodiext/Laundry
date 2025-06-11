@@ -88,8 +88,8 @@
     <th align="center">Konfirmasi 4</th>
   </tr>
   <tr>
-    <td align="center"><img src="assets/konfirmasi1.jpg" width="200"/></td>
-    <td align="center"><img src="assets/konfirmasi2.jpg" width="200"/></td>
+    <td align="center"><img src="assets/Konfirmasi1.jpg" width="200"/></td>
+    <td align="center"><img src="assets/Konfirmasi2.jpg" width="200"/></td>
     <td align="center"><img src="assets/konfirmasi3.jpg" width="200"/></td>
     <td align="center"><img src="assets/konfirmasi4.jpg" width="200"/></td>
   </tr>
@@ -104,7 +104,8 @@
     <th align="center">Invoice</th>
   </tr>
   <tr>
-    <td align="center"><img src="assets/invoice.jpg" width="400"/></td>
+    <td align="center"><img src="assets/invoice1.jpg" width="400"/></td>
+    <td align="center"><img src="assets/invoice2.jpg" width="400"/></td>
   </tr>
 </table>
 
@@ -168,7 +169,6 @@
   <tr>
     <td align="center"><img src="assets/layanan1.jpg" width="200"/></td>
     <td align="center"><img src="assets/layanan2.jpg" width="200"/></td>
-    <td align="center"><img src="assets/layanan3.jpg" width="200"/></td>
   </tr>
 </table>
 
@@ -183,9 +183,8 @@
     <th align="center">Tambahan 3</th>
   </tr>
   <tr>
-    <td align="center"><img src="assets/tambahan1.jpg" width="200"/></td>
-    <td align="center"><img src="assets/tambahan2.jpg" width="200"/></td>
-    <td align="center"><img src="assets/tambahan3.jpg" width="200"/></td>
+    <td align="center"><img src="assets/layanantambahan1.jpg" width="200"/></td>
+    <td align="center"><img src="assets/layanantambahan2.jpg" width="200"/></td>
   </tr>
 </table>
 
@@ -200,9 +199,8 @@
     <th align="center">Pegawai 3</th>
   </tr>
   <tr>
-    <td align="center"><img src="assets/pegawai1.jpg" width="200"/></td>
+    <td align="center"><img src="assets/pegawai.jpg" width="200"/></td>
     <td align="center"><img src="assets/pegawai2.jpg" width="200"/></td>
-    <td align="center"><img src="assets/pegawai3.jpg" width="200"/></td>
   </tr>
 </table>
 
