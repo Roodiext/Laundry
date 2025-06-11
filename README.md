@@ -1,11 +1,12 @@
-<h1 align="center">🧺 Cleanify - Aplikasi Manajemen Laundry Digital</h1>
+<h1 align="center">🧺 SukaMakmur Laundry </h1>
+<H1 align="center"> Aplikasi Manajemen Laundry Digital</h1>
 
 <p align="center">
   <img src="assets/logo-cleanify.png" width="120" alt="Cleanify Logo" />
 </p>
 
 <p align="center">
-  Aplikasi laundry modern berbasis web untuk membantu operasional harian laundry Anda, dari login hingga laporan 📊✨
+  Aplikasi laundry modern untuk membantu operasional harian laundry Anda, dengan berbagai fitur yang mengesankan 📊✨
 </p>
 
 ---
@@ -29,12 +30,12 @@
 ## 🔐 Login & Register
 
 <table>
-  <tr><th align="center">[Judul Login]</th></tr>
+  <tr><th align="center">Halaman Login</th></tr>
   <tr><td align="center"><img src="assets/login.png" width="400"/></td></tr>
 </table>
 
 <table>
-  <tr><th align="center">[Judul Register]</th></tr>
+  <tr><th align="center">Halaman Register</th></tr>
   <tr><td align="center"><img src="assets/register.png" width="400"/></td></tr>
 </table>
 
@@ -43,7 +44,7 @@
 ## 🏠 Home
 
 <table>
-  <tr><th align="center">[Judul Home]</th></tr>
+  <tr><th align="center">Halaman Home</th></tr>
   <tr><td align="center"><img src="assets/home.png" width="400"/></td></tr>
 </table>
 
@@ -52,7 +53,7 @@
 ## 💼 Transaksi (5 Foto)
 
 <table>
-  <tr><th align="center">[Judul Transaksi 1]</th></tr>
+  <tr><th align="center">Halaman Transaksi</th></tr>
   <tr><td align="center"><img src="assets/transaksi1.png" width="400"/></td></tr>
 </table>
 
