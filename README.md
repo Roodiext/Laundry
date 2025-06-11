@@ -2,10 +2,6 @@
 <h1 align="center">Aplikasi Manajemen Laundry Digital</h1>
 
 <p align="center">
-  <img src="assets/logo-cleanify.png" width="120" alt="Cleanify Logo" />
-</p>
-
-<p align="center">
   Aplikasi laundry modern untuk membantu operasional harian laundry Anda, dengan berbagai fitur yang mengesankan 📊✨
 </p>
 
