@@ -119,7 +119,7 @@
   <tr>
     <td align="center"><img src="assets/pelanggan1.jpg" width="200"/></td>
     <td align="center"><img src="assets/pelanggan2.jpg" width="200"/></td>
-    <td align="center"><img src="assets/pelanggan3.jpg" width="200"/></td>
+    <td align="center"><img src="assets/palanggan3.jpg" width="200"/></td>
   </tr>
 </table>
 
