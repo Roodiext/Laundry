@@ -99,7 +99,8 @@
             android:backgroundTint="?attr/colorBackground"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <EditText
             android:id="@+id/editPhone"
@@ -153,7 +154,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="12dp"
-                android:src="@drawable/showeye"
+                android:src="@drawable/hiddeneye"
                 android:contentDescription="Toggle password visibility"
                 android:clickable="true"
                 android:focusable="true"
@@ -163,7 +164,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- Login Button -->
+        <!-- Register Button -->
         <Button
             android:id="@+id/btnLogin"
             android:layout_width="0dp"
@@ -172,10 +173,24 @@
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:text="Registrasi"
-            android:onClick="Laundry"
             android:textColor="#FFFFFF"
             android:backgroundTint="?attr/colorBackground"
             app:layout_constraintTop_toBottomOf="@id/passwordContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Back to Login -->
+        <TextView
+            android:id="@+id/tvBackToLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sudah punya akun? Login di sini"
+            android:textColor="@color/purple"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintTop_toBottomOf="@id/btnLogin"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 

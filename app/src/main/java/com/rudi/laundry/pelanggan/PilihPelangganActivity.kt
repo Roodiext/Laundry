@@ -29,6 +29,7 @@ class PilihPelangganActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pilih_pelanggan)
 
+        // Inisialisasi views
         recyclerView = findViewById(R.id.rvPelanggan)
         searchView = findViewById(R.id.searchView)
 
@@ -49,14 +50,17 @@ class PilihPelangganActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView() {
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = AdapterPilihPelanggan(listPelanggan) { selectedPelanggan ->
-            val intent = Intent()
-            intent.putExtra("nama", selectedPelanggan.namaPelanggan)
-            intent.putExtra("hp", selectedPelanggan.noHPPelanggan)
-            setResult(RESULT_OK, intent)
+        // Inisialisasi adapter dengan context untuk akses SharedPreferences
+        adapter = AdapterPilihPelanggan(this, listPelanggan) { pelanggan ->
+            // Handle item click
+            val resultIntent = Intent()
+            resultIntent.putExtra("nama", pelanggan.namaPelanggan)
+            resultIntent.putExtra("hp", pelanggan.noHPPelanggan)
+            setResult(RESULT_OK, resultIntent)
             finish()
         }
+
+        recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
     }
 
@@ -123,6 +127,9 @@ class PilihPelangganActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        // Update bahasa ketika kembali ke activity
+        adapter.updateLanguage()
+
         // Pastikan data ditampilkan saat activity kembali aktif
         // dan reset filter agar semua data ditampilkan
         if (listPelangganFull.isNotEmpty()) {

@@ -26,6 +26,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="?attr/colorTextThree"
                 android:text="[2]"/>
 
             <LinearLayout
@@ -40,6 +41,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Liona"
+                    android:textColor="?attr/colorTextThree"
                     android:layout_marginBottom="2dp"
                     android:textStyle="bold"
                     android:textSize="16sp" />
@@ -49,7 +51,7 @@
                     android:layout_height="wrap_content"
                     android:text="2025-02-19 15:28:18"
                     android:textSize="12sp"
-                    android:textColor="#888888"
+                    android:textColor="?attr/colorTextThree"
                     android:layout_marginBottom="5dp"
                     android:layout_marginTop="0dp"/>
 
@@ -65,7 +67,7 @@
                 android:padding="4dp"
                 android:layout_marginTop="3dp"
                 android:text="Sudah Dibayar"
-                android:textColor="#F7374F"
+                android:textColor="#FFFF"
                 android:textSize="12sp" />
         </LinearLayout>
 
@@ -101,6 +103,7 @@
                     android:layout_height="wrap_content"
                     android:text="Cuci Lipat 6kg"
                     android:textSize="14sp"
+                    android:textColor="?attr/colorTextThree"
                     android:textStyle="bold" />
 
                 <TextView
@@ -109,7 +112,7 @@
                     android:layout_height="wrap_content"
                     android:text="+3 Layanan Tambahan"
                     android:textSize="12sp"
-                    android:textColor="#888888" />
+                    android:textColor="?attr/colorTextThree" />
             </LinearLayout>
         </LinearLayout>
 
@@ -138,6 +141,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Total Bayar"
+                    android:textColor="?attr/colorTextThree"
                     />
 
                 <TextView
@@ -146,6 +150,7 @@
                     android:layout_height="wrap_content"
                     android:text="Rp36.000,00"
                     android:textStyle="bold"
+                    android:textColor="?attr/colorTextThree"
                     android:textSize="16sp" />
             </LinearLayout>
 
@@ -155,7 +160,7 @@
                 android:layout_height="wrap_content"
                 android:text="Ambil Sekarang"
                 android:textColor="@android:color/white"
-                android:backgroundTint="#60B5FF"
+                android:backgroundTint="?attr/colorBackground"
                 android:paddingHorizontal="10dp" />
         </LinearLayout>
     </LinearLayout>

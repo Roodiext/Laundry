@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorBackground"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Header Section - Compact for Landscape -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            android:backgroundTint="#FFFFFF">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:gravity="center_vertical">
+
+                <!-- Company Info -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="start">
+
+                    <TextView
+                        android:id="@+id/tvTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Laundry SukaMakmur"
+                        android:textStyle="bold"
+                        android:textSize="22sp"
+                        android:textColor="#2C3E50"
+                        android:fontFamily="sans-serif-medium" />
+
+                    <TextView
+                        android:id="@+id/tvCabangInvoice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Manahan"
+                        android:textSize="14sp"
+                        android:textColor="#7F8C8D"
+                        android:layout_marginTop="2dp" />
+
+                    <TextView
+                        android:id="@+id/tvAlamatCabang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="12sp"
+                        android:textColor="#95A5A6" />
+                </LinearLayout>
+
+                <!-- Invoice Badge -->
+                <TextView
+                    android:id="@+id/tvinvoice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="INVOICE"
+                    android:background="@drawable/status_badge_background"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Main Content - Two Column Layout for Landscape -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <!-- Left Column -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginEnd="8dp">
+
+                <!-- Transaction Info Card -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="4dp"
+                    android:backgroundTint="#FFFFFF">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:id="@+id/tvLabelDetailTransaksi"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Detail Transaksi"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:textColor="#2C3E50"
+                            android:layout_marginBottom="12dp" />
+
+                        <!-- Transaction Details in Grid -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <!-- Row 1: ID and Customer -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginBottom="8dp">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:layout_marginEnd="8dp">
+
+                                    <TextView
+                                        android:id="@+id/tvLabelIdTransaksi"
+                                        android:text="ID Transaksi"
+                                        android:textStyle="bold"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:textColor="#34495E"
+                                        android:textSize="12sp" />
+                                    <TextView
+                                        android:id="@+id/tvIdTransaksi"
+                                        android:text="#IDTRANS01"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:textColor="#3498DB"
+                                        android:textStyle="bold"
+                                        android:textSize="14sp" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/tvLabelPelanggan"
+                                        android:text="Pelanggan"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:textStyle="bold"
+                                        android:textColor="#34495E"
+                                        android:textSize="12sp" />
+                                    <TextView
+                                        android:id="@+id/tvNamaPelanggan"
+                                        android:text="Athaya"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:textColor="#2C3E50"
+                                        android:textStyle="bold"
+                                        android:textSize="14sp" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <!-- Row 2: Date and Employee -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginBottom="8dp">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:layout_marginEnd="8dp">
+
+                                    <TextView
+                                        android:id="@+id/tvLabelTanggal"
+                                        android:text="Tanggal"
+                                        android:textStyle="bold"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:textColor="#34495E"
+                                        android:textSize="12sp" />
+                                    <TextView
+                                        android:id="@+id/tvTanggal"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:text="2025-05-18"
+                                        android:textColor="#7F8C8D"
+                                        android:textSize="13sp" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/tvLabelKaryawan"
+                                        android:text="Karyawan"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:textStyle="bold"
+                                        android:textColor="#34495E"
+                                        android:textSize="12sp" />
+                                    <TextView
+                                        android:id="@+id/tvNamaKaryawan"
+                                        android:text="Rudi"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:textColor="#7F8C8D"
+                                        android:textSize="13sp" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <!-- Payment Method -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/tvLabelMetodePembayaran"
+                                    android:text="Metode Pembayaran"
+                                    android:textStyle="bold"
+                                    android:layout_height="wrap_content"
+                                    android:layout_width="wrap_content"
+                                    android:textColor="#34495E"
+                                    android:textSize="12sp" />
+                                <TextView
+                                    android:id="@+id/tvMetodePembayaran"
+                                    android:layout_height="wrap_content"
+                                    android:layout_width="wrap_content"
+                                    android:text="Tunai"
+                                    android:textColor="#27AE60"
+                                    android:textStyle="bold"
+                                    android:textSize="13sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Main Service Card -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="4dp"
+                    android:backgroundTint="#FFFFFF">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:id="@+id/tvLabelLayananUtama"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Layanan Utama"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:textColor="#2C3E50"
+                            android:layout_marginBottom="8dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="8dp"
+                            android:background="#F8F9FA">
+
+                            <TextView
+                                android:id="@+id/tvLayananUtama"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Cuci Setrika 5kg"
+                                android:textStyle="bold"
+                                android:textSize="14sp"
+                                android:textColor="#2C3E50" />
+
+                            <TextView
+                                android:id="@+id/tvHargaLayanan"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Rp0"
+                                android:textColor="#27AE60"
+                                android:textStyle="bold"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+            <!-- Right Column -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="8dp">
+
+                <!-- Additional Services Card -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="4dp"
+                    android:backgroundTint="#FFFFFF">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:id="@+id/tvLabelRincianTambahan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rincian Tambahan"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:textColor="#2C3E50"
+                            android:layout_marginBottom="8dp" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvRincianTambahan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:nestedScrollingEnabled="false"
+                            android:maxHeight="120dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#E8E8E8"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginBottom="8dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tvLabelSubtotalTambahan"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Subtotal Tambahan"
+                                android:textStyle="bold"
+                                android:textColor="#34495E"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/tvSubtotalTambahan"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Rp0"
+                                android:textColor="#27AE60"
+                                android:textStyle="bold"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Total Card with Gradient Background -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="6dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:background="@drawable/button_gradient_background"
+                        android:padding="16dp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/tvLabelTotalBayar"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Total Bayar"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:textColor="#FFFFFF" />
+
+                        <TextView
+                            android:id="@+id/tvTotalBayar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rp0"
+                            android:textStyle="bold"
+                            android:textSize="20sp"
+                            android:textColor="#FFFFFF" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Action Buttons -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        app:cardCornerRadius="25dp"
+                        app:cardElevation="4dp">
+
+                        <Button
+                            android:id="@+id/btnKirimWhatsapp"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:text="📱Kirim WhatsApp"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold"
+                            android:textSize="13sp"
+                            android:background="@color/colorFirst"
+                            android:elevation="0dp"
+                            android:stateListAnimator="@null" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="25dp"
+                        app:cardElevation="4dp">
+
+                        <Button
+                            android:id="@+id/btnCetak"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:text="🖨️ Cetak"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold"
+                            android:textSize="13sp"
+                            android:background="@color/colorFirst"
+                            android:elevation="0dp"
+                            android:stateListAnimator="@null" />
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Footer -->
+        <TextView
+            android:id="@+id/tvFooterText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Terima kasih telah menggunakan layanan Laundry SukaMakmur 💙"
+            android:textAlignment="center"
+            android:textSize="12sp"
+            android:textColor="#7F8C8D"
+            android:textStyle="italic"
+            android:layout_marginTop="16dp"
+            android:padding="12dp" />
+
+    </LinearLayout>
+</ScrollView>

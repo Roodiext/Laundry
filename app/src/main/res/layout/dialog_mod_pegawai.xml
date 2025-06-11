@@ -35,7 +35,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:background="@drawable/header_gradient_background"
+                    android:background="?attr/colorBackground"
                     android:padding="20dp">
 
                     <!-- Icon User -->
@@ -44,7 +44,7 @@
                         android:layout_height="60dp"
                         android:layout_gravity="center"
                         android:layout_marginBottom="10dp"
-                        android:src="@drawable/ic_person_circle"
+                        android:src="@drawable/ic_badge"
                         android:tint="#FFFFFF"
                         tools:ignore="UseAppTint" />
 

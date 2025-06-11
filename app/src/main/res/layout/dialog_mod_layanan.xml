@@ -32,10 +32,11 @@
 
                 <!-- Header dengan background gradient -->
                 <LinearLayout
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:background="@drawable/header_gradient_background"
+                    android:background="?attr/colorBackground"
                     android:padding="20dp">
 
                     <!-- Icon Service -->
@@ -49,18 +50,20 @@
                         tools:ignore="UseAppTint" />
 
                     <!-- Judul -->
+
+                    <!-- Subtitle -->
                     <TextView
                         android:id="@+id/tvDIALOG_MOD_LAYANAN_judul"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:text="Detail Layanan"
-                        android:textSize="24sp"
-                        android:textStyle="bold"
                         android:textColor="@android:color/white"
-                        android:gravity="center" />
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
 
-                    <!-- Subtitle -->
                     <TextView
+                        android:id="@+id/tvDIALOG_MOD_LAYANAN_subtitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Informasi lengkap layanan laundry"
@@ -108,6 +111,7 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/tvDIALOG_MOD_LAYANAN_ID_label"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="ID Layanan"
@@ -159,6 +163,7 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/tvDIALOG_MOD_LAYANAN_Nama_label"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Nama Layanan"
@@ -210,6 +215,7 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/tvDIALOG_MOD_LAYANAN_Harga_label"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Harga Layanan"
@@ -261,6 +267,7 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/tvDIALOG_MOD_LAYANAN_Cabang_label"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Cabang"
@@ -312,6 +319,7 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/tvDIALOG_MOD_LAYANAN_Jenis_label"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Jenis Layanan"

@@ -5,7 +5,6 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
     tools:context=".laporan.DataLaporanActivity">
 
     <!-- Header -->
@@ -13,7 +12,7 @@
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="?attr/colorBackground"
         android:elevation="4dp"
         android:orientation="vertical"
         android:padding="16dp"
@@ -22,19 +21,21 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/headerTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Data Laporan Transaksi"
-            android:textColor="@color/black"
+            android:textColor="?attr/colorTextPrimary"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/headerSubtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="Kelola semua transaksi laundry"
-            android:textColor="#666666"
+            android:textColor="?attr/colorTextPrimary"
             android:textSize="14sp" />
     </LinearLayout>
 
@@ -43,7 +44,6 @@
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:elevation="2dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,11 +55,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="?android:attr/selectableItemBackground"
             android:gravity="center"
             android:padding="16dp"
             android:text="Belum Bayar"
-            android:textColor="#FF3D00"
+            android:textColor="?attr/colorTextThree"
             android:textSize="14sp"
             android:textStyle="bold" />
 
@@ -68,11 +67,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="?android:attr/selectableItemBackground"
             android:gravity="center"
+            android:textStyle="bold"
             android:padding="16dp"
             android:text="Sudah Bayar"
-            android:textColor="#666666"
+            android:textColor="?attr/colorTextThree"
             android:textSize="14sp" />
 
         <TextView
@@ -80,11 +79,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="?android:attr/selectableItemBackground"
             android:gravity="center"
             android:padding="16dp"
             android:text="Selesai"
-            android:textColor="#666666"
+            android:textStyle="bold"
+            android:textColor="?attr/colorTextThree"
             android:textSize="14sp" />
     </LinearLayout>
 
@@ -93,7 +92,7 @@
         android:id="@+id/indicator"
         android:layout_width="0dp"
         android:layout_height="3dp"
-        android:background="#FF3D00"
+        android:background="?attr/colorBackground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
@@ -132,6 +131,7 @@
             android:src="@drawable/laundry" />
 
         <TextView
+            android:id="@+id/emptyStateTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -141,6 +141,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/emptyStateSubtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"

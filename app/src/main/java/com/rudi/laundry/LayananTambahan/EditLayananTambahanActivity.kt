@@ -13,7 +13,6 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import com.google.android.material.appbar.MaterialToolbar
 import com.google.firebase.database.*
 import com.rudi.laundry.R
 import com.rudi.laundry.modeldata.modelLayanan
@@ -30,7 +29,6 @@ class EditLayananTambahanActivity : AppCompatActivity() {
     private val cabangRef: DatabaseReference = database.getReference("cabang")
 
     // Views
-    private lateinit var toolbar: MaterialToolbar
     private lateinit var tilNamaLayananTambahan: TextInputLayout
     private lateinit var etNamaLayananTambahan: TextInputEditText
     private lateinit var tilHargaLayananTambahan: TextInputLayout
@@ -53,7 +51,6 @@ class EditLayananTambahanActivity : AppCompatActivity() {
         setContentView(R.layout.activity_edit_layanan_tambahan)
 
         initViews()
-        setupToolbar()
         setupPriceFormatter()
         getDataFromIntent()
         getCabangData()
@@ -67,7 +64,6 @@ class EditLayananTambahanActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
-        toolbar = findViewById(R.id.toolbar)
         tilNamaLayananTambahan = findViewById(R.id.tilNamaLayananTambahan)
         etNamaLayananTambahan = findViewById(R.id.etNamaLayananTambahan)
         tilHargaLayananTambahan = findViewById(R.id.tilHargaLayananTambahan)
@@ -78,15 +74,6 @@ class EditLayananTambahanActivity : AppCompatActivity() {
         btnSimpanPerubahanTambahan = findViewById(R.id.btnSimpanPerubahanTambahan)
     }
 
-    private fun setupToolbar() {
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
-
-        toolbar.setNavigationOnClickListener {
-            onBackPressed()
-        }
-    }
 
     private fun setupPriceFormatter() {
         etHargaLayananTambahan.addTextChangedListener(object : TextWatcher {

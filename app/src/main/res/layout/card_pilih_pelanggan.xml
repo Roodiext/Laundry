@@ -19,7 +19,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorFirst"
+            android:background="?attr/colorBackground"
             android:paddingHorizontal="16dp"
             android:paddingVertical="12dp"
             android:gravity="center_vertical">
@@ -68,7 +68,7 @@
                         android:layout_width="28dp"
                         android:layout_height="28dp"
                         android:src="@drawable/ic_person_circle"
-                        android:tint="@color/primary_color"
+                        android:tint="?attr/colorBackground"
                         android:layout_marginEnd="12dp" />
 
                     <TextView
@@ -76,7 +76,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/card_pelanggan_nama"
+                        android:text="Customer Name"
                         android:textSize="18sp"
                         android:textColor="@color/text_on_card"
                         android:textStyle="bold"
@@ -100,6 +100,7 @@
                         android:layout_marginEnd="8dp" />
 
                     <TextView
+                        android:id="@+id/tvAlamatLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Alamat: "
@@ -112,7 +113,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/card_pelanggan_alamat"
+                        android:text="Customer Address"
                         android:textSize="13sp"
                         android:textColor="@color/text_on_card"
                         android:maxLines="2"
@@ -133,6 +134,7 @@
                         android:layout_marginEnd="8dp" />
 
                     <TextView
+                        android:id="@+id/tvNoHPLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="No HP: "
@@ -145,7 +147,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/card_pelanggan_Hp"
+                        android:text="Customer Phone"
                         android:textSize="13sp"
                         android:textColor="@color/text_on_card"
                         android:fontFamily="monospace" />
@@ -165,7 +167,6 @@
                     android:layout_width="200dp"
                     android:layout_height="100dp"
                     android:src="@drawable/ic_check_circle"
-
                     android:visibility="gone" />
             </LinearLayout>
         </LinearLayout>

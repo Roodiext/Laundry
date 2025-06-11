@@ -18,10 +18,10 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/primary_color"
+            android:background="@color/white"
             android:theme="@style/ThemeOverlay.Material3.Dark"
             app:title="Konfirmasi Transaksi"
-            app:titleTextColor="@color/white"
+            app:titleTextColor="@color/black"
             app:navigationIcon="@drawable/ic_arrow_back_24"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -48,12 +48,13 @@
                 android:padding="16dp">
 
                 <TextView
+                    android:id="@+id/labeldataPelanggan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Data Pelanggan"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:textColor="@color/primary_color"
+                    android:textColor="?attr/colorTextThree"
                     android:drawableStart="@drawable/ic_person"
                     android:drawablePadding="8dp"
                     android:layout_marginBottom="12dp" />
@@ -65,12 +66,13 @@
                     android:layout_marginBottom="8dp">
 
                     <TextView
+                        android:id="@+id/labelNama"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Nama"
                         android:textSize="14sp"
-                        android:textColor="@color/text_secondary" />
+                        android:textColor="?attr/colorTextThree" />
 
                     <TextView
                         android:id="@+id/textViewNamaPelanggan"
@@ -80,7 +82,7 @@
                         android:text="Nama Pelanggan"
                         android:textSize="14sp"
                         android:textStyle="bold"
-                        android:textColor="@color/text_primary" />
+                        android:textColor="?attr/colorTextThree" />
 
                 </LinearLayout>
 
@@ -90,12 +92,13 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/labelNoHP"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="No. HP"
                         android:textSize="14sp"
-                        android:textColor="@color/text_secondary" />
+                        android:textColor="?attr/colorTextThree" />
 
                     <TextView
                         android:id="@+id/textViewNomorHP"
@@ -105,7 +108,7 @@
                         android:text="Nomor HP"
                         android:textSize="14sp"
                         android:textStyle="bold"
-                        android:textColor="@color/text_primary" />
+                        android:textColor="?attr/colorTextThree" />
 
                 </LinearLayout>
 
@@ -134,12 +137,13 @@
                 android:padding="16dp">
 
                 <TextView
+                    android:id="@+id/labelCabangPegawai"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Cabang dan Pegawai"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:textColor="@color/primary_color"
+                    android:textColor="?attr/colorTextThree"
                     android:drawableStart="@drawable/ic_store"
                     android:drawablePadding="8dp"
                     android:layout_marginBottom="16dp" />
@@ -152,12 +156,13 @@
                     android:layout_marginBottom="20dp">
 
                     <TextView
+                        android:id="@+id/labelPilihCabang"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Pilih Cabang"
                         android:textSize="16sp"
                         android:textStyle="bold"
-                        android:textColor="@color/text_primary"
+                        android:textColor="?attr/colorTextThree"
                         android:drawableStart="@drawable/ic_store"
                         android:drawablePadding="8dp"
                         android:layout_marginBottom="8dp" />
@@ -175,7 +180,7 @@
                             android:layout_weight="1"
                             android:text="Belum dipilih"
                             android:textSize="14sp"
-                            android:textColor="@color/text_secondary"
+                            android:textColor="@color/black"
                             android:background="@drawable/rounded_border"
                             android:padding="12dp"
                             android:layout_marginEnd="8dp"
@@ -188,9 +193,9 @@
                             android:layout_height="wrap_content"
                             android:text="Pilih"
                             android:textSize="14sp"
-                            app:icon="@drawable/dropdown"
-                            app:iconPadding="4dp"
+                            android:textColor="?attr/colorTextThree"
                             app:cornerRadius="8dp"
+                            app:strokeColor="?attr/colorBackground"
                             style="@style/Widget.Material3.Button.OutlinedButton" />
 
                     </LinearLayout>
@@ -204,12 +209,13 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/labelPilihPegawai"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Pilih Pegawai"
                         android:textSize="16sp"
                         android:textStyle="bold"
-                        android:textColor="@color/text_primary"
+                        android:textColor="?attr/colorTextThree"
                         android:drawableStart="@drawable/ic_person"
                         android:drawablePadding="8dp"
                         android:layout_marginBottom="8dp" />
@@ -227,7 +233,7 @@
                             android:layout_weight="1"
                             android:text="Belum dipilih"
                             android:textSize="14sp"
-                            android:textColor="@color/text_secondary"
+                            android:textColor="@color/black"
                             android:background="@drawable/rounded_border"
                             android:padding="12dp"
                             android:layout_marginEnd="8dp"
@@ -240,9 +246,9 @@
                             android:layout_height="wrap_content"
                             android:text="Pilih"
                             android:textSize="14sp"
-                            app:icon="@drawable/dropdown"
-                            app:iconPadding="4dp"
+                            android:textColor="?attr/colorTextThree"
                             app:cornerRadius="8dp"
+                            app:strokeColor="?attr/colorBackground"
                             style="@style/Widget.Material3.Button.OutlinedButton" />
 
                     </LinearLayout>
@@ -274,12 +280,13 @@
                 android:padding="16dp">
 
                 <TextView
+                    android:id="@+id/labelLayananUtama"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Layanan Utama"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:textColor="@color/primary_color"
+                    android:textColor="?attr/colorTextThree"
                     android:drawableStart="@drawable/typeservice"
                     android:drawablePadding="8dp"
                     android:layout_marginBottom="12dp" />
@@ -291,12 +298,13 @@
                     android:layout_marginBottom="8dp">
 
                     <TextView
+                        android:id="@+id/labelLayanan"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Layanan"
                         android:textSize="14sp"
-                        android:textColor="@color/text_secondary" />
+                        android:textColor="?attr/colorTextThree" />
 
                     <TextView
                         android:id="@+id/textViewNamaLayanan"
@@ -306,7 +314,7 @@
                         android:text="Nama Layanan"
                         android:textSize="14sp"
                         android:textStyle="bold"
-                        android:textColor="@color/text_primary" />
+                        android:textColor="?attr/colorTextThree" />
 
                 </LinearLayout>
 
@@ -316,12 +324,13 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/labelHarga"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Harga"
                         android:textSize="14sp"
-                        android:textColor="@color/text_secondary" />
+                        android:textColor="?attr/colorTextThree"/>
 
                     <TextView
                         android:id="@+id/textViewHargaLayanan"
@@ -331,7 +340,7 @@
                         android:text="Rp0"
                         android:textSize="14sp"
                         android:textStyle="bold"
-                        android:textColor="@color/primary_color" />
+                        android:textColor="#27AE60" />
 
                 </LinearLayout>
 
@@ -360,12 +369,13 @@
                 android:padding="16dp">
 
                 <TextView
+                    android:id="@+id/labelLayananTambahan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Layanan Tambahan"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:textColor="@color/primary_color"
+                    android:textColor="?attr/colorTextThree"
                     android:drawableStart="@drawable/adduser"
                     android:drawablePadding="8dp"
                     android:layout_marginBottom="12dp" />
@@ -382,7 +392,7 @@
                     android:layout_height="wrap_content"
                     android:text="Tidak ada layanan tambahan"
                     android:textSize="14sp"
-                    android:textColor="@color/text_secondary"
+                    android:textColor="?attr/colorTextThree"
                     android:textAlignment="center"
                     android:padding="16dp"
                     android:visibility="gone" />
@@ -401,7 +411,7 @@
             app:cardCornerRadius="12dp"
             app:cardElevation="4dp"
             app:strokeWidth="2dp"
-            app:strokeColor="@color/primary_color"
+            app:strokeColor="@color/black"
             app:layout_constraintTop_toBottomOf="@id/cardAdditionalServices"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
@@ -417,17 +427,17 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_money"
-                    android:tint="@color/primary_color"
                     android:layout_marginEnd="12dp" />
 
                 <TextView
+                    android:id="@+id/labelTotalPembayaran"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Total Pembayaran"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:textColor="@color/primary_color" />
+                    android:textColor="?attr/colorTextThree" />
 
                 <TextView
                     android:id="@+id/textViewTotalHarga"
@@ -436,7 +446,7 @@
                     android:text="Rp0"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:textColor="@color/primary_color" />
+                    android:textColor="#27AE60" />
 
             </LinearLayout>
 
@@ -465,10 +475,10 @@
                 android:text="Batal"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:icon="@drawable/ic_close_24"
-                app:iconPadding="8dp"
+                android:textColor="@color/white"
+                app:backgroundTint="#E74C3C"
                 app:cornerRadius="12dp"
-                style="@style/Widget.Material3.Button.OutlinedButton" />
+                style="@style/Widget.Material3.Button" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonPembayaran"
@@ -479,8 +489,8 @@
                 android:text="Lanjut Bayar"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:icon="@drawable/ic_money"
-                app:iconPadding="8dp"
+                android:textColor="@color/white"
+                app:backgroundTint="#27AE60"
                 app:cornerRadius="12dp"
                 style="@style/Widget.Material3.Button" />
 

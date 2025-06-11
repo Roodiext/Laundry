@@ -7,8 +7,7 @@
     android:layout_marginHorizontal="12dp"
     android:layout_marginVertical="6dp"
     app:cardCornerRadius="12dp"
-    app:cardElevation="4dp"
-    android:backgroundTint="@color/card_background">
+    app:cardElevation="4dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,7 +18,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorFirst"
+            android:background="?attr/colorBackground"
             android:paddingHorizontal="16dp"
             android:paddingVertical="12dp"
             android:gravity="center_vertical">
@@ -28,16 +27,16 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_badge"
-                android:tint="@color/black"
+                android:tint="?attr/colorTextPrimary"
                 android:layout_marginEnd="8dp" />
 
             <TextView
-                android:id="@+id/tvprofil1"
+                android:id="@+id/tvHeaderPegawai"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/card_pegawai_data"
-                android:textColor="@color/black"
+                android:textColor="?attr/colorTextPrimary"
                 android:textStyle="bold"
                 android:textSize="16sp" />
 
@@ -74,7 +73,7 @@
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:src="@drawable/ic_person_circle"
-                        android:tint="@color/primary_color"
+                        android:tint="?attr/colorBackground"
                         android:layout_marginEnd="12dp" />
 
                     <LinearLayout
@@ -84,11 +83,12 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tvLabelNamaPegawai"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Nama Pegawai"
                             android:textSize="12sp"
-                            android:textColor="@color/text_secondary_on_card"
+                            android:textColor="?attr/colorTextThree"
                             android:textStyle="bold" />
 
                         <TextView
@@ -97,7 +97,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/card_pegawai"
                             android:textSize="16sp"
-                            android:textColor="@color/text_on_card"
+                            android:textColor="?attr/colorTextThree"
                             android:textStyle="bold"
                             android:maxLines="1"
                             android:ellipsize="end"
@@ -124,15 +124,16 @@
                             android:layout_width="16dp"
                             android:layout_height="16dp"
                             android:src="@drawable/ic_location_on"
-                            android:tint="@color/icon_tint"
+                            android:tint="?attr/colorBackground"
                             android:layout_marginEnd="8dp" />
 
                         <TextView
+                            android:id="@+id/tvLabelAlamatPegawai"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Alamat: "
                             android:textSize="13sp"
-                            android:textColor="@color/text_secondary_on_card"
+                            android:textColor="?attr/colorTextThree"
                             android:textStyle="bold"
                             android:minWidth="60dp" />
 
@@ -143,7 +144,7 @@
                             android:layout_weight="1"
                             android:text="@string/card_pegawai_Alamat"
                             android:textSize="13sp"
-                            android:textColor="@color/text_on_card"
+                            android:textColor="?attr/colorTextThree"
                             android:maxLines="2"
                             android:ellipsize="end" />
                     </LinearLayout>
@@ -160,15 +161,16 @@
                             android:layout_width="16dp"
                             android:layout_height="16dp"
                             android:src="@drawable/ic_phone"
-                            android:tint="@color/icon_tint"
+                            android:tint="?attr/colorBackground"
                             android:layout_marginEnd="8dp" />
 
                         <TextView
+                            android:id="@+id/tvLabelNoHPPegawai"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="No HP: "
                             android:textSize="13sp"
-                            android:textColor="@color/text_secondary_on_card"
+                            android:textColor="?attr/colorTextThree"
                             android:textStyle="bold"
                             android:minWidth="60dp" />
 
@@ -179,7 +181,7 @@
                             android:layout_weight="1"
                             android:fontFamily="monospace"
                             android:text="@string/card_pegawai_noHP"
-                            android:textColor="@color/text_on_card"
+                            android:textColor="?attr/colorTextThree"
                             android:textSize="13sp" />
                     </LinearLayout>
 
@@ -194,16 +196,16 @@
                             android:layout_width="16dp"
                             android:layout_height="16dp"
                             android:src="@drawable/ic_business"
-                            android:tint="@color/icon_tint"
+                            android:tint="?attr/colorBackground"
                             android:layout_marginEnd="8dp" />
 
                         <TextView
-                            android:id="@+id/tvcabang_pegawai"
+                            android:id="@+id/tvLabelCabangPegawai"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Cabang: "
                             android:textSize="13sp"
-                            android:textColor="@color/text_secondary_on_card"
+                            android:textColor="?attr/colorTextThree"
                             android:textStyle="bold"
                             android:minWidth="60dp" />
 
@@ -214,7 +216,7 @@
                             android:layout_weight="1"
                             android:text="@string/card_pegawai_cabang"
                             android:textSize="13sp"
-                            android:textColor="@color/text_on_card"
+                            android:textColor="?attr/colorTextThree"
                             android:maxLines="1"
                             android:ellipsize="end" />
                     </LinearLayout>
@@ -228,7 +230,7 @@
                     android:gravity="center">
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btSimpan"
+                        android:id="@+id/btHubungiPegawai"
                         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                         android:layout_width="0dp"
                         android:layout_height="45dp"
@@ -239,14 +241,14 @@
                         android:paddingHorizontal="16dp"
                         android:paddingVertical="8dp"
                         android:text="hubungi"
-                        android:textColor="@color/primary_color"
+                        android:textColor="?attr/colorTextThree"
                         android:textSize="12sp"
                         app:cornerRadius="18dp"
-                        app:strokeColor="@color/primary_color"
+                        app:strokeColor="?attr/colorBackground"
                         app:strokeWidth="1dp"
                         app:icon="@drawable/ic_save"
                         app:iconSize="16dp"
-                        app:iconTint="@color/primary_color" />
+                        app:iconTint="?attr/colorBackground" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnLihatPegawai"
@@ -258,7 +260,7 @@
                         android:text="@string/button_lihat"
                         android:textSize="12sp"
                         android:textColor="@android:color/white"
-                        android:backgroundTint="@color/primary_color"
+                        android:backgroundTint="?attr/colorBackground"
                         app:cornerRadius="18dp"
                         android:minWidth="0dp"
                         android:minHeight="0dp"

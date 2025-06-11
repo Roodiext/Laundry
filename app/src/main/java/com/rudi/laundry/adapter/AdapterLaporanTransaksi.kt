@@ -1,5 +1,6 @@
 package com.rudi.laundry.adapter
 
+import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.rudi.laundry.R
 import com.rudi.laundry.modeldata.modelTransaksi
@@ -17,8 +19,28 @@ import java.util.*
 class AdapterlaporanTransaksi(
     private val listTransaksi: List<modelTransaksi>,
     private val onItemClick: (modelTransaksi) -> Unit,
-    private val onButtonClick: (modelTransaksi) -> Unit
+    private val onButtonClick: (modelTransaksi) -> Unit,
+    private val context: Context
 ) : RecyclerView.Adapter<AdapterlaporanTransaksi.TransaksiViewHolder>() {
+
+    // Variabel untuk menyimpan bahasa saat ini
+    private var currentLanguage: String = "id"
+
+    init {
+        // Load bahasa dari SharedPreferences
+        loadLanguagePreference()
+    }
+
+    private fun loadLanguagePreference() {
+        val sharedPref = context.getSharedPreferences("language_pref", Context.MODE_PRIVATE)
+        currentLanguage = sharedPref.getString("selected_language", "id") ?: "id"
+    }
+
+    // Function untuk update bahasa dari luar adapter
+    fun updateLanguage(language: String) {
+        currentLanguage = language
+        notifyDataSetChanged()
+    }
 
     inner class TransaksiViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val txtNama: TextView = itemView.findViewById(R.id.txtNama)
@@ -27,6 +49,7 @@ class AdapterlaporanTransaksi(
         val txtLayanan: TextView = itemView.findViewById(R.id.txtLayanan)
         val txtTambahan: TextView = itemView.findViewById(R.id.txtTambahan)
         val txtTotal: TextView = itemView.findViewById(R.id.txtTotal)
+        val txtTotalBayarLabel: TextView? = itemView.findViewById(R.id.txtTotalBayarLabel)
         val btnAksi: Button? = itemView.findViewById(R.id.btnAksi)
         val layoutPengambilan: LinearLayout? = itemView.findViewById(R.id.layoutPengambilan)
         val txtTanggalPengambilan: TextView? = itemView.findViewById(R.id.txtTanggalPengambilan)
@@ -34,28 +57,42 @@ class AdapterlaporanTransaksi(
         fun bind(transaksi: modelTransaksi, position: Int) {
             txtNama.text = transaksi.namaPelanggan
             txtTanggal.text = transaksi.tanggalTransaksi
-            txtStatus.text = transaksi.getDisplayStatus()
+
+            // Menggunakan bahasa saat ini untuk display status
+            txtStatus.text = transaksi.getDisplayStatus(currentLanguage)
             txtLayanan.text = transaksi.namaLayanan
 
-            // Set jumlah layanan tambahan
+            // Set jumlah layanan tambahan dengan bahasa yang sesuai
             val jumlahTambahan = transaksi.layananTambahan.size
             if (jumlahTambahan > 0) {
-                txtTambahan.text = "+$jumlahTambahan Layanan Tambahan"
+                val tambahanText = transaksi.getLayananTambahanText(currentLanguage)
+                txtTambahan.text = "+$jumlahTambahan $tambahanText"
                 txtTambahan.visibility = View.VISIBLE
             } else {
                 txtTambahan.visibility = View.GONE
             }
 
-            // Format total bayar
-            txtTotal.text = formatRupiah(transaksi.totalBayar)
+            // Format total bayar berdasarkan bahasa
+            txtTotal.text = formatRupiah(transaksi.totalBayar, currentLanguage)
 
-            // Set status background dan color
+            // Set label "Total Bayar" dengan bahasa yang sesuai
+            txtTotalBayarLabel?.text = transaksi.getTotalBayarText(currentLanguage)
+
             txtStatus.setTextColor(Color.parseColor(transaksi.getStatusColor()))
 
-            // Handle button aksi
+            // Set background drawable berdasarkan status
+            val backgroundRes = when (transaksi.getStatusBackground()) {
+                "bg_status_merah" -> R.drawable.bg_status_merah
+                "bg_status_kuning" -> R.drawable.bg_status_kuning
+                "bg_status_hijau" -> R.drawable.bg_status_hijau
+                else -> R.drawable.bg_status_merah // default
+            }
+            txtStatus.background = ContextCompat.getDrawable(itemView.context, backgroundRes)
+
+            // Handle button aksi dengan bahasa yang sesuai
             if (transaksi.shouldShowButton() && btnAksi != null) {
                 btnAksi.visibility = View.VISIBLE
-                btnAksi.text = transaksi.getButtonText()
+                btnAksi.text = transaksi.getButtonText(currentLanguage)
                 btnAksi.setBackgroundColor(Color.parseColor(transaksi.getButtonColor()))
                 btnAksi.setOnClickListener {
                     onButtonClick(transaksi)
@@ -67,7 +104,10 @@ class AdapterlaporanTransaksi(
             // Handle layout pengambilan untuk status selesai
             if (transaksi.status == modelTransaksi.STATUS_SELESAI && layoutPengambilan != null) {
                 layoutPengambilan.visibility = View.VISIBLE
-                txtTanggalPengambilan?.text = transaksi.tanggalPengambilan
+
+                // Format tanggal pengambilan sesuai bahasa
+                val formattedDate = formatDateForDisplay(transaksi.tanggalPengambilan, currentLanguage)
+                txtTanggalPengambilan?.text = formattedDate
             } else {
                 layoutPengambilan?.visibility = View.GONE
             }
@@ -82,9 +122,37 @@ class AdapterlaporanTransaksi(
             }
         }
 
-        private fun formatRupiah(amount: Double): String {
-            val localeID = Locale("in", "ID")
-            return NumberFormat.getCurrencyInstance(localeID).format(amount)
+        private fun formatRupiah(amount: Double, language: String): String {
+            return when (language) {
+                "en" -> {
+                    // Format untuk bahasa Inggris dengan USD (atau bisa disesuaikan)
+                    val localeUS = Locale.US
+                    "IDR ${NumberFormat.getNumberInstance(localeUS).format(amount)}"
+                }
+                else -> {
+                    // Format untuk bahasa Indonesia
+                    val localeID = Locale("in", "ID")
+                    NumberFormat.getCurrencyInstance(localeID).format(amount)
+                }
+            }
+        }
+
+        private fun formatDateForDisplay(dateString: String, language: String): String {
+            if (dateString.isEmpty()) return ""
+
+            return try {
+                val inputFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+                val date = inputFormat.parse(dateString)
+
+                val outputFormat = when (language) {
+                    "en" -> SimpleDateFormat("MMM dd, yyyy HH:mm", Locale.ENGLISH)
+                    else -> SimpleDateFormat("dd MMM yyyy HH:mm", Locale("id", "ID"))
+                }
+
+                date?.let { outputFormat.format(it) } ?: dateString
+            } catch (e: Exception) {
+                dateString
+            }
         }
     }
 
@@ -102,6 +170,8 @@ class AdapterlaporanTransaksi(
     }
 
     override fun onBindViewHolder(holder: TransaksiViewHolder, position: Int) {
+        // Reload bahasa setiap kali bind untuk memastikan konsistensi
+        loadLanguagePreference()
         holder.bind(listTransaksi[position], position)
     }
 

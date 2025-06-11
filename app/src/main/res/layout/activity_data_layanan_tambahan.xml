@@ -25,7 +25,7 @@
         android:layout_margin="16dp"
         android:contentDescription="Tambah Layanan Tambahan"
         android:src="@android:drawable/ic_input_add"
-        app:backgroundTint="@color/purple"
+        android:backgroundTint="?attr/colorBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

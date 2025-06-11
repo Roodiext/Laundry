@@ -33,9 +33,90 @@ class AdapterDataPegawai(
     // Cache untuk menyimpan data cabang agar tidak perlu query berulang
     private val cabangCache = mutableMapOf<String, modelCabang>()
 
+    // Language support - ambil dari SharedPreferences
+    private var currentLanguage = "id"
+
+    // Language texts untuk adapter - DITAMBAHKAN TEXT UNTUK DIALOG
+    private val languageTexts = mapOf(
+        "id" to mapOf(
+            "no_name" to "Tidak Ada Nama",
+            "no_address" to "Tidak Ada Alamat",
+            "no_phone" to "Tidak Ada No HP",
+            "not_registered" to "Belum Terdaftar",
+            "branch_not_found" to "Cabang Tidak Ditemukan",
+            "employee_data" to "Data Pegawai",
+            "employee_name" to "Nama Pegawai",
+            "address" to "Alamat: ",
+            "phone" to "No HP: ",
+            "branch" to "Cabang: ",
+            "contact" to "Hubungi",
+            "view" to "Lihat",
+            "edit" to "Edit",
+            "delete" to "Hapus",
+            "confirm_delete" to "Konfirmasi Hapus",
+            "delete_confirmation" to "Apakah Anda yakin ingin menghapus data pegawai",
+            "yes" to "Ya",
+            "no" to "Tidak",
+            "invalid_id" to "ID Pegawai tidak valid",
+            "delete_success" to "Data pegawai berhasil dihapus",
+            "delete_failed" to "Gagal menghapus data",
+            // Dialog texts
+            "employee_detail" to "Detail Pegawai",
+            "employee_complete_info" to "Informasi lengkap pegawai",
+            "employee_id" to "ID Pegawai",
+            "employee_name_label" to "Nama Pegawai",
+            "address_label" to "Alamat",
+            "phone_label" to "Nomor Telepon",
+            "branch_label" to "Cabang"
+        ),
+        "en" to mapOf(
+            "no_name" to "No Name",
+            "no_address" to "No Address",
+            "no_phone" to "No Phone Number",
+            "not_registered" to "Not Registered",
+            "branch_not_found" to "Branch Not Found",
+            "employee_data" to "Employee Data",
+            "employee_name" to "Employee Name",
+            "address" to "Address: ",
+            "phone" to "Phone: ",
+            "branch" to "Branch: ",
+            "contact" to "Contact",
+            "view" to "View",
+            "edit" to "Edit",
+            "delete" to "Delete",
+            "confirm_delete" to "Confirm Delete",
+            "delete_confirmation" to "Are you sure you want to delete employee data",
+            "yes" to "Yes",
+            "no" to "No",
+            "invalid_id" to "Invalid Employee ID",
+            "delete_success" to "Employee data successfully deleted",
+            "delete_failed" to "Failed to delete data",
+            // Dialog texts
+            "employee_detail" to "Employee Detail",
+            "employee_complete_info" to "Complete employee information",
+            "employee_id" to "Employee ID",
+            "employee_name_label" to "Employee Name",
+            "address_label" to "Address",
+            "phone_label" to "Phone Number",
+            "branch_label" to "Branch"
+        )
+    )
+
     init {
         // Load semua data cabang ke cache saat adapter dibuat
         loadCabangCache()
+        // Load current language dari SharedPreferences
+        loadCurrentLanguage()
+    }
+
+    private fun loadCurrentLanguage() {
+        val sharedPref = context.getSharedPreferences("language_pref", Context.MODE_PRIVATE)
+        currentLanguage = sharedPref.getString("selected_language", "id") ?: "id"
+    }
+
+    private fun getText(key: String): String {
+        val texts = languageTexts[currentLanguage] ?: languageTexts["id"]!!
+        return texts[key] ?: key
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -47,17 +128,49 @@ class AdapterDataPegawai(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = listPegawai[position]
 
-        holder.tvNama.text = item.namaPegawai ?: "Tidak Ada Nama"
-        holder.tvAlamat.text = item.alamatPegawai ?: "Tidak Ada Alamat"
-        holder.tvNoHP.text = item.noHPPegawai ?: "Tidak Ada No HP"
+        // Update language setiap kali bind (untuk handle perubahan bahasa real-time)
+        loadCurrentLanguage()
+
+        // Set data pegawai
+        holder.tvNama.text = item.namaPegawai ?: getText("no_name")
+        holder.tvAlamat.text = item.alamatPegawai ?: getText("no_address")
+        holder.tvNoHP.text = item.noHPPegawai ?: getText("no_phone")
 
         // Tampilkan nama cabang berdasarkan ID cabang
         val cabangDisplay = getCabangDisplayName(item.cabang)
         holder.tvCabang.text = cabangDisplay
 
+        // Update label text dengan bahasa yang sesuai
+        holder.tvHeaderPegawai.text = getText("employee_data")
+        holder.tvLabelNamaPegawai.text = getText("employee_name")
+        holder.tvLabelAlamatPegawai.text = getText("address")
+        holder.tvLabelNoHPPegawai.text = getText("phone")
+        holder.tvLabelCabangPegawai.text = getText("branch")
+
+        // Update button text dengan bahasa yang sesuai
+        holder.btnLihat.text = getText("view")
+        holder.btHubungiPegawai.text = getText("contact")
+
         // Tambahkan click listener untuk button Lihat
         holder.btnLihat.setOnClickListener {
             showDetailDialog(item)
+        }
+
+        // Tambahkan click listener untuk button Hubungi (optional)
+        holder.btHubungiPegawai.setOnClickListener {
+            // Implementasi untuk menghubungi pegawai (bisa buka dialer dengan nomor HP)
+            val phoneNumber = item.noHPPegawai
+            if (!phoneNumber.isNullOrEmpty()) {
+                val intent = Intent(Intent.ACTION_DIAL)
+                intent.data = android.net.Uri.parse("tel:$phoneNumber")
+                try {
+                    context.startActivity(intent)
+                } catch (e: Exception) {
+                    Toast.makeText(context, "Cannot open dialer", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Toast.makeText(context, getText("no_phone"), Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -99,18 +212,18 @@ class AdapterDataPegawai(
 
     private fun getCabangDisplayName(cabangId: String): String {
         if (cabangId.isEmpty()) {
-            return "Belum Terdaftar"
+            return getText("not_registered")
         }
 
         val cabang = cabangCache[cabangId]
 
         return when {
-            cabang == null -> "Cabang Tidak Ditemukan"
+            cabang == null -> getText("branch_not_found")
             cabang.namaToko.isNotEmpty() && cabang.namaCabang.isNotEmpty() ->
                 "${cabang.namaToko} - ${cabang.namaCabang}"
             cabang.namaToko.isNotEmpty() -> cabang.namaToko
             cabang.namaCabang.isNotEmpty() -> cabang.namaCabang
-            else -> "Belum Terdaftar"
+            else -> getText("not_registered")
         }
     }
 
@@ -120,7 +233,11 @@ class AdapterDataPegawai(
         dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
+        // BAGIAN BARU: Update language sebelum set UI
+        loadCurrentLanguage()
+
         // Bind data to dialog views
+        val tvJudul = dialog.findViewById<TextView>(R.id.tvDIALOG_MOD_PEGAWAI_judul)
         val tvIDValue = dialog.findViewById<TextView>(R.id.tvDIALOG_MOD_PEGAWAI_ID_value)
         val tvNamaValue = dialog.findViewById<TextView>(R.id.tvDIALOG_MOD_PEGAWAI_Nama_value)
         val tvAlamatValue = dialog.findViewById<TextView>(R.id.tvDIALOG_MOD_PEGAWAI_Alamat_value)
@@ -130,17 +247,24 @@ class AdapterDataPegawai(
         val btEdit = dialog.findViewById<MaterialButton>(R.id.btDIALOG_MOD_PEGAWAI_Edit)
         val btHapus = dialog.findViewById<MaterialButton>(R.id.btDIALOG_MOD_PEGAWAI_Hapus)
 
-        // Set data to views
+        // BAGIAN BARU: Set title dialog dengan bahasa yang sesuai
+        tvJudul.text = getText("employee_detail")
+
+        // Set data to views dengan bahasa yang sesuai
         tvIDValue.text = pegawai.idPegawai
-        tvNamaValue.text = pegawai.namaPegawai ?: "Tidak Ada Nama"
-        tvAlamatValue.text = pegawai.alamatPegawai ?: "Tidak Ada Alamat"
-        tvNoHPValue.text = pegawai.noHPPegawai ?: "Tidak Ada No HP"
+        tvNamaValue.text = pegawai.namaPegawai ?: getText("no_name")
+        tvAlamatValue.text = pegawai.alamatPegawai ?: getText("no_address")
+        tvNoHPValue.text = pegawai.noHPPegawai ?: getText("no_phone")
 
         // Tampilkan nama cabang yang proper
         val cabangDisplay = getCabangDisplayName(pegawai.cabang)
         tvCabangValue.text = cabangDisplay
 
-        // Edit button click listener - UPDATED to use EditPegawaiActivity
+        // Update button text dengan bahasa yang sesuai
+        btEdit.text = getText("edit")
+        btHapus.text = getText("delete")
+
+        // Edit button click listener
         btEdit.setOnClickListener {
             val intent = Intent(context, EditPegawaiActivity::class.java)
             intent.putExtra("ACTION_TYPE", "EDIT")
@@ -163,13 +287,13 @@ class AdapterDataPegawai(
 
     private fun showDeleteConfirmationDialog(pegawai: modelPegawai, parentDialog: Dialog) {
         val confirmDialog = androidx.appcompat.app.AlertDialog.Builder(context)
-        confirmDialog.setTitle("Konfirmasi Hapus")
-        confirmDialog.setMessage("Apakah Anda yakin ingin menghapus data pegawai ${pegawai.namaPegawai}?")
+        confirmDialog.setTitle(getText("confirm_delete"))
+        confirmDialog.setMessage("${getText("delete_confirmation")} ${pegawai.namaPegawai}?")
         confirmDialog.setIcon(android.R.drawable.ic_dialog_alert)
-        confirmDialog.setPositiveButton("Ya") { _, _ ->
+        confirmDialog.setPositiveButton(getText("yes")) { _, _ ->
             deletePegawai(pegawai, parentDialog)
         }
-        confirmDialog.setNegativeButton("Tidak") { dialog, _ ->
+        confirmDialog.setNegativeButton(getText("no")) { dialog, _ ->
             dialog.dismiss()
         }
         confirmDialog.show()
@@ -178,13 +302,13 @@ class AdapterDataPegawai(
     private fun deletePegawai(pegawai: modelPegawai, parentDialog: Dialog) {
         // Validasi ID pegawai tidak null atau kosong
         if (pegawai.idPegawai.isNullOrEmpty()) {
-            Toast.makeText(context, "ID Pegawai tidak valid", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, getText("invalid_id"), Toast.LENGTH_SHORT).show()
             return
         }
 
         myRef.child(pegawai.idPegawai).removeValue()
             .addOnSuccessListener {
-                Toast.makeText(context, "Data pegawai berhasil dihapus", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getText("delete_success"), Toast.LENGTH_SHORT).show()
                 parentDialog.dismiss()
 
                 // PENTING: Jangan manipulasi list secara manual di adapter
@@ -192,7 +316,7 @@ class AdapterDataPegawai(
                 // Karena Firebase akan otomatis trigger onDataChange() setelah data dihapus
             }
             .addOnFailureListener { error ->
-                Toast.makeText(context, "Gagal menghapus data: ${error.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "${getText("delete_failed")}: ${error.message}", Toast.LENGTH_SHORT).show()
             }
     }
 
@@ -208,6 +332,12 @@ class AdapterDataPegawai(
         loadCabangCache()
     }
 
+    // Method untuk update bahasa (dipanggil ketika bahasa berubah)
+    fun updateLanguage() {
+        loadCurrentLanguage()
+        notifyDataSetChanged()
+    }
+
     override fun getItemCount(): Int {
         return listPegawai.size
     }
@@ -219,5 +349,13 @@ class AdapterDataPegawai(
         val tvCabang: TextView = itemView.findViewById(R.id.tvCabangPegawai)
         val cvCARD: CardView = itemView.findViewById(R.id.cvCARD_pegawai)
         val btnLihat: MaterialButton = itemView.findViewById(R.id.btnLihatPegawai)
+
+        // Tambahan untuk dynamic text labels
+        val tvHeaderPegawai: TextView = itemView.findViewById(R.id.tvHeaderPegawai)
+        val tvLabelNamaPegawai: TextView = itemView.findViewById(R.id.tvLabelNamaPegawai)
+        val tvLabelAlamatPegawai: TextView = itemView.findViewById(R.id.tvLabelAlamatPegawai)
+        val tvLabelNoHPPegawai: TextView = itemView.findViewById(R.id.tvLabelNoHPPegawai)
+        val tvLabelCabangPegawai: TextView = itemView.findViewById(R.id.tvLabelCabangPegawai)
+        val btHubungiPegawai: MaterialButton = itemView.findViewById(R.id.btHubungiPegawai)
     }
 }

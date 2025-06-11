@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Nama Pelanggan"
-                android:textColor="@color/black"
+                android:textColor="?attr/colorTextThree"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -46,10 +46,10 @@
                 android:layout_height="wrap_content"
                 android:text="SELESAI"
                 android:textColor="#FFF"
-                android:textSize="12sp"
+                android:textSize="11sp"
                 android:textStyle="bold"
                 android:background="@drawable/button_gradient_background"
-                android:padding="4dp" />
+                android:padding="8dp" />
         </LinearLayout>
 
         <!-- Tanggal -->
@@ -58,7 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2024-01-01 10:00:00"
-            android:textColor="#666666"
+            android:textColor="?attr/colorTextThree"
             android:textSize="12sp"
             android:layout_marginBottom="8dp" />
 
@@ -68,7 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cuci Kering"
-            android:textColor="@color/black"
+            android:textColor="?attr/colorTextThree"
             android:textSize="14sp"
             android:layout_marginBottom="4dp" />
 
@@ -118,7 +118,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Rp 50.000"
-            android:textColor="@color/black"
+            android:textColor="?attr/colorTextThree"
             android:textSize="16sp"
             android:textStyle="bold"
             android:gravity="end" />

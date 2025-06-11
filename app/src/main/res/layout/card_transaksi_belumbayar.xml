@@ -22,8 +22,8 @@
             android:orientation="horizontal"
             android:gravity="center_vertical">
 
-
             <TextView
+                android:id="@+id/txtNomor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="[3]"/>
@@ -34,38 +34,37 @@
                 android:orientation="vertical"
                 android:layout_weight="1"
                 android:paddingStart="10dp">
-            <TextView
-                android:id="@+id/txtNama"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Yulia"
-                android:layout_marginBottom="2dp"
-                android:textStyle="bold"
-                android:textSize="16sp" />
+                <TextView
+                    android:id="@+id/txtNama"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Yulia"
+                    android:textColor="?attr/colorTextThree"
+                    android:layout_marginBottom="2dp"
+                    android:textStyle="bold"
+                    android:textSize="16sp" />
                 <TextView
                     android:id="@+id/txtTanggal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2025-02-19 20:08:18"
                     android:textSize="12sp"
-                    android:textColor="#888888"
+                    android:textColor="?attr/colorTextThree"
                     android:layout_marginBottom="5dp"
                     android:layout_marginTop="0dp"/>
 
             </LinearLayout>
 
-
-
             <TextView
                 android:id="@+id/txtStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_status_merah"
+                android:background="#F7374F"
                 android:padding="4dp"
                 android:layout_marginTop="3dp"
                 android:text="Belum Dibayar"
-                android:textColor="#F7374F"
+                android:textColor="#FFFFFF"
                 android:textSize="12sp" />
         </LinearLayout>
 
@@ -101,6 +100,7 @@
                     android:layout_height="wrap_content"
                     android:text="Cuci Lipat 6kg"
                     android:textSize="14sp"
+                    android:textColor="?attr/colorTextThree"
                     android:textStyle="bold" />
 
                 <TextView
@@ -109,7 +109,7 @@
                     android:layout_height="wrap_content"
                     android:text="+3 Layanan Tambahan"
                     android:textSize="12sp"
-                    android:textColor="#888888" />
+                    android:textColor="?attr/colorTextThree" />
             </LinearLayout>
         </LinearLayout>
 
@@ -135,18 +135,20 @@
                 android:layout_gravity="start">
 
                 <TextView
+                    android:id="@+id/txtTotalBayarLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Total Bayar"
-                    />
+                    android:textColor="?attr/colorTextThree" />
 
-            <TextView
-                android:id="@+id/txtTotal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Rp36.000,00"
-                android:textStyle="bold"
-                android:textSize="16sp" />
+                <TextView
+                    android:id="@+id/txtTotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rp36.000,00"
+                    android:textStyle="bold"
+                    android:textColor="?attr/colorTextThree"
+                    android:textSize="16sp" />
             </LinearLayout>
 
             <Button
@@ -155,13 +157,9 @@
                 android:layout_height="wrap_content"
                 android:text="Bayar Sekarang"
                 android:textColor="@android:color/white"
-                android:backgroundTint="#FF3D00"
+                android:backgroundTint="?attr/colorBackground"
                 android:paddingHorizontal="10dp" />
         </LinearLayout>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
-
-
-
-

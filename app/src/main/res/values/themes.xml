@@ -3,6 +3,7 @@
         <item name="colorBackground">@color/background</item>
         <item name="colorTextPrimary">@color/text_primary</item>
         <item name="colorTextSecondary">@color/text_secondary</item>
+        <item name="colorTextThree">@color/text_three</item>
         <item name="colorButton">@color/button</item>
     </style>
 </resources>

@@ -1,6 +1,8 @@
 package com.rudi.laundry.Layanan
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -25,6 +27,10 @@ class DataLayananActivity : AppCompatActivity() {
     private lateinit var rvDataLayanan: RecyclerView
     private lateinit var fabTambahLayanan: FloatingActionButton
     private var listLayanan = arrayListOf<modelLayanan>()
+    private var adapter: AdapterDataLayanan? = null
+
+    // Language preference listener
+    private var languagePreferenceListener: SharedPreferences.OnSharedPreferenceChangeListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +39,7 @@ class DataLayananActivity : AppCompatActivity() {
         initViews()
         setupRecyclerView()
         setupListeners()
+        setupLanguageListener()
         getData()
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.datalayanan)) { v, insets ->
@@ -62,6 +69,19 @@ class DataLayananActivity : AppCompatActivity() {
         }
     }
 
+    private fun setupLanguageListener() {
+        val sharedPref = getSharedPreferences("language_pref", Context.MODE_PRIVATE)
+
+        languagePreferenceListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
+            if (key == "selected_language") {
+                // Refresh adapter ketika bahasa berubah
+                adapter?.refreshLanguage()
+            }
+        }
+
+        sharedPref.registerOnSharedPreferenceChangeListener(languagePreferenceListener)
+    }
+
     private fun getData() {
         val query = myRef.orderByChild("idLayanan").limitToLast(100)
         query.addValueEventListener(object : ValueEventListener {
@@ -77,9 +97,20 @@ class DataLayananActivity : AppCompatActivity() {
                             Log.e("FirebaseData", "Data null atau tidak sesuai format!")
                         }
                     }
-                    val adapter = AdapterDataLayanan(listLayanan)
-                    rvDataLayanan.adapter = adapter
-                    adapter.notifyDataSetChanged()
+
+                    // Create adapter if not exists
+                    if (adapter == null) {
+                        adapter = AdapterDataLayanan(listLayanan) {
+                            // Callback untuk refresh data setelah delete
+                            refreshData()
+                        }
+                        rvDataLayanan.adapter = adapter
+                    } else {
+                        // Update existing adapter
+                        adapter?.updateData(listLayanan)
+                    }
+
+                    adapter?.notifyDataSetChanged()
                 } else {
                     Log.e("FirebaseData", "Snapshot kosong!")
                 }
@@ -96,6 +127,9 @@ class DataLayananActivity : AppCompatActivity() {
         super.onResume()
         // Refresh data saat kembali ke activity ini
         // getData() akan otomatis dipanggil karena ValueEventListener sudah aktif
+
+        // Refresh adapter untuk memastikan bahasa terbaru diterapkan
+        adapter?.refreshLanguage()
     }
 
     // Jika ingin refresh manual, tambahkan method ini:
@@ -103,5 +137,12 @@ class DataLayananActivity : AppCompatActivity() {
         getData()
     }
 
-
+    override fun onDestroy() {
+        super.onDestroy()
+        // Unregister language preference listener
+        languagePreferenceListener?.let { listener ->
+            val sharedPref = getSharedPreferences("language_pref", Context.MODE_PRIVATE)
+            sharedPref.unregisterOnSharedPreferenceChangeListener(listener)
+        }
+    }
 }

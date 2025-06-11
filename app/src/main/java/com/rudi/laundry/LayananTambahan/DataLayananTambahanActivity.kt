@@ -1,6 +1,7 @@
 package com.rudi.laundry.LayananTambahan
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -24,6 +25,9 @@ class DataLayananTambahanActivity : AppCompatActivity() {
 
     private var listLayananTambahan = arrayListOf<modelLayanan>()
     private lateinit var fabTambahLayananTambahan: FloatingActionButton
+    private lateinit var adapter: AdapterDataLayananTambahan
+    private lateinit var languagePrefs: SharedPreferences
+    private var currentLanguage = "id"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +42,7 @@ class DataLayananTambahanActivity : AppCompatActivity() {
         }
 
         initViews()
+        setupLanguageListener()
         setupListeners()
         setupRecyclerView()
         loadData()
@@ -46,6 +51,26 @@ class DataLayananTambahanActivity : AppCompatActivity() {
     private fun initViews() {
         rvDataLayananTambahan = findViewById(R.id.rvLayananTambahan)
         fabTambahLayananTambahan = findViewById(R.id.fab_tambah_layanan_tambahan)
+
+        // Initialize language preferences
+        languagePrefs = getSharedPreferences("language_pref", MODE_PRIVATE)
+        currentLanguage = languagePrefs.getString("selected_language", "id") ?: "id"
+    }
+
+    private fun setupLanguageListener() {
+        // Listener untuk perubahan bahasa
+        languagePrefs.registerOnSharedPreferenceChangeListener { _, key ->
+            if (key == "selected_language") {
+                val newLanguage = languagePrefs.getString("selected_language", "id") ?: "id"
+                if (newLanguage != currentLanguage) {
+                    currentLanguage = newLanguage
+                    // Refresh adapter untuk update bahasa
+                    if (::adapter.isInitialized) {
+                        adapter.refreshLanguage()
+                    }
+                }
+            }
+        }
     }
 
     private fun setupListeners() {
@@ -54,7 +79,6 @@ class DataLayananTambahanActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-
 
     private fun setupRecyclerView() {
         val layoutManager = LinearLayoutManager(this)
@@ -79,11 +103,25 @@ class DataLayananTambahanActivity : AppCompatActivity() {
                             Log.e("FirebaseDataTambahan", "Data null/tidak sesuai format")
                         }
                     }
-                    val adapter = AdapterDataLayananTambahan(listLayananTambahan)
-                    rvDataLayananTambahan.adapter = adapter
-                    adapter.notifyDataSetChanged()
+
+                    // Initialize adapter jika belum ada
+                    if (!::adapter.isInitialized) {
+                        adapter = AdapterDataLayananTambahan(listLayananTambahan) {
+                            // Callback ketika data berhasil dihapus
+                            // Tidak perlu reload karena listener Firebase sudah handle
+                        }
+                        rvDataLayananTambahan.adapter = adapter
+                    } else {
+                        // Update data existing adapter
+                        adapter.updateData(listLayananTambahan)
+                    }
                 } else {
                     Log.e("FirebaseDataTambahan", "Snapshot kosong!")
+                    // Jika tidak ada data, tetap initialize adapter dengan list kosong
+                    if (!::adapter.isInitialized) {
+                        adapter = AdapterDataLayananTambahan(listLayananTambahan)
+                        rvDataLayananTambahan.adapter = adapter
+                    }
                 }
             }
 
@@ -94,4 +132,21 @@ class DataLayananTambahanActivity : AppCompatActivity() {
         })
     }
 
+    override fun onResume() {
+        super.onResume()
+        // Check untuk perubahan bahasa ketika kembali ke activity
+        val newLanguage = languagePrefs.getString("selected_language", "id") ?: "id"
+        if (newLanguage != currentLanguage) {
+            currentLanguage = newLanguage
+            if (::adapter.isInitialized) {
+                adapter.refreshLanguage()
+            }
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // Unregister listener untuk menghindari memory leak
+        languagePrefs.unregisterOnSharedPreferenceChangeListener { _, _ -> }
+    }
 }

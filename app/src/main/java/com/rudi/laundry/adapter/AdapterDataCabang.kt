@@ -1,5 +1,6 @@
 package com.rudi.laundry.adapter
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
@@ -18,6 +19,76 @@ class AdapterDataCabang(
     private val onEditClick: (modelCabang) -> Unit
 ) : RecyclerView.Adapter<AdapterDataCabang.ViewHolder>() {
 
+    // Language texts mapping
+    private val languageTexts = mapOf(
+        "id" to mapOf(
+            "store_name_na" to "Nama Toko Tidak Tersedia",
+            "branch_name_na" to "Nama Cabang Tidak Tersedia",
+            "address_na" to "Alamat tidak tersedia",
+            "phone_na" to "Telepon tidak tersedia",
+            "operational_hours_na" to "Info jam operasional tidak tersedia",
+            "status_na" to "Status tidak tersedia",
+            "open" to "BUKA",
+            "closed" to "TUTUP",
+            "address_label" to "Alamat",
+            "phone_label" to "Telepon",
+            "directions_btn" to "PETUNJUK",
+            "edit_btn" to "EDIT",
+            "delete_btn" to "HAPUS",
+            "everyday" to "Setiap Hari",
+            "monday" to "Senin",
+            "tuesday" to "Selasa",
+            "wednesday" to "Rabu",
+            "thursday" to "Kamis",
+            "friday" to "Jumat",
+            "saturday" to "Sabtu",
+            "sunday" to "Minggu"
+        ),
+        "en" to mapOf(
+            "store_name_na" to "Store Name Not Available",
+            "branch_name_na" to "Branch Name Not Available",
+            "address_na" to "Address not available",
+            "phone_na" to "Phone not available",
+            "operational_hours_na" to "Operational hours info not available",
+            "status_na" to "Status not available",
+            "open" to "OPEN",
+            "closed" to "CLOSED",
+            "address_label" to "Address",
+            "phone_label" to "Phone",
+            "directions_btn" to "DIRECTIONS",
+            "edit_btn" to "EDIT",
+            "delete_btn" to "DELETE",
+            "everyday" to "Everyday",
+            "monday" to "Monday",
+            "tuesday" to "Tuesday",
+            "wednesday" to "Wednesday",
+            "thursday" to "Thursday",
+            "friday" to "Friday",
+            "saturday" to "Saturday",
+            "sunday" to "Sunday"
+        )
+    )
+
+    private var currentLanguage = "id"
+    private var context: Context? = null
+
+    // Function to set context and initialize language
+    fun setContext(context: Context) {
+        this.context = context
+        loadLanguagePreference()
+    }
+
+    private fun loadLanguagePreference() {
+        context?.let { ctx ->
+            val sharedPref = ctx.getSharedPreferences("language_pref", Context.MODE_PRIVATE)
+            val savedLanguage = sharedPref.getString("selected_language", "id") ?: "id"
+            if (currentLanguage != savedLanguage) {
+                currentLanguage = savedLanguage
+                android.util.Log.d("AdapterDebug", "Language loaded: $currentLanguage")
+            }
+        }
+    }
+
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvStoreName: TextView = itemView.findViewById(R.id.tvStoreName)
         val tvBranchName: TextView = itemView.findViewById(R.id.tvBranchName)
@@ -29,9 +100,18 @@ class AdapterDataCabang(
         val btnDirections: Button = itemView.findViewById(R.id.btnDirections)
         val btnEdit: Button = itemView.findViewById(R.id.btnEdit)
         val btnDelete: Button = itemView.findViewById(R.id.btnDelete)
+
+        // Additional labels that need translation
+        val tvAddressLabel: TextView? = itemView.findViewById(R.id.tvAddressLabel)
+        val tvPhoneLabel: TextView? = itemView.findViewById(R.id.tvPhoneLabel)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        // Set context if not already set
+        if (context == null) {
+            setContext(parent.context)
+        }
+
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.card_data_cabang, parent, false)
         return ViewHolder(view)
@@ -39,71 +119,82 @@ class AdapterDataCabang(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val cabang = listCabang[position]
+        val texts = languageTexts[currentLanguage] ?: languageTexts["id"]!!
+
+        // Refresh language preference before binding
+        loadLanguagePreference()
 
         // Debug log untuk melihat data yang sedang di-bind
         android.util.Log.d("AdapterDebug", "Binding position $position:")
         android.util.Log.d("AdapterDebug", "  - namaToko: '${cabang.namaToko}'")
         android.util.Log.d("AdapterDebug", "  - namaCabang: '${cabang.namaCabang}'")
-        android.util.Log.d("AdapterDebug", "  - alamatCabang: '${cabang.alamatCabang}'")
-        android.util.Log.d("AdapterDebug", "  - noTelpCabang: '${cabang.noTelpCabang}'")
+        android.util.Log.d("AdapterDebug", "  - currentLanguage: '$currentLanguage'")
 
         // Set data ke views dengan null safety dan trim whitespace
         holder.tvStoreName.text = if (cabang.namaToko.trim().isNotEmpty()) {
             cabang.namaToko.trim()
         } else {
-            "Nama Toko Tidak Tersedia"
+            texts["store_name_na"]!!
         }
 
         holder.tvBranchName.text = if (cabang.namaCabang.trim().isNotEmpty()) {
             cabang.namaCabang.trim()
         } else {
-            "Nama Cabang Tidak Tersedia"
+            texts["branch_name_na"]!!
         }
 
         holder.tvAddress.text = if (cabang.alamatCabang.trim().isNotEmpty()) {
             cabang.alamatCabang.trim()
         } else {
-            "Alamat tidak tersedia"
+            texts["address_na"]!!
         }
 
         holder.tvPhone.text = if (cabang.noTelpCabang.trim().isNotEmpty()) {
             cabang.noTelpCabang.trim()
         } else {
-            "Telepon tidak tersedia"
+            texts["phone_na"]!!
         }
 
-        // Set jam operasional info
+        // Set jam operasional info dengan terjemahan
         try {
-            holder.tvOperationalHours.text = cabang.getOperationalHoursInfo()
+            holder.tvOperationalHours.text = getTranslatedOperationalHours(cabang, texts)
         } catch (e: Exception) {
-            holder.tvOperationalHours.text = "Info jam operasional tidak tersedia"
+            holder.tvOperationalHours.text = texts["operational_hours_na"]!!
             android.util.Log.e("AdapterDebug", "Error getting operational hours: ${e.message}")
         }
 
-        // Set status real-time dengan warna yang sesuai
+        // Set status real-time dengan warna yang sesuai dan terjemahan
         try {
             val realTimeStatus = cabang.getRealTimeStatus()
-            holder.tvStatus.text = realTimeStatus
-
-            when (realTimeStatus) {
+            val translatedStatus = when (realTimeStatus) {
                 "BUKA" -> {
                     holder.tvStatus.setBackgroundResource(R.drawable.status_badge_open)
-                    holder.tvStatus.text = "BUKA"
+                    texts["open"]!!
                 }
                 "TUTUP" -> {
                     holder.tvStatus.setBackgroundResource(R.drawable.status_badge_closed)
-                    holder.tvStatus.text = "TUTUP"
+                    texts["closed"]!!
                 }
                 else -> {
                     holder.tvStatus.setBackgroundResource(R.drawable.status_badge_background)
-                    holder.tvStatus.text = realTimeStatus
+                    if (realTimeStatus == "OPEN") texts["open"]!! else if (realTimeStatus == "CLOSED") texts["closed"]!! else realTimeStatus
                 }
             }
+            holder.tvStatus.text = translatedStatus
         } catch (e: Exception) {
-            holder.tvStatus.text = "Status tidak tersedia"
+            holder.tvStatus.text = texts["status_na"]!!
             holder.tvStatus.setBackgroundResource(R.drawable.status_badge_background)
             android.util.Log.e("AdapterDebug", "Error getting real-time status: ${e.message}")
         }
+
+        // Update button text with translation
+        holder.btnDirections.text = texts["directions_btn"]!!
+        holder.btnEdit.text = texts["edit_btn"]!!
+        holder.btnDelete.text = texts["delete_btn"]!!
+
+        // Update labels if they exist in the layout
+        holder.tvAddressLabel?.text = texts["address_label"]!!.uppercase()
+        holder.tvPhoneLabel?.text = texts["phone_label"]!!.uppercase()
 
         // Click listeners
         holder.btnCall.setOnClickListener {
@@ -163,9 +254,48 @@ class AdapterDataCabang(
 
         // Set click listener untuk seluruh card (optional)
         holder.itemView.setOnClickListener {
-            // Bisa ditambahkan aksi ketika card diklik
-            // Misalnya membuka detail cabang
             android.util.Log.d("AdapterDebug", "Card clicked for: ${cabang.namaCabang}")
+        }
+    }
+
+    private fun getTranslatedOperationalHours(cabang: modelCabang, texts: Map<String, String>): String {
+        return try {
+            val originalHours = cabang.getOperationalHoursInfo()
+
+            // Translate day names
+            var translatedHours = originalHours
+
+            // Replace day names based on current language
+            when (currentLanguage) {
+                "en" -> {
+                    translatedHours = translatedHours
+                        .replace("Setiap Hari", texts["everyday"]!!, ignoreCase = true)
+                        .replace("Senin", texts["monday"]!!, ignoreCase = true)
+                        .replace("Selasa", texts["tuesday"]!!, ignoreCase = true)
+                        .replace("Rabu", texts["wednesday"]!!, ignoreCase = true)
+                        .replace("Kamis", texts["thursday"]!!, ignoreCase = true)
+                        .replace("Jumat", texts["friday"]!!, ignoreCase = true)
+                        .replace("Sabtu", texts["saturday"]!!, ignoreCase = true)
+                        .replace("Minggu", texts["sunday"]!!, ignoreCase = true)
+                }
+                "id" -> {
+                    // Convert from English to Indonesian if needed
+                    translatedHours = translatedHours
+                        .replace("Everyday", texts["everyday"]!!, ignoreCase = true)
+                        .replace("Monday", texts["monday"]!!, ignoreCase = true)
+                        .replace("Tuesday", texts["tuesday"]!!, ignoreCase = true)
+                        .replace("Wednesday", texts["wednesday"]!!, ignoreCase = true)
+                        .replace("Thursday", texts["thursday"]!!, ignoreCase = true)
+                        .replace("Friday", texts["friday"]!!, ignoreCase = true)
+                        .replace("Saturday", texts["saturday"]!!, ignoreCase = true)
+                        .replace("Sunday", texts["sunday"]!!, ignoreCase = true)
+                }
+            }
+
+            translatedHours
+        } catch (e: Exception) {
+            android.util.Log.e("AdapterDebug", "Error translating operational hours: ${e.message}")
+            texts["operational_hours_na"]!!
         }
     }
 
@@ -174,19 +304,36 @@ class AdapterDataCabang(
         return listCabang.size
     }
 
+    // Method untuk update bahasa
+    fun updateLanguage(newLanguage: String) {
+        if (currentLanguage != newLanguage) {
+            val oldLanguage = currentLanguage
+            currentLanguage = newLanguage
+            android.util.Log.d("AdapterDebug", "Language updated from $oldLanguage to: $currentLanguage")
+            notifyDataSetChanged()
+        }
+    }
+
+    // Method untuk mendapatkan bahasa saat ini
+    fun getCurrentLanguage(): String {
+        return currentLanguage
+    }
+
+    // Method untuk refresh language dari SharedPreferences
+    fun refreshLanguageFromPreferences() {
+        context?.let { ctx ->
+            val sharedPref = ctx.getSharedPreferences("language_pref", Context.MODE_PRIVATE)
+            val savedLanguage = sharedPref.getString("selected_language", "id") ?: "id"
+            android.util.Log.d("AdapterDebug", "Refreshing language from preferences: $savedLanguage")
+            updateLanguage(savedLanguage)
+        }
+    }
+
     // Method untuk update data dengan logging yang lebih detail
     fun updateData(newList: ArrayList<modelCabang>) {
         android.util.Log.d("AdapterDebug", "=== updateData called ===")
         android.util.Log.d("AdapterDebug", "Previous size: ${listCabang.size}")
         android.util.Log.d("AdapterDebug", "New size: ${newList.size}")
-
-        // Log data yang akan di-update
-        newList.forEachIndexed { index, cabang ->
-            android.util.Log.d("AdapterDebug", "Item $index:")
-            android.util.Log.d("AdapterDebug", "  - namaToko: '${cabang.namaToko}'")
-            android.util.Log.d("AdapterDebug", "  - namaCabang: '${cabang.namaCabang}'")
-            android.util.Log.d("AdapterDebug", "  - alamatCabang: '${cabang.alamatCabang}'")
-        }
 
         // Clear existing data
         listCabang.clear()
@@ -196,7 +343,8 @@ class AdapterDataCabang(
         listCabang.addAll(newList)
         android.util.Log.d("AdapterDebug", "New data added, current size: ${listCabang.size}")
 
-        // Notify adapter
+        // Refresh language and notify adapter
+        refreshLanguageFromPreferences()
         notifyDataSetChanged()
         android.util.Log.d("AdapterDebug", "notifyDataSetChanged() called")
         android.util.Log.d("AdapterDebug", "=== updateData finished ===")
@@ -208,7 +356,10 @@ class AdapterDataCabang(
         var buka = 0
 
         try {
-            buka = listCabang.count { it.getRealTimeStatus() == "BUKA" }
+            buka = listCabang.count {
+                val status = it.getRealTimeStatus()
+                status == "BUKA" || status == "OPEN"
+            }
         } catch (e: Exception) {
             android.util.Log.e("AdapterDebug", "Error calculating stats: ${e.message}")
         }
@@ -220,6 +371,7 @@ class AdapterDataCabang(
     // Method untuk refresh status real-time
     fun refreshRealTimeStatus() {
         android.util.Log.d("AdapterDebug", "Refreshing real-time status for ${listCabang.size} items")
+        refreshLanguageFromPreferences()
         notifyDataSetChanged()
     }
 

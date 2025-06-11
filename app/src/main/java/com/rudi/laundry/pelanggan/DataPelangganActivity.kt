@@ -24,6 +24,7 @@ class DataPelangganActivity : AppCompatActivity() {
     private lateinit var fabTambahPelanggan: FloatingActionButton
     private var listPelanggan = arrayListOf<modelPelanggan>()
     private var adapter: AdapterDataPelanggan? = null
+    private var currentLanguage = "id"
 
     // Activity Result Launcher untuk menangani hasil dari EditPelangganActivity
     private val editPelangganLauncher = registerForActivityResult(
@@ -40,6 +41,9 @@ class DataPelangganActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_data_pelanggan)
 
+        // Load current language setting
+        loadCurrentLanguage()
+
         initViews()
         setupRecyclerView()
         setupListeners()
@@ -50,6 +54,27 @@ class DataPelangganActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        // Cek apakah bahasa berubah saat kembali ke activity ini
+        val savedLanguage = getCurrentLanguage()
+        if (savedLanguage != currentLanguage) {
+            currentLanguage = savedLanguage
+            // Refresh adapter untuk menerapkan bahasa baru
+            adapter?.refreshLanguage()
+        }
+    }
+
+    private fun loadCurrentLanguage() {
+        currentLanguage = getCurrentLanguage()
+    }
+
+    private fun getCurrentLanguage(): String {
+        val sharedPref = getSharedPreferences("language_pref", MODE_PRIVATE)
+        return sharedPref.getString("selected_language", "id") ?: "id"
     }
 
     private fun initViews() {
@@ -113,13 +138,31 @@ class DataPelangganActivity : AppCompatActivity() {
             // Hapus dari Firebase berdasarkan ID pelanggan
             myRef.child(pelanggan.idPelanggan).removeValue()
                 .addOnSuccessListener {
-                    Toast.makeText(this, "Pelanggan ${pelanggan.namaPelanggan} berhasil dihapus", Toast.LENGTH_SHORT).show()
+                    // Toast message with current language
+                    val message = if (getCurrentLanguage() == "en") {
+                        "Customer ${pelanggan.namaPelanggan} successfully deleted"
+                    } else {
+                        "Pelanggan ${pelanggan.namaPelanggan} berhasil dihapus"
+                    }
+                    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
                 }
                 .addOnFailureListener { error ->
-                    Toast.makeText(this, "Gagal menghapus pelanggan: ${error.message}", Toast.LENGTH_SHORT).show()
+                    // Error message with current language
+                    val message = if (getCurrentLanguage() == "en") {
+                        "Failed to delete customer: ${error.message}"
+                    } else {
+                        "Gagal menghapus pelanggan: ${error.message}"
+                    }
+                    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
                 }
         } else {
-            Toast.makeText(this, "ID pelanggan tidak valid", Toast.LENGTH_SHORT).show()
+            // Invalid ID message with current language
+            val message = if (getCurrentLanguage() == "en") {
+                "Invalid customer ID"
+            } else {
+                "ID pelanggan tidak valid"
+            }
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
         }
     }
 

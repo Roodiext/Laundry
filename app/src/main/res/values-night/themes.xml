@@ -3,6 +3,7 @@
         <item name="colorBackground">@color/background_dark</item>
         <item name="colorTextPrimary">@color/text_primary_dark</item>
         <item name="colorTextSecondary">@color/text_secondary_dark</item>
+        <item name="colorTextThree">@color/text_three_dark</item>
         <item name="colorButton">@color/button_dark</item>
     </style>
 

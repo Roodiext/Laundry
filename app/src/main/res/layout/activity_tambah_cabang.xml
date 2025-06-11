@@ -5,7 +5,6 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FAFAFA"
     tools:context=".cabang.TambahCabangActivity">
 
     <!-- App Bar -->
@@ -13,7 +12,7 @@
         android:id="@+id/toolbar"
         android:layout_width="0dp"
         android:layout_height="?attr/actionBarSize"
-        android:background="#FF6B35"
+        android:background="?attr/colorBackground"
         android:elevation="8dp"
         app:title="Tambah Cabang"
         app:titleTextColor="#FFFFFF"
@@ -59,20 +58,23 @@
 
                     <!-- Section Title -->
                     <TextView
+                        android:id="@+id/tvInfoDasar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Informasi Dasar"
-                        android:textColor="#1A1A1A"
                         android:textSize="18sp"
+                        android:textColor="?attr/colorTextThree"
                         android:textStyle="bold"
                         android:layout_marginBottom="20dp" />
 
                     <!-- Nama Toko -->
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilNamaToko"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"
                         android:hint="Nama Toko"
+                        android:textColor="?attr/colorTextPrimary"
                         app:startIconDrawable="@drawable/ic_business"
                         app:boxCornerRadiusBottomEnd="12dp"
                         app:boxCornerRadiusBottomStart="12dp"
@@ -95,6 +97,7 @@
 
                     <!-- Nama Cabang -->
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilNamaCabang"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"
@@ -114,13 +117,14 @@
                             android:layout_height="wrap_content"
                             android:inputType="textCapWords"
                             android:maxLines="1"
-                            android:textColor="#1A1A1A"
+                            android:textColor="?attr/colorTextPrimary"
                             android:textSize="16sp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <!-- Alamat -->
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilAlamat"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"
@@ -140,13 +144,14 @@
                             android:layout_height="wrap_content"
                             android:inputType="textMultiLine|textCapSentences"
                             android:maxLines="3"
-                            android:textColor="#1A1A1A"
+                            android:textColor="?attr/colorTextPrimary"
                             android:textSize="16sp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <!-- Telepon -->
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilTelepon"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Nomor Telepon"
@@ -165,7 +170,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="phone"
                             android:maxLines="1"
-                            android:textColor="#1A1A1A"
+                            android:textColor="?attr/colorTextPrimary"
                             android:textSize="16sp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -192,11 +197,12 @@
 
                     <!-- Section Title -->
                     <TextView
+                        android:id="@+id/tvJamOperasional"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Jam Operasional"
-                        android:textColor="#1A1A1A"
                         android:textSize="18sp"
+                        android:textColor="?attr/colorTextThree"
                         android:textStyle="bold"
                         android:layout_marginBottom="20dp" />
 
@@ -215,11 +221,12 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/tvJamBuka"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="8dp"
                                 android:text="Jam Buka"
-                                android:textColor="#666666"
+                                android:textColor="?attr/colorTextThree"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
 
@@ -228,14 +235,12 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="56dp"
                                 android:text="08:00"
-                                android:textColor="#1A1A1A"
+                                android:textColor="?attr/colorTextThree"
                                 android:textSize="16sp"
                                 android:textStyle="bold"
-                                app:backgroundTint="#F8F8F8"
                                 app:cornerRadius="12dp"
                                 app:icon="@drawable/ic_access_time"
                                 app:iconGravity="start"
-                                app:iconTint="#FF6B35"
                                 app:strokeColor="#E0E0E0"
                                 app:strokeWidth="2dp"
                                 style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
@@ -250,11 +255,12 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/tvJamTutup"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="8dp"
                                 android:text="Jam Tutup"
-                                android:textColor="#666666"
+                                android:textColor="?attr/colorTextThree"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
 
@@ -263,14 +269,12 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="56dp"
                                 android:text="22:00"
-                                android:textColor="#1A1A1A"
+                                android:textColor="?attr/colorTextThree"
                                 android:textSize="16sp"
                                 android:textStyle="bold"
-                                app:backgroundTint="#F8F8F8"
                                 app:cornerRadius="12dp"
                                 app:icon="@drawable/ic_access_time"
                                 app:iconGravity="start"
-                                app:iconTint="#FF6B35"
                                 app:strokeColor="#E0E0E0"
                                 app:strokeWidth="2dp"
                                 style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
@@ -281,11 +285,12 @@
 
                     <!-- Hari Operasional -->
                     <TextView
+                        android:id="@+id/tvHariOperasional"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="12dp"
                         android:text="Hari Operasional"
-                        android:textColor="#666666"
+                        android:textColor="?attr/colorTextPrimary"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
@@ -304,10 +309,10 @@
                             android:layout_height="wrap_content"
                             android:checked="true"
                             android:text="Senin"
-                            android:textColor="#1A1A1A"
+                            android:textColor="?attr/colorTextThree"
                             android:textSize="14sp"
                             app:chipCornerRadius="20dp"
-                            app:chipStrokeColor="#FF6B35"
+                            android:background="?attr/colorBackground"
                             app:chipStrokeWidth="1dp"
                             style="@style/Widget.MaterialComponents.Chip.Filter" />
 
@@ -317,10 +322,10 @@
                             android:layout_height="wrap_content"
                             android:checked="true"
                             android:text="Selasa"
-                            android:textColor="#1A1A1A"
                             android:textSize="14sp"
+                            android:textColor="?attr/colorTextThree"
                             app:chipCornerRadius="20dp"
-                            app:chipStrokeColor="#FF6B35"
+                            android:background="?attr/colorBackground"
                             app:chipStrokeWidth="1dp"
                             style="@style/Widget.MaterialComponents.Chip.Filter" />
 
@@ -329,11 +334,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:checked="true"
+                            android:textColor="?attr/colorTextThree"
                             android:text="Rabu"
-                            android:textColor="#1A1A1A"
                             android:textSize="14sp"
                             app:chipCornerRadius="20dp"
-                            app:chipStrokeColor="#FF6B35"
+                            android:background="?attr/colorBackground"
                             app:chipStrokeWidth="1dp"
                             style="@style/Widget.MaterialComponents.Chip.Filter" />
 
@@ -343,10 +348,10 @@
                             android:layout_height="wrap_content"
                             android:checked="true"
                             android:text="Kamis"
-                            android:textColor="#1A1A1A"
                             android:textSize="14sp"
+                            android:textColor="?attr/colorTextThree"
                             app:chipCornerRadius="20dp"
-                            app:chipStrokeColor="#FF6B35"
+                            android:background="?attr/colorBackground"
                             app:chipStrokeWidth="1dp"
                             style="@style/Widget.MaterialComponents.Chip.Filter" />
 
@@ -356,10 +361,10 @@
                             android:layout_height="wrap_content"
                             android:checked="true"
                             android:text="Jumat"
-                            android:textColor="#1A1A1A"
                             android:textSize="14sp"
+                            android:textColor="?attr/colorTextThree"
                             app:chipCornerRadius="20dp"
-                            app:chipStrokeColor="#FF6B35"
+                            android:background="?attr/colorBackground"
                             app:chipStrokeWidth="1dp"
                             style="@style/Widget.MaterialComponents.Chip.Filter" />
 
@@ -368,11 +373,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:checked="true"
+                            android:textColor="?attr/colorTextThree"
                             android:text="Sabtu"
-                            android:textColor="#1A1A1A"
                             android:textSize="14sp"
                             app:chipCornerRadius="20dp"
-                            app:chipStrokeColor="#FF6B35"
+                            android:background="?attr/colorBackground"
                             app:chipStrokeWidth="1dp"
                             style="@style/Widget.MaterialComponents.Chip.Filter" />
 
@@ -381,11 +386,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:checked="true"
+                            android:textColor="?attr/colorTextThree"
                             android:text="Minggu"
-                            android:textColor="#1A1A1A"
                             android:textSize="14sp"
                             app:chipCornerRadius="20dp"
-                            app:chipStrokeColor="#FF6B35"
+                            android:background="?attr/colorBackground"
                             app:chipStrokeWidth="1dp"
                             style="@style/Widget.MaterialComponents.Chip.Filter" />
 
@@ -405,7 +410,7 @@
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:backgroundTint="#FF6B35"
+                android:backgroundTint="?attr/colorBackground"
                 app:cornerRadius="12dp" />
 
         </LinearLayout>

@@ -5,7 +5,6 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
     tools:context=".cabang.DataCabangActivity">
 
     <!-- App Bar -->
@@ -13,7 +12,7 @@
         android:id="@+id/toolbar"
         android:layout_width="0dp"
         android:layout_height="?attr/actionBarSize"
-        android:background="#FF6B35"
+        android:background="?attr/colorBackground"
         android:elevation="4dp"
         app:title="Data Cabang"
         app:titleTextColor="#FFFFFF"
@@ -100,6 +99,7 @@
                     android:textColor="#FFFFFF" />
 
                 <TextView
+                    android:id="@+id/tvTotalCabangLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Total Cabang"
@@ -138,6 +138,7 @@
                     android:textColor="#FFFFFF" />
 
                 <TextView
+                    android:id="@+id/tvCabangBukaLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Sedang Buka"
@@ -187,6 +188,7 @@
             app:tint="#CCCCCC" />
 
         <TextView
+            android:id="@+id/tvEmptyTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Belum ada data cabang"
@@ -196,6 +198,7 @@
             android:layout_marginTop="16dp" />
 
         <TextView
+            android:id="@+id/tvEmptySubtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tambahkan cabang pertama Anda"
@@ -214,7 +217,7 @@
         android:layout_marginBottom="16dp"
         android:src="@drawable/add1"
         android:contentDescription="Tambah Cabang"
-        app:backgroundTint="#FF6B35"
+        android:backgroundTint="?attr/colorBackground"
         app:tint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

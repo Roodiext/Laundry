@@ -1,174 +1,422 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/badge_background"
-    android:orientation="vertical"
-    android:padding="24dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fillViewport="true"
+    android:background="@android:color/transparent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Detail Transaksi"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="16dp" />
-
-    <!-- ID Transaksi -->
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="8dp">
+        android:padding="16dp"
+        android:background="@android:color/transparent">
 
-        <TextView
-            android:layout_width="100dp"
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ID Transaksi"
-            android:textColor="#666666"
-            android:textSize="14sp" />
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="20dp"
+            app:cardPreventCornerOverlap="false"
+            app:cardElevation="12dp"
+            app:cardCornerRadius="20dp"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardUseCompatPadding="true"
+            tools:ignore="MissingConstraints">
 
-        <TextView
-            android:id="@+id/txtIdTransaksi"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="TRX001"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:textStyle="bold" />
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-    <!-- Nama Pelanggan -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="8dp">
+                <!-- Header dengan background gradient -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="?attr/colorBackground"
+                    android:padding="20dp">
 
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="Nama"
-            android:textColor="#666666"
-            android:textSize="14sp" />
+                    <!-- Icon Transaksi -->
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:src="@drawable/report"
+                        tools:ignore="UseAppTint" />
 
-        <TextView
-            android:id="@+id/txtNamaPelanggan"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="John Doe"
-            android:textColor="@color/black"
-            android:textSize="14sp" />
-    </LinearLayout>
+                    <!-- Judul -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Detail Transaksi"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/white"
+                        android:gravity="center" />
 
-    <!-- Nomor HP -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="8dp">
+                    <!-- Subtitle -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Informasi lengkap transaksi laundry"
+                        android:textSize="14sp"
+                        android:textColor="#E0E0E0"
+                        android:gravity="center"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
 
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="Nomor HP"
-            android:textColor="#666666"
-            android:textSize="14sp" />
+                <!-- Data Transaksi dengan Card Style -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
 
-        <TextView
-            android:id="@+id/txtNomorHP"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="08123456789"
-            android:textColor="@color/black"
-            android:textSize="14sp" />
-    </LinearLayout>
+                    <!-- ID Transaksi Card -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="2dp"
+                        app:cardBackgroundColor="#F8F9FA"
+                        android:layout_marginBottom="12dp">
 
-    <!-- Tanggal Transaksi -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="8dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:gravity="center_vertical">
 
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="Tanggal"
-            android:textColor="#666666"
-            android:textSize="14sp" />
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/ic_badge"
+                                android:tint="#FF6B35"
+                                android:layout_marginEnd="12dp"
+                                tools:ignore="UseAppTint" />
 
-        <TextView
-            android:id="@+id/txtTanggalTransaksi"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="2024-01-01"
-            android:textColor="@color/black"
-            android:textSize="14sp" />
-    </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
 
-    <!-- Status -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="8dp">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="ID Transaksi"
+                                    android:textSize="12sp"
+                                    android:textColor="#666666"
+                                    android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="Status"
-            android:textColor="#666666"
-            android:textSize="14sp" />
+                                <TextView
+                                    android:id="@+id/txtIdTransaksi"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="TRX001"
+                                    android:textSize="16sp"
+                                    android:textColor="#333333"
+                                    android:textStyle="bold"
+                                    android:layout_marginTop="2dp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:id="@+id/txtStatus"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Belum Bayar"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:textStyle="bold" />
-    </LinearLayout>
+                    <!-- Nama Pelanggan Card -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="2dp"
+                        app:cardBackgroundColor="#F8F9FA"
+                        android:layout_marginBottom="12dp">
 
-    <!-- Metode Pembayaran -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="16dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:gravity="center_vertical">
 
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="Pembayaran"
-            android:textColor="#666666"
-            android:textSize="14sp" />
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/ic_person"
+                                android:tint="#8E24AA"
+                                android:layout_marginEnd="12dp"
+                                tools:ignore="UseAppTint" />
 
-        <TextView
-            android:id="@+id/txtMetodePembayaran"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Cash"
-            android:textColor="@color/black"
-            android:textSize="14sp" />
-    </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
 
-    <!-- Button Tutup -->
-    <Button
-        android:id="@+id/btnTutup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Tutup"
-        android:textColor="@color/white"
-        android:background="@drawable/button_gradient_background"
-        android:layout_marginTop="8dp" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Nama Pelanggan"
+                                    android:textSize="12sp"
+                                    android:textColor="#666666"
+                                    android:textStyle="bold" />
 
-</LinearLayout>
+                                <TextView
+                                    android:id="@+id/txtNamaPelanggan"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="John Doe"
+                                    android:textSize="16sp"
+                                    android:textColor="#333333"
+                                    android:textStyle="bold"
+                                    android:layout_marginTop="2dp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- Nomor HP Card -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="2dp"
+                        app:cardBackgroundColor="#F8F9FA"
+                        android:layout_marginBottom="12dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:gravity="center_vertical">
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/ic_phone"
+                                android:tint="#4CAF50"
+                                android:layout_marginEnd="12dp"
+                                tools:ignore="UseAppTint" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Nomor HP"
+                                    android:textSize="12sp"
+                                    android:textColor="#666666"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/txtNomorHP"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="08123456789"
+                                    android:textSize="16sp"
+                                    android:textColor="#333333"
+                                    android:textStyle="bold"
+                                    android:layout_marginTop="2dp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- Tanggal Transaksi Card -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="2dp"
+                        app:cardBackgroundColor="#F8F9FA"
+                        android:layout_marginBottom="12dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:gravity="center_vertical">
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/ic_calendar_today"
+                                android:tint="#2196F3"
+                                android:layout_marginEnd="12dp"
+                                tools:ignore="UseAppTint" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Tanggal Transaksi"
+                                    android:textSize="12sp"
+                                    android:textColor="#666666"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/txtTanggalTransaksi"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="2024-01-01"
+                                    android:textSize="16sp"
+                                    android:textColor="#333333"
+                                    android:textStyle="bold"
+                                    android:layout_marginTop="2dp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- Status Card -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="2dp"
+                        app:cardBackgroundColor="#F8F9FA"
+                        android:layout_marginBottom="12dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:gravity="center_vertical">
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/ic_access_time"
+                                android:tint="#FF9800"
+                                android:layout_marginEnd="12dp"
+                                tools:ignore="UseAppTint" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Status Transaksi"
+                                    android:textSize="12sp"
+                                    android:textColor="#666666"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/txtStatus"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Belum Bayar"
+                                    android:textSize="16sp"
+                                    android:textColor="#333333"
+                                    android:textStyle="bold"
+                                    android:layout_marginTop="2dp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- Metode Pembayaran Card -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="2dp"
+                        app:cardBackgroundColor="#F8F9FA"
+                        android:layout_marginBottom="20dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:gravity="center_vertical">
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/ic_cash"
+                                android:tint="#E91E63"
+                                android:layout_marginEnd="12dp"
+                                tools:ignore="UseAppTint" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Metode Pembayaran"
+                                    android:textSize="12sp"
+                                    android:textColor="#666666"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/txtMetodePembayaran"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Cash"
+                                    android:textSize="16sp"
+                                    android:textColor="#333333"
+                                    android:textStyle="bold"
+                                    android:layout_marginTop="2dp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- Action Button -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnTutup"
+                        android:layout_width="match_parent"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        android:layout_height="56dp"
+                        android:backgroundTint="?attr/colorBackground"
+                        android:text="Tutup"
+                        android:textColor="@android:color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="12dp"
+                        app:elevation="4dp"
+                        app:icon="@drawable/ic_close_24"
+                        app:iconTint="@android:color/white"
+                        app:iconGravity="textStart" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

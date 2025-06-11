@@ -25,9 +25,41 @@ class PilihLayananActivity : AppCompatActivity() {
     private val listLayanan = arrayListOf<modelLayanan>()
     private val listLayananFull = arrayListOf<modelLayanan>()
 
+    // Language support variables
+    private var currentLanguage = "id" // Default bahasa Indonesia
+
+    // Language texts untuk activity ini
+    private val languageTexts = mapOf(
+        "id" to mapOf(
+            "search_hint" to "Cari layanan...",
+            "no_service_name" to "Tidak Ada Nama",
+            "no_price" to "Tidak Ada Harga",
+            "loading_error" to "Gagal memuat data layanan",
+            "affordable" to "Terjangkau",
+            "premium_service" to "Layanan Premium",
+            "service_name" to "Nama Layanan",
+            "service_price" to "Harga Layanan",
+            "select_service" to "Pilih Layanan Ini"
+        ),
+        "en" to mapOf(
+            "search_hint" to "Search services...",
+            "no_service_name" to "No Name Available",
+            "no_price" to "No Price Available",
+            "loading_error" to "Failed to load service data",
+            "affordable" to "Affordable",
+            "premium_service" to "Premium Service",
+            "service_name" to "Service Name",
+            "service_price" to "Service Price",
+            "select_service" to "Select This Service"
+        )
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pilih_layanan)
+
+        // Load language preference
+        loadLanguagePreference()
 
         recyclerView = findViewById(R.id.rvLayanan)
         searchView = findViewById(R.id.searchView)
@@ -37,6 +69,9 @@ class PilihLayananActivity : AppCompatActivity() {
 
         // Konfigurasikan SearchView
         setupSearchView()
+
+        // Update UI texts based on language
+        updateUITexts()
 
         // Terakhir, muat data dari Firebase
         loadDataFirebase()
@@ -48,9 +83,28 @@ class PilihLayananActivity : AppCompatActivity() {
         }
     }
 
+    private fun loadLanguagePreference() {
+        val sharedPref = getSharedPreferences("language_pref", MODE_PRIVATE)
+        currentLanguage = sharedPref.getString("selected_language", "id") ?: "id"
+    }
+
+    private fun updateUITexts() {
+        val texts = languageTexts[currentLanguage] ?: languageTexts["id"]!!
+
+        // Update SearchView hint
+        searchView.queryHint = texts["search_hint"]
+
+        // Update adapter dengan language context
+        if (::adapter.isInitialized) {
+            adapter.updateLanguage(currentLanguage, texts)
+        }
+    }
+
     private fun setupRecyclerView() {
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = AdapterPilihLayanan(listLayanan) { selectedLayanan ->
+        val texts = languageTexts[currentLanguage] ?: languageTexts["id"]!!
+
+        adapter = AdapterPilihLayanan(listLayanan, currentLanguage, texts) { selectedLayanan ->
             val intent = Intent()
             intent.putExtra("nama", selectedLayanan.namaLayanan)
             intent.putExtra("harga", selectedLayanan.hargaLayanan)
@@ -86,7 +140,7 @@ class PilihLayananActivity : AppCompatActivity() {
     }
 
     private fun loadDataFirebase() {
-        // Tampilkan indikator loading jika perlu
+        val texts = languageTexts[currentLanguage] ?: languageTexts["id"]!!
 
         myRef.orderByChild("nama").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -108,23 +162,29 @@ class PilihLayananActivity : AppCompatActivity() {
                     adapter.updateList(listLayananFull)
                 }
 
-                // Sembunyikan indikator loading jika perlu
-
                 // Pastikan SearchView tidak mendapat fokus setelah data dimuat
                 searchView.clearFocus()
             }
 
             override fun onCancelled(error: DatabaseError) {
-                // Sembunyikan indikator loading jika perlu
-                Toast.makeText(this@PilihLayananActivity, error.message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@PilihLayananActivity, texts["loading_error"], Toast.LENGTH_SHORT).show()
             }
         })
     }
 
     override fun onResume() {
         super.onResume()
+
+        // Check if language has changed
+        val sharedPref = getSharedPreferences("language_pref", MODE_PRIVATE)
+        val newLanguage = sharedPref.getString("selected_language", "id") ?: "id"
+
+        if (newLanguage != currentLanguage) {
+            currentLanguage = newLanguage
+            updateUITexts()
+        }
+
         // Pastikan data ditampilkan saat activity kembali aktif
-        // dan reset filter agar semua data ditampilkan
         if (listLayananFull.isNotEmpty()) {
             adapter.updateList(ArrayList(listLayananFull))
         }

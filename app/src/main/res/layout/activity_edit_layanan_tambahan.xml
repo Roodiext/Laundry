@@ -9,24 +9,7 @@
     tools:context=".LayananTambahan.EditLayananTambahanActivity">
 
     <!-- App Bar Layout -->
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:elevation="8dp">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@drawable/header_gradient_background"
-            app:title="Edit Layanan Tambahan"
-            app:titleTextColor="@android:color/white"
-            app:navigationIcon="@drawable/ic_arrow_back_24"
-            app:navigationIconTint="@android:color/white" />
-
-    </com.google.android.material.appbar.AppBarLayout>
 
     <!-- Main Content -->
     <androidx.core.widget.NestedScrollView
@@ -53,7 +36,6 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/card_gradient_background"
                     android:orientation="vertical"
                     android:padding="20dp">
 
@@ -69,7 +51,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:text="Perbarui Layanan Tambahan"
-                        android:textColor="@android:color/background_dark"
+                        android:textColor="?attr/colorTextThree"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -78,6 +60,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="4dp"
+                        android:textColor="?attr/colorTextThree"
                         android:text="Ubah informasi layanan tambahan sesuai kebutuhan"
                         android:textSize="14sp" />
 
@@ -120,6 +103,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="textCapWords"
                             android:maxLines="1"
+                            android:textColor="?attr/colorTextThree"
                             android:textSize="16sp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -145,6 +129,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="number"
                             android:maxLines="1"
+                            android:textColor="?attr/colorTextThree"
                             android:textSize="16sp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -169,6 +154,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="none"
                             android:textSize="16sp"
+
                             android:textColor="@android:color/black"
                             android:completionThreshold="1"
                             android:dropDownHeight="200dp" />
@@ -197,7 +183,9 @@
                     android:text="Batal"
                     android:textSize="16sp"
                     android:textStyle="bold"
+                    android:backgroundTint="@color/spinner_text_color"
                     app:cornerRadius="16dp"
+                    android:textColor="@color/white"
                     app:icon="@drawable/ic_close_24"
                     app:iconTint="@color/text_primary_dark"
                     app:strokeWidth="2dp" />
@@ -213,7 +201,7 @@
                     android:textColor="@android:color/white"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    app:backgroundTint="@null"
+                    app:backgroundTint="#27AE60"
                     app:cornerRadius="16dp"
                     app:icon="@drawable/ic_save"
                     app:iconTint="@android:color/white" />

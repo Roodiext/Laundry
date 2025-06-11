@@ -35,7 +35,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:background="@drawable/header_gradient_background"
+                    android:background="?attr/colorBackground"
                     android:padding="20dp">
 
                     <!-- Icon Service Tambahan -->
@@ -61,6 +61,7 @@
 
                     <!-- Subtitle -->
                     <TextView
+                        android:id="@+id/tvDIALOG_MOD_LAYANAN_TAMBAHAN_subtitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Informasi lengkap layanan tambahan laundry"
@@ -108,6 +109,7 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/tvDIALOG_MOD_LAYANAN_TAMBAHAN_ID_label"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="ID Layanan Tambahan"
@@ -159,6 +161,7 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/tvDIALOG_MOD_LAYANAN_TAMBAHAN_Nama_label"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Nama Layanan Tambahan"
@@ -210,6 +213,7 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/tvDIALOG_MOD_LAYANAN_TAMBAHAN_Harga_label"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Harga Layanan Tambahan"
@@ -261,6 +265,7 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/tvDIALOG_MOD_LAYANAN_TAMBAHAN_Cabang_label"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Cabang"
@@ -312,6 +317,7 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/tvDIALOG_MOD_LAYANAN_TAMBAHAN_Jenis_label"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Jenis Layanan"

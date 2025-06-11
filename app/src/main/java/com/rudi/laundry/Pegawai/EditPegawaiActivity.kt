@@ -10,7 +10,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import com.google.android.material.appbar.MaterialToolbar
+
 import com.google.firebase.database.*
 import com.rudi.laundry.R
 import com.rudi.laundry.modeldata.modelCabang
@@ -24,7 +24,6 @@ class EditPegawaiActivity : AppCompatActivity() {
     private val cabangRef: DatabaseReference = database.getReference("cabang")
 
     // Views
-    private lateinit var toolbar: MaterialToolbar
     private lateinit var etNamaPegawai: TextInputEditText
     private lateinit var etAlamatPegawai: TextInputEditText
     private lateinit var etNoHPPegawai: TextInputEditText
@@ -52,7 +51,7 @@ class EditPegawaiActivity : AppCompatActivity() {
         }
 
         initViews()
-        setupToolbar()
+
         setupCabangDropdown()
         getDataFromIntent()
         setupListeners()
@@ -60,7 +59,7 @@ class EditPegawaiActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
-        toolbar = findViewById(R.id.toolbar)
+
         etNamaPegawai = findViewById(R.id.etNamaPegawai)
         etAlamatPegawai = findViewById(R.id.etAlamatPegawai)
         etNoHPPegawai = findViewById(R.id.etNoHPPegawai)
@@ -70,15 +69,6 @@ class EditPegawaiActivity : AppCompatActivity() {
         btnSimpanPerubahan = findViewById(R.id.btnSimpanPerubahan)
     }
 
-    private fun setupToolbar() {
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
-
-        toolbar.setNavigationOnClickListener {
-            finish()
-        }
-    }
 
     private fun setupCabangDropdown() {
         cabangAdapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, cabangDisplayList)

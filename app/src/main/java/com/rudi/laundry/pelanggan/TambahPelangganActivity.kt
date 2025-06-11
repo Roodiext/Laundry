@@ -5,6 +5,7 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -29,26 +30,98 @@ class TambahPelangganActivity : AppCompatActivity() {
     private lateinit var etCabang: AutoCompleteTextView
     private lateinit var btSimpan: Button
     private lateinit var btBatal: Button
+    private lateinit var tvJudul: TextView
+    private lateinit var tvSubtitle: TextView
 
     private var listCabang = arrayListOf<modelCabang>()
     private var cabangNames = arrayListOf<String>()
     private var adapter: ArrayAdapter<String>? = null
     private var selectedCabangId: String = ""
     private var isDataLoaded = false
+    private var currentLanguage = "id" // Default bahasa Indonesia
+
+    // Language texts
+    private val languageTexts = mapOf(
+        "id" to mapOf(
+            "title" to "Tambah Pelanggan Baru",
+            "subtitle" to "Lengkapi data pelanggan dengan benar",
+            "hint_name" to "Nama Lengkap",
+            "hint_address" to "Alamat Lengkap",
+            "hint_phone" to "Nomor HP Aktif",
+            "hint_branch" to "Pilih Cabang",
+            "button_cancel" to "Batal",
+            "button_add" to "Tambah Pelanggan",
+            "button_saving" to "Menyimpan...",
+            "loading_branch" to "Memuat data cabang...",
+            "no_branch_available" to "Tidak ada cabang tersedia",
+            "failed_load_branch" to "Gagal memuat data cabang",
+            "select_branch" to "Silakan pilih cabang",
+            "select_from_dropdown" to "Pilih cabang dari daftar dropdown",
+            "error_name_empty" to "Nama tidak boleh kosong",
+            "error_name_min" to "Nama minimal 2 karakter",
+            "error_address_empty" to "Alamat tidak boleh kosong",
+            "error_address_min" to "Alamat minimal 5 karakter",
+            "error_phone_empty" to "Nomor HP tidak boleh kosong",
+            "error_phone_min" to "Nomor HP minimal 10 digit",
+            "error_phone_format" to "Format nomor HP tidak valid",
+            "error_branch_empty" to "Cabang harus dipilih",
+            "error_branch_select" to "Pilih cabang dari daftar yang tersedia",
+            "success_add" to "Pelanggan berhasil ditambahkan ke cabang",
+            "failed_add" to "Gagal menambahkan pelanggan",
+            "failed_load_branch_toast" to "Gagal memuat data cabang"
+        ),
+        "en" to mapOf(
+            "title" to "Add New Customer",
+            "subtitle" to "Complete customer data correctly",
+            "hint_name" to "Full Name",
+            "hint_address" to "Full Address",
+            "hint_phone" to "Active Phone Number",
+            "hint_branch" to "Select Branch",
+            "button_cancel" to "Cancel",
+            "button_add" to "Add Customer",
+            "button_saving" to "Saving...",
+            "loading_branch" to "Loading branch data...",
+            "no_branch_available" to "No branch available",
+            "failed_load_branch" to "Failed to load branch data",
+            "select_branch" to "Please select branch",
+            "select_from_dropdown" to "Select branch from dropdown list",
+            "error_name_empty" to "Name cannot be empty",
+            "error_name_min" to "Name minimum 2 characters",
+            "error_address_empty" to "Address cannot be empty",
+            "error_address_min" to "Address minimum 5 characters",
+            "error_phone_empty" to "Phone number cannot be empty",
+            "error_phone_min" to "Phone number minimum 10 digits",
+            "error_phone_format" to "Invalid phone number format",
+            "error_branch_empty" to "Branch must be selected",
+            "error_branch_select" to "Select branch from available list",
+            "success_add" to "Customer successfully added to branch",
+            "failed_add" to "Failed to add customer",
+            "failed_load_branch_toast" to "Failed to load branch data"
+        )
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tambah_pelanggan)
 
+        // Load saved language preference
+        loadLanguagePreference()
+
         initViews()
         setupListeners()
         loadCabangData()
+        updateAllTexts()
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.tambahpelanggan)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+    }
+
+    private fun loadLanguagePreference() {
+        val sharedPref = getSharedPreferences("language_pref", MODE_PRIVATE)
+        currentLanguage = sharedPref.getString("selected_language", "id") ?: "id"
     }
 
     private fun initViews() {
@@ -58,6 +131,44 @@ class TambahPelangganActivity : AppCompatActivity() {
         etCabang = findViewById(R.id.etnama_cabang)
         btSimpan = findViewById(R.id.bttambah)
         btBatal = findViewById(R.id.btbatal)
+        tvJudul = findViewById(R.id.tvjudul_tambah_pelanggan)
+
+        // Tambahkan TextView subtitle jika ada di layout
+        try {
+            tvSubtitle = findViewById<TextView>(R.id.tvsubtitle_tambah_pelanggan)
+        } catch (e: Exception) {
+            // Jika tidak ada TextView subtitle, buat dummy
+        }
+    }
+
+    private fun updateAllTexts() {
+        val texts = languageTexts[currentLanguage] ?: languageTexts["id"]!!
+
+        // Update title dan subtitle
+        tvJudul.text = texts["title"]
+        try {
+            tvSubtitle.text = texts["subtitle"]
+        } catch (e: Exception) {
+            // Subtitle TextView tidak ada
+        }
+
+        // Update hints
+        etNama.hint = texts["hint_name"]
+        etAlamat.hint = texts["hint_address"]
+        etNoHP.hint = texts["hint_phone"]
+
+        // Update button texts
+        btBatal.text = texts["button_cancel"]
+        btSimpan.text = texts["button_add"]
+
+        // Update cabang hint
+        if (isDataLoaded) {
+            etCabang.hint = if (cabangNames.isEmpty()) {
+                texts["no_branch_available"]
+            } else {
+                texts["hint_branch"]
+            }
+        }
     }
 
     private fun setupListeners() {
@@ -104,8 +215,10 @@ class TambahPelangganActivity : AppCompatActivity() {
     }
 
     private fun loadCabangData() {
+        val texts = languageTexts[currentLanguage] ?: languageTexts["id"]!!
+
         // Show loading state
-        etCabang.hint = "Memuat data cabang..."
+        etCabang.hint = texts["loading_branch"]
         etCabang.isEnabled = false
 
         // Gunakan addListenerForSingleValueEvent untuk memuat data sekali saja
@@ -145,11 +258,12 @@ class TambahPelangganActivity : AppCompatActivity() {
 
             override fun onCancelled(error: DatabaseError) {
                 android.util.Log.e("CabangLoad", "Database error: ${error.message}")
-                Toast.makeText(this@TambahPelangganActivity, "Gagal memuat data cabang: ${error.message}", Toast.LENGTH_SHORT).show()
+                val texts = languageTexts[currentLanguage] ?: languageTexts["id"]!!
+                Toast.makeText(this@TambahPelangganActivity, "${texts["failed_load_branch_toast"]}: ${error.message}", Toast.LENGTH_SHORT).show()
 
                 // Enable dropdown dengan pesan error
                 etCabang.isEnabled = true
-                etCabang.hint = "Gagal memuat data cabang"
+                etCabang.hint = texts["failed_load_branch"]
                 isDataLoaded = false
             }
         })
@@ -157,6 +271,8 @@ class TambahPelangganActivity : AppCompatActivity() {
 
     private fun setupDropdownAdapter() {
         runOnUiThread {
+            val texts = languageTexts[currentLanguage] ?: languageTexts["id"]!!
+
             // Buat adapter baru dengan data yang sudah dimuat
             adapter = ArrayAdapter(
                 this@TambahPelangganActivity,
@@ -172,9 +288,9 @@ class TambahPelangganActivity : AppCompatActivity() {
             // Enable dropdown dan update hint
             etCabang.isEnabled = true
             etCabang.hint = if (cabangNames.isEmpty()) {
-                "Tidak ada cabang tersedia"
+                texts["no_branch_available"]
             } else {
-                "Pilih Cabang"
+                texts["hint_branch"]
             }
 
             isDataLoaded = true
@@ -185,6 +301,7 @@ class TambahPelangganActivity : AppCompatActivity() {
     }
 
     private fun validateInputs(): Boolean {
+        val texts = languageTexts[currentLanguage] ?: languageTexts["id"]!!
         val nama = etNama.text.toString().trim()
         val alamat = etAlamat.text.toString().trim()
         val noHP = etNoHP.text.toString().trim()
@@ -192,50 +309,50 @@ class TambahPelangganActivity : AppCompatActivity() {
 
         when {
             nama.isEmpty() -> {
-                etNama.error = "Nama tidak boleh kosong"
+                etNama.error = texts["error_name_empty"]
                 etNama.requestFocus()
                 return false
             }
             nama.length < 2 -> {
-                etNama.error = "Nama minimal 2 karakter"
+                etNama.error = texts["error_name_min"]
                 etNama.requestFocus()
                 return false
             }
             alamat.isEmpty() -> {
-                etAlamat.error = "Alamat tidak boleh kosong"
+                etAlamat.error = texts["error_address_empty"]
                 etAlamat.requestFocus()
                 return false
             }
             alamat.length < 5 -> {
-                etAlamat.error = "Alamat minimal 5 karakter"
+                etAlamat.error = texts["error_address_min"]
                 etAlamat.requestFocus()
                 return false
             }
             noHP.isEmpty() -> {
-                etNoHP.error = "Nomor HP tidak boleh kosong"
+                etNoHP.error = texts["error_phone_empty"]
                 etNoHP.requestFocus()
                 return false
             }
             noHP.length < 10 -> {
-                etNoHP.error = "Nomor HP minimal 10 digit"
+                etNoHP.error = texts["error_phone_min"]
                 etNoHP.requestFocus()
                 return false
             }
             !noHP.matches(Regex("^[0-9+\\-\\s()]+$")) -> {
-                etNoHP.error = "Format nomor HP tidak valid"
+                etNoHP.error = texts["error_phone_format"]
                 etNoHP.requestFocus()
                 return false
             }
             cabang.isEmpty() -> {
-                etCabang.error = "Cabang harus dipilih"
+                etCabang.error = texts["error_branch_empty"]
                 etCabang.requestFocus()
-                Toast.makeText(this, "Silakan pilih cabang", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, texts["select_branch"], Toast.LENGTH_SHORT).show()
                 return false
             }
             selectedCabangId.isEmpty() -> {
-                etCabang.error = "Pilih cabang dari daftar yang tersedia"
+                etCabang.error = texts["error_branch_select"]
                 etCabang.requestFocus()
-                Toast.makeText(this, "Pilih cabang dari daftar dropdown", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, texts["select_from_dropdown"], Toast.LENGTH_SHORT).show()
                 return false
             }
         }
@@ -243,9 +360,11 @@ class TambahPelangganActivity : AppCompatActivity() {
     }
 
     private fun tambahPelangganBaru() {
+        val texts = languageTexts[currentLanguage] ?: languageTexts["id"]!!
+
         // Disable button untuk mencegah double click
         btSimpan.isEnabled = false
-        btSimpan.text = "Menyimpan..."
+        btSimpan.text = texts["button_saving"]
 
         val pelangganBaru = myRef.push()
         val pelangganId = pelangganBaru.key ?: "Unknown"
@@ -267,14 +386,26 @@ class TambahPelangganActivity : AppCompatActivity() {
 
         pelangganBaru.setValue(data)
             .addOnSuccessListener {
-                Toast.makeText(this, "Pelanggan berhasil ditambahkan ke cabang $namaCabang", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "${texts["success_add"]} $namaCabang", Toast.LENGTH_LONG).show()
                 finish()
             }
             .addOnFailureListener { error ->
-                Toast.makeText(this, "Gagal menambahkan pelanggan: ${error.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "${texts["failed_add"]}: ${error.message}", Toast.LENGTH_SHORT).show()
                 // Re-enable button jika gagal
                 btSimpan.isEnabled = true
-                btSimpan.text = "Tambah Pelanggan"
+                btSimpan.text = texts["button_add"]
             }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Cek apakah bahasa berubah saat activity kembali aktif
+        val sharedPref = getSharedPreferences("language_pref", MODE_PRIVATE)
+        val savedLanguage = sharedPref.getString("selected_language", "id") ?: "id"
+
+        if (savedLanguage != currentLanguage) {
+            currentLanguage = savedLanguage
+            updateAllTexts()
+        }
     }
 }

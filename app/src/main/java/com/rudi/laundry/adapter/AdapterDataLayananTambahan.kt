@@ -1,6 +1,7 @@
 package com.rudi.laundry.adapter
 
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -27,6 +28,91 @@ class AdapterDataLayananTambahan(
     private val database = FirebaseDatabase.getInstance()
     private val layananTambahanRef = database.getReference("layanan_tambahan")
 
+    // Language texts
+    private val languageTexts = mapOf(
+        "id" to mapOf(
+            "service_name" to "Nama Layanan",
+            "price" to "Harga",
+            "branch_name" to "Nama Cabang",
+            "view_details" to "Lihat Detail",
+            "contact" to "Hubungi",
+            "no_name" to "Tidak Ada Nama",
+            "no_price" to "Tidak Ada Harga",
+            "invalid_price" to "Harga Tidak Valid",
+            "no_branch" to "Tidak Ada Cabang",
+            "no_id" to "Tidak Ada ID",
+            "additional" to "Tambahan",
+            "contact_feature" to "Fitur hubungi untuk",
+            "confirm_delete" to "Konfirmasi Hapus",
+            "delete_message" to "Apakah Anda yakin ingin menghapus layanan tambahan",
+            "action_irreversible" to "Tindakan ini tidak dapat dibatalkan.",
+            "delete" to "Hapus",
+            "cancel" to "Batal",
+            "invalid_id" to "ID layanan tambahan tidak valid",
+            "deleting" to "Menghapus layanan tambahan...",
+            "delete_success" to "berhasil dihapus",
+            "delete_failed" to "Gagal menghapus layanan tambahan:",
+            "service_id" to "ID Layanan",
+            "service_type" to "Jenis Layanan",
+            "edit" to "Edit",
+            "additional_service" to "Layanan Tambahan",
+            // Dialog specific texts
+            "dialog_title" to "Detail Layanan Tambahan",
+            "dialog_subtitle" to "Informasi lengkap layanan tambahan laundry",
+            "service_id_label" to "ID Layanan Tambahan",
+            "service_name_label" to "Nama Layanan Tambahan",
+            "service_price_label" to "Harga Layanan Tambahan",
+            "branch_label" to "Cabang",
+            "service_type_label" to "Jenis Layanan"
+        ),
+        "en" to mapOf(
+            "service_name" to "Service Name",
+            "price" to "Price",
+            "branch_name" to "Branch Name",
+            "view_details" to "View Details",
+            "contact" to "Contact",
+            "no_name" to "No Name",
+            "no_price" to "No Price",
+            "invalid_price" to "Invalid Price",
+            "no_branch" to "No Branch",
+            "no_id" to "No ID",
+            "additional" to "Additional",
+            "contact_feature" to "Contact feature for",
+            "confirm_delete" to "Confirm Delete",
+            "delete_message" to "Are you sure you want to delete the additional service",
+            "action_irreversible" to "This action cannot be undone.",
+            "delete" to "Delete",
+            "cancel" to "Cancel",
+            "invalid_id" to "Invalid additional service ID",
+            "deleting" to "Deleting additional service...",
+            "delete_success" to "successfully deleted",
+            "delete_failed" to "Failed to delete additional service:",
+            "service_id" to "Service ID",
+            "service_type" to "Service Type",
+            "edit" to "Edit",
+            "additional_service" to "Additional Service",
+            // Dialog specific texts
+            "dialog_title" to "Additional Service Details",
+            "dialog_subtitle" to "Complete information about additional laundry service",
+            "service_id_label" to "Additional Service ID",
+            "service_name_label" to "Additional Service Name",
+            "service_price_label" to "Additional Service Price",
+            "branch_label" to "Branch",
+            "service_type_label" to "Service Type"
+        )
+    )
+
+    private fun getCurrentLanguage(context: Context): String {
+        val sharedPref = context.getSharedPreferences("language_pref", Context.MODE_PRIVATE)
+        return sharedPref.getString("selected_language", "id") ?: "id"
+    }
+
+    private fun getText(context: Context, key: String): String {
+        val currentLanguage = getCurrentLanguage(context)
+        val texts = languageTexts[currentLanguage] ?: languageTexts["id"]!!
+        return texts[key] ?: key
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.card_data_layanan_tambahan, parent, false)
@@ -35,8 +121,18 @@ class AdapterDataLayananTambahan(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = listLayananTambahan[position]
+        val context = holder.itemView.context
 
-        holder.tvNamaLayanan.text = item.namaLayanan ?: "Tidak Ada Nama"
+        // Update header title
+        holder.tvHeaderTitle.text = getText(context, "additional_service")
+
+        // Update label texts berdasarkan bahasa saat ini
+        holder.tvLabelNamaLayanan.text = getText(context, "service_name")
+        holder.tvLabelHarga.text = getText(context, "price")
+        holder.tvLabelCabang.text = getText(context, "branch_name")
+
+        // Set data values
+        holder.tvNamaLayanan.text = item.namaLayanan ?: getText(context, "no_name")
 
         // Format harga dengan format rupiah yang konsisten
         val harga = item.hargaLayanan
@@ -47,17 +143,21 @@ class AdapterDataLayananTambahan(
                 if (amount != null) {
                     formatRupiah(amount)
                 } else {
-                    "Harga Tidak Valid"
+                    getText(context, "invalid_price")
                 }
             } else {
-                "Tidak Ada Harga"
+                getText(context, "no_price")
             }
         } else {
-            "Tidak Ada Harga"
+            getText(context, "no_price")
         }
         holder.tvHargaLayanan.text = formattedHarga
 
-        holder.tvCabang.text = item.cabang.ifEmpty { "Tidak Ada Cabang" }
+        holder.tvCabang.text = item.cabang.ifEmpty { getText(context, "no_branch") }
+
+        // Update button texts
+        holder.btLihatDetail.text = getText(context, "view_details")
+        holder.btHubungi.text = getText(context, "contact")
 
         holder.cvCard.setOnClickListener {
             // Optional: Tambahkan aksi jika perlu
@@ -70,10 +170,8 @@ class AdapterDataLayananTambahan(
 
         // Set OnClickListener untuk button "Hubungi"
         holder.btHubungi.setOnClickListener {
-            // Implementasi hubungi jika diperlukan
-            Toast.makeText(holder.itemView.context,
-                "Fitur hubungi untuk ${item.namaLayanan}",
-                Toast.LENGTH_SHORT).show()
+            val contactText = "${getText(context, "contact_feature")} ${item.namaLayanan}"
+            Toast.makeText(context, contactText, Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -85,23 +183,52 @@ class AdapterDataLayananTambahan(
     }
 
     private fun showDialogModLayananTambahan(view: View, layanan: modelLayanan, position: Int) {
-        val dialog = Dialog(view.context)
+        val context = view.context
+        val dialog = Dialog(context)
         dialog.setContentView(R.layout.dialog_mod_layanan_tambahan)
         dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
         // Inisialisasi komponen dialog
+        val tvDialogTitle = dialog.findViewById<TextView>(R.id.tvDIALOG_MOD_LAYANAN_TAMBAHAN_judul)
+        val tvDialogSubtitle = dialog.findViewById<TextView>(R.id.tvDIALOG_MOD_LAYANAN_TAMBAHAN_subtitle)
+
+        // Labels
+        val tvLabelIdLayanan = dialog.findViewById<TextView>(R.id.tvDIALOG_MOD_LAYANAN_TAMBAHAN_ID_label)
+        val tvLabelNamaLayanan = dialog.findViewById<TextView>(R.id.tvDIALOG_MOD_LAYANAN_TAMBAHAN_Nama_label)
+        val tvLabelHargaLayanan = dialog.findViewById<TextView>(R.id.tvDIALOG_MOD_LAYANAN_TAMBAHAN_Harga_label)
+        val tvLabelCabang = dialog.findViewById<TextView>(R.id.tvDIALOG_MOD_LAYANAN_TAMBAHAN_Cabang_label)
+        val tvLabelJenisLayanan = dialog.findViewById<TextView>(R.id.tvDIALOG_MOD_LAYANAN_TAMBAHAN_Jenis_label)
+
+        // Values
         val tvIdLayanan = dialog.findViewById<TextView>(R.id.tvDIALOG_MOD_LAYANAN_TAMBAHAN_ID_value)
         val tvNamaLayanan = dialog.findViewById<TextView>(R.id.tvDIALOG_MOD_LAYANAN_TAMBAHAN_Nama_value)
         val tvHargaLayanan = dialog.findViewById<TextView>(R.id.tvDIALOG_MOD_LAYANAN_TAMBAHAN_Harga_value)
         val tvCabang = dialog.findViewById<TextView>(R.id.tvDIALOG_MOD_LAYANAN_TAMBAHAN_Cabang_value)
         val tvJenisLayanan = dialog.findViewById<TextView>(R.id.tvDIALOG_MOD_LAYANAN_TAMBAHAN_Jenis_value)
+
+        // Buttons
         val btEdit = dialog.findViewById<MaterialButton>(R.id.btDIALOG_MOD_LAYANAN_TAMBAHAN_Edit)
         val btHapus = dialog.findViewById<MaterialButton>(R.id.btDIALOG_MOD_LAYANAN_TAMBAHAN_Hapus)
 
+        // Update dialog texts based on current language
+        tvDialogTitle?.text = getText(context, "dialog_title")
+        tvDialogSubtitle?.text = getText(context, "dialog_subtitle")
+
+        // Update label texts
+        tvLabelIdLayanan?.text = getText(context, "service_id_label")
+        tvLabelNamaLayanan?.text = getText(context, "service_name_label")
+        tvLabelHargaLayanan?.text = getText(context, "service_price_label")
+        tvLabelCabang?.text = getText(context, "branch_label")
+        tvLabelJenisLayanan?.text = getText(context, "service_type_label")
+
+        // Update button texts in dialog
+        btEdit.text = getText(context, "edit")
+        btHapus.text = getText(context, "delete")
+
         // Set data ke dialog
-        tvIdLayanan.text = layanan.idLayanan.ifEmpty { "Tidak Ada ID" }
-        tvNamaLayanan.text = layanan.namaLayanan ?: "Tidak Ada Nama"
+        tvIdLayanan.text = layanan.idLayanan.ifEmpty { getText(context, "no_id") }
+        tvNamaLayanan.text = layanan.namaLayanan ?: getText(context, "no_name")
 
         // Format harga untuk dialog
         val harga = layanan.hargaLayanan
@@ -112,37 +239,37 @@ class AdapterDataLayananTambahan(
                 if (amount != null) {
                     formatRupiah(amount)
                 } else {
-                    "Harga Tidak Valid"
+                    getText(context, "invalid_price")
                 }
             } else {
-                "Tidak Ada Harga"
+                getText(context, "no_price")
             }
         } else {
-            "Tidak Ada Harga"
+            getText(context, "no_price")
         }
         tvHargaLayanan.text = formattedHarga
 
-        tvCabang.text = layanan.cabang.ifEmpty { "Tidak Ada Cabang" }
-        tvJenisLayanan.text = layanan.jenisLayanan.ifEmpty { "Tambahan" }
+        tvCabang.text = layanan.cabang.ifEmpty { getText(context, "no_branch") }
+        tvJenisLayanan.text = layanan.jenisLayanan.ifEmpty { getText(context, "additional") }
 
         // Set OnClickListener untuk button Edit
         btEdit.setOnClickListener {
             dialog.dismiss()
 
             // Buat intent untuk membuka EditLayananTambahanActivity
-            val intent = Intent(view.context, EditLayananTambahanActivity::class.java)
+            val intent = Intent(context, EditLayananTambahanActivity::class.java)
 
             // Kirim data layanan sebagai extra
             intent.putExtra("layanan_tambahan_data", layanan)
 
             // Start activity dengan request code untuk menangani result
-            if (view.context is androidx.fragment.app.FragmentActivity) {
-                (view.context as androidx.fragment.app.FragmentActivity).startActivityForResult(intent, EDIT_REQUEST_CODE)
-            } else if (view.context is androidx.appcompat.app.AppCompatActivity) {
-                (view.context as androidx.appcompat.app.AppCompatActivity).startActivityForResult(intent, EDIT_REQUEST_CODE)
+            if (context is androidx.fragment.app.FragmentActivity) {
+                (context as androidx.fragment.app.FragmentActivity).startActivityForResult(intent, EDIT_REQUEST_CODE)
+            } else if (context is androidx.appcompat.app.AppCompatActivity) {
+                (context as androidx.appcompat.app.AppCompatActivity).startActivityForResult(intent, EDIT_REQUEST_CODE)
             } else {
                 // Fallback jika context bukan activity
-                view.context.startActivity(intent)
+                context.startActivity(intent)
             }
         }
 
@@ -156,26 +283,31 @@ class AdapterDataLayananTambahan(
     }
 
     private fun showDeleteConfirmationDialog(view: View, layanan: modelLayanan, position: Int) {
-        AlertDialog.Builder(view.context)
-            .setTitle("Konfirmasi Hapus")
-            .setMessage("Apakah Anda yakin ingin menghapus layanan tambahan '${layanan.namaLayanan}'?\n\nTindakan ini tidak dapat dibatalkan.")
+        val context = view.context
+        val deleteMessage = "${getText(context, "delete_message")} '${layanan.namaLayanan}'?\n\n${getText(context, "action_irreversible")}"
+
+        AlertDialog.Builder(context)
+            .setTitle(getText(context, "confirm_delete"))
+            .setMessage(deleteMessage)
             .setIcon(R.drawable.ic_warning)
-            .setPositiveButton("Hapus") { _, _ ->
+            .setPositiveButton(getText(context, "delete")) { _, _ ->
                 deleteLayananTambahan(view, layanan, position)
             }
-            .setNegativeButton("Batal", null)
+            .setNegativeButton(getText(context, "cancel"), null)
             .show()
     }
 
     private fun deleteLayananTambahan(view: View, layanan: modelLayanan, position: Int) {
+        val context = view.context
+
         // Validasi ID layanan
         if (layanan.idLayanan.isEmpty()) {
-            Toast.makeText(view.context, "ID layanan tambahan tidak valid", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, getText(context, "invalid_id"), Toast.LENGTH_SHORT).show()
             return
         }
 
         // Tampilkan loading toast
-        Toast.makeText(view.context, "Menghapus layanan tambahan...", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, getText(context, "deleting"), Toast.LENGTH_SHORT).show()
 
         // Hapus dari Firebase
         layananTambahanRef.child(layanan.idLayanan).removeValue()
@@ -185,17 +317,15 @@ class AdapterDataLayananTambahan(
                 notifyItemRemoved(position)
                 notifyItemRangeChanged(position, listLayananTambahan.size)
 
-                Toast.makeText(view.context,
-                    "Layanan tambahan '${layanan.namaLayanan}' berhasil dihapus",
-                    Toast.LENGTH_SHORT).show()
+                val successMessage = "Layanan tambahan '${layanan.namaLayanan}' ${getText(context, "delete_success")}"
+                Toast.makeText(context, successMessage, Toast.LENGTH_SHORT).show()
 
                 // Panggil callback jika ada
                 onDeleteSuccess?.invoke()
             }
             .addOnFailureListener { error ->
-                Toast.makeText(view.context,
-                    "Gagal menghapus layanan tambahan: ${error.message}",
-                    Toast.LENGTH_LONG).show()
+                val errorMessage = "${getText(context, "delete_failed")} ${error.message}"
+                Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show()
 
                 android.util.Log.e("AdapterDataLayananTambahan", "Delete error: ${error.message}")
             }
@@ -216,11 +346,20 @@ class AdapterDataLayananTambahan(
         }
     }
 
+    // Method untuk refresh language tanpa mengubah data
+    fun refreshLanguage() {
+        notifyDataSetChanged()
+    }
+
     override fun getItemCount(): Int {
         return listLayananTambahan.size
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val tvHeaderTitle: TextView = itemView.findViewById(R.id.tvHeaderTitle)
+        val tvLabelNamaLayanan: TextView = itemView.findViewById(R.id.tvLabelNamaLayanan)
+        val tvLabelHarga: TextView = itemView.findViewById(R.id.tvLabelHarga)
+        val tvLabelCabang: TextView = itemView.findViewById(R.id.tvLabelCabang)
         val tvNamaLayanan: TextView = itemView.findViewById(R.id.tvNamaPelanggan)
         val tvHargaLayanan: TextView = itemView.findViewById(R.id.tvAlamatPelanggan)
         val tvCabang: TextView = itemView.findViewById(R.id.tvNoHPPelanggan)

@@ -25,9 +25,31 @@ class PilihLayananTambahan : AppCompatActivity() {
     private val listLayanan = arrayListOf<modelLayanan>()
     private val listLayananFull = arrayListOf<modelLayanan>()
 
+    // Language system
+    private var currentLanguage = "id" // Default bahasa Indonesia
+
+    // Language texts
+    private val languageTexts = mapOf(
+        "id" to mapOf(
+            "search_hint" to "Cari Data Layanan",
+            "no_name" to "Tidak Ada Nama",
+            "no_price" to "Tidak Ada Harga",
+            "error_message" to "Terjadi kesalahan: "
+        ),
+        "en" to mapOf(
+            "search_hint" to "Search Service Data",
+            "no_name" to "No Name",
+            "no_price" to "No Price",
+            "error_message" to "An error occurred: "
+        )
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pilih_layanan)
+
+        // Load saved language preference
+        loadLanguagePreference()
 
         recyclerView = findViewById(R.id.rvLayanan)
         searchView = findViewById(R.id.searchView)
@@ -37,6 +59,9 @@ class PilihLayananTambahan : AppCompatActivity() {
 
         // Konfigurasikan SearchView
         setupSearchView()
+
+        // Update UI texts based on language
+        updateUITexts()
 
         // Terakhir, muat data dari Firebase
         loadDataFirebase()
@@ -48,9 +73,30 @@ class PilihLayananTambahan : AppCompatActivity() {
         }
     }
 
+    private fun loadLanguagePreference() {
+        val sharedPref = getSharedPreferences("language_pref", MODE_PRIVATE)
+        currentLanguage = sharedPref.getString("selected_language", "id") ?: "id"
+    }
+
+    private fun getCurrentTexts(): Map<String, String> {
+        return languageTexts[currentLanguage] ?: languageTexts["id"]!!
+    }
+
+    private fun updateUITexts() {
+        val texts = getCurrentTexts()
+
+        // Update SearchView hint
+        searchView.queryHint = texts["search_hint"]
+
+        // Update adapter language if it's already initialized
+        if (::adapter.isInitialized) {
+            adapter.updateLanguage(currentLanguage)
+        }
+    }
+
     private fun setupRecyclerView() {
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = AdapterLayananTambahan(listLayanan) { selectedLayanan ->
+        adapter = AdapterLayananTambahan(listLayanan, currentLanguage) { selectedLayanan ->
             val intent = Intent()
             intent.putExtra("namaTambahan", selectedLayanan.namaLayanan)
             intent.putExtra("hargaTambahan", selectedLayanan.hargaLayanan)
@@ -86,8 +132,6 @@ class PilihLayananTambahan : AppCompatActivity() {
     }
 
     private fun loadDataFirebase() {
-        // Tampilkan indikator loading jika perlu
-
         myRef.orderByChild("namaLayanan").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 // Bersihkan data lama
@@ -108,21 +152,31 @@ class PilihLayananTambahan : AppCompatActivity() {
                     adapter.updateList(listLayananFull)
                 }
 
-                // Sembunyikan indikator loading jika perlu
-
                 // Pastikan SearchView tidak mendapat fokus setelah data dimuat
                 searchView.clearFocus()
             }
 
             override fun onCancelled(error: DatabaseError) {
-                // Sembunyikan indikator loading jika perlu
-                Toast.makeText(this@PilihLayananTambahan, error.message, Toast.LENGTH_SHORT).show()
+                val texts = getCurrentTexts()
+                Toast.makeText(this@PilihLayananTambahan,
+                    texts["error_message"] + error.message,
+                    Toast.LENGTH_SHORT).show()
             }
         })
     }
 
     override fun onResume() {
         super.onResume()
+
+        // Check if language preference has changed
+        val sharedPref = getSharedPreferences("language_pref", MODE_PRIVATE)
+        val newLanguage = sharedPref.getString("selected_language", "id") ?: "id"
+
+        if (newLanguage != currentLanguage) {
+            currentLanguage = newLanguage
+            updateUITexts()
+        }
+
         // Pastikan data ditampilkan saat activity kembali aktif
         // dan reset filter agar semua data ditampilkan
         if (listLayananFull.isNotEmpty()) {

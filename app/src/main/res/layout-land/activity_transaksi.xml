@@ -5,191 +5,341 @@
     android:id="@+id/transaksi"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF6FC"
-    android:padding="5dp"
+    android:background="?attr/colorBackground"
     tools:context=".MainActivity">
 
-    <!-- KIRI: CARDVIEW DATA PELANGGAN -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_pelanggan"
+    <!-- Header Background -->
+    <View
+        android:id="@+id/header_bg"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_margin="16dp"
-        android:padding="10dp"
+        android:layout_height="60dp"
+        android:background="?attr/colorBackground"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/right_container"
-        app:cardElevation="4dp"
-        app:cardCornerRadius="12dp"
-        app:layout_constraintWidth_percent="0.4">
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <TextView
-                android:id="@+id/title_data_pelanggan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Data Pelanggan"
-                android:textStyle="bold"
-                android:textSize="24sp"
-                android:textColor="#333333"
-                android:layout_marginBottom="12dp" />
-
-            <TextView
-                android:id="@+id/label_nama"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nama Pelanggan:"
-                android:textSize="16sp"
-                android:layout_marginTop="8dp" />
-
-            <TextView
-                android:id="@+id/label_hp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="No HP:"
-                android:textSize="16sp"
-                android:layout_marginTop="4dp" />
-
-            <Button
-                android:id="@+id/btn_pilih_pelanggan"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="Pilih Pelanggan"
-                android:textColor="#FFFFFF"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/rounded_button_blue" />
-
-            <TextView
-                android:id="@+id/title_layanan_utama"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Layanan Utama"
-                android:textStyle="bold"
-                android:textSize="24sp"
-                android:textColor="#333333"
-                android:layout_marginTop="16dp"/>
-
-            <TextView
-                android:id="@+id/label_layanan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nama Layanan:"
-                android:textSize="16sp"
-                android:layout_marginTop="12dp"/>
-
-            <TextView
-                android:id="@+id/label_harga"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Harga:"
-                android:textSize="16sp"
-                android:layout_marginTop="4dp"/>
-
-            <Button
-                android:id="@+id/btn_pilih_layanan"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="Pilih Layanan"
-                android:textColor="#FFFFFF"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/rounded_button_blue"/>
-        </LinearLayout>
-
-
-
-
-    </androidx.cardview.widget.CardView>
-
-    <!-- KANAN: NESTED + CARDVIEW TOMBOL -->
-    <LinearLayout
-        android:id="@+id/right_container"
+    <!-- Left Column: Customer & Main Service -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_data_layanan"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_margin="16dp"
+        android:layout_height="0dp"
+        app:cardElevation="8dp"
+        app:cardCornerRadius="16dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="12dp"
+        app:cardBackgroundColor="#FFFFFF"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/card_pelanggan"
-        app:layout_constraintWidth_percent="0.5">
+        app:layout_constraintBottom_toTopOf="@id/button_container"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/guideline_center"
+        app:layout_constraintHorizontal_chainStyle="spread">
 
-        <!-- NESTED: LAYANAN UTAMA & TAMBAHAN -->
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="match_parent"
             android:fillViewport="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="16dp">
 
-                <!-- LAYANAN UTAMA -->
+                <!-- Data Pelanggan Section -->
                 <TextView
-                    android:id="@+id/title_layanan_tambahan"
+                    android:id="@+id/title_data_pelanggan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Layanan Tambahan"
+                    android:text="👤 Data Pelanggan"
                     android:textStyle="bold"
-                    android:textSize="24sp"
-                    android:textColor="#333333"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginStart="12dp" />
+                    android:textSize="16sp"
+                    android:textColor="?attr/colorTextSecondary"
+                    android:layout_marginBottom="10dp" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_layanan_utama"
+                <!-- Customer Info Container -->
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="12dp" />
+                    android:orientation="vertical"
+                    android:background="#F8F9FA"
+                    android:padding="12dp"
+                    android:layout_marginBottom="14dp">
 
+                    <TextView
+                        android:id="@+id/label_nama"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nama Pelanggan: "
+                        android:textSize="13sp"
+                        android:textColor="?attr/colorTextSecondary"/>
+
+                    <TextView
+                        android:id="@+id/label_hp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No HP: -"
+                        android:textSize="13sp"
+                        android:textColor="?attr/colorTextSecondary"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_pilih_pelanggan"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:text="Pilih Pelanggan"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="18dp"
+                    android:onClick="PilihPelanggan"
+                    android:backgroundTint="?attr/colorBackground" />
+
+                <!-- Divider -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#E5E8EC"
+                    android:layout_marginBottom="18dp" />
+
+                <!-- Layanan Utama Section -->
+                <TextView
+                    android:id="@+id/title_layanan_utama"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="⭐ Layanan Utama"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="?attr/colorTextSecondary"
+                    android:layout_marginBottom="10dp" />
+
+                <!-- Service Info Container -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="#F8F9FA"
+                    android:padding="12dp"
+                    android:layout_marginBottom="14dp">
+
+                    <TextView
+                        android:id="@+id/label_layanan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nama Layanan: -"
+                        android:textSize="13sp"
+                        android:textColor="?attr/colorTextSecondary" />
+
+                    <TextView
+                        android:id="@+id/label_harga"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Harga: -"
+                        android:textColor="?attr/colorTextSecondary"
+                        android:textSize="13sp"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_pilih_layanan"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:text="Pilih Layanan"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:onClick="PilihLayanan"
+                    android:backgroundTint="?attr/colorBackground" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
+    </androidx.cardview.widget.CardView>
 
-        <!-- CARDVIEW: TOMBOL TAMBAHAN & PROSES -->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/button_container"
+    <!-- Center Guideline -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <!-- Right Column: Additional Services -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_layanan_tambahan"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:cardElevation="8dp"
+        app:cardCornerRadius="16dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="12dp"
+        app:cardBackgroundColor="#FFFFFF"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/button_container"
+        app:layout_constraintStart_toEndOf="@id/guideline_center"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:cardElevation="4dp"
-            app:cardCornerRadius="12dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
+            <!-- Additional Services Header -->
             <LinearLayout
+                android:id="@+id/header_layanan_tambahan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:gravity="center_vertical"
                 android:padding="16dp"
-                android:gravity="center">
+                android:background="#F8F9FA">
 
-                <Button
-                    android:id="@+id/btn_tambahan"
+                <TextView
+                    android:id="@+id/label_layanan_tambahan"
                     android:layout_width="0dp"
-                    android:layout_height="60dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Tambahan"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/rounded_button_blue" />
+                    android:text="➕ Layanan Tambahan"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="?attr/colorTextSecondary" />
 
-                <Space
-                    android:layout_width="16dp"
-                    android:layout_height="0dp" />
-
-                <Button
-                    android:id="@+id/btn_proses"
-                    android:layout_width="0dp"
-                    android:layout_height="60dp"
-                    android:layout_weight="1"
-                    android:text="Proses"
+                <TextView
+                    android:id="@+id/count_layanan_tambahan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0 item"
+                    android:textSize="11sp"
                     android:textColor="#FFFFFF"
-                    android:background="@drawable/rounded_button_blue" />
+                    android:background="#FF9500"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp" />
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
-    </LinearLayout>
+
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#E5E8EC" />
+
+            <!-- Content Area -->
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/nestedScroll"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:fillViewport="true"
+                android:background="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- Empty State -->
+                    <LinearLayout
+                        android:id="@+id/empty_state"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="24dp"
+                        android:visibility="visible">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="📋"
+                            android:textSize="40sp"
+                            android:layout_marginBottom="8dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Belum ada layanan tambahan"
+                            android:textSize="14sp"
+                            android:textColor="?attr/colorTextSecondary"
+                            android:textAlignment="center" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tap tombol 'Tambahan' untuk menambahkan"
+                            android:textSize="11sp"
+                            android:textColor="?attr/colorTextSecondary"
+                            android:textAlignment="center"
+                            android:layout_marginTop="4dp" />
+                    </LinearLayout>
+
+                    <!-- RecyclerView -->
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvLayananTambahan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false"
+                        android:clipToPadding="false"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp" />
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Bottom Action Buttons -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/button_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="12dp"
+        app:cardElevation="8dp"
+        app:cardCornerRadius="16dp"
+        app:cardBackgroundColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:padding="12dp"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/btn_tambahan"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:backgroundTint="?attr/colorBackground"
+                android:text="➕ Tambahan"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:onClick="DataLayananTambahan"
+                android:textColor="#FFFFFF" />
+
+            <Space
+                android:layout_width="12dp"
+                android:layout_height="0dp" />
+
+            <Button
+                android:id="@+id/btn_proses"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:text="➤ Proses"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="?attr/colorBackground" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

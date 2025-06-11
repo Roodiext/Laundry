@@ -1,6 +1,7 @@
 package com.rudi.laundry.cabang
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -21,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.database.*
 import com.rudi.laundry.R
 import com.rudi.laundry.adapter.AdapterDataCabang
@@ -33,11 +35,16 @@ class DataCabangActivity : AppCompatActivity() {
 
     // Views
     private lateinit var toolbar: MaterialToolbar
+    private lateinit var tilSearch: TextInputLayout
     private lateinit var etSearch: TextInputEditText
     private lateinit var tvTotalCabang: TextView
     private lateinit var tvCabangBuka: TextView
+    private lateinit var tvTotalCabangLabel: TextView
+    private lateinit var tvCabangBukaLabel: TextView
     private lateinit var rvCabang: RecyclerView
     private lateinit var layoutEmptyState: LinearLayout
+    private lateinit var tvEmptyTitle: TextView
+    private lateinit var tvEmptySubtitle: TextView
     private lateinit var fabTambahCabang: FloatingActionButton
     private lateinit var progressBar: ProgressBar
 
@@ -50,12 +57,61 @@ class DataCabangActivity : AppCompatActivity() {
     private val statusUpdateHandler = Handler(Looper.getMainLooper())
     private var statusUpdateRunnable: Runnable? = null
 
+    // Language Support
+    private lateinit var sharedPref: SharedPreferences
+    private var currentLanguage = "id"
+
+    // Language texts
+    private val languageTexts = mapOf(
+        "id" to mapOf(
+            "title" to "Data Cabang",
+            "search_hint" to "Cari cabang...",
+            "total_branch" to "Total Cabang",
+            "currently_open" to "Sedang Buka",
+            "empty_title" to "Belum ada data cabang",
+            "empty_subtitle" to "Tambahkan cabang pertama Anda",
+            "add_branch" to "Tambah Cabang",
+            "confirm_delete_title" to "Konfirmasi Hapus",
+            "confirm_delete_message" to "Apakah Anda yakin ingin menghapus cabang",
+            "delete" to "Hapus",
+            "cancel" to "Batal",
+            "branch_added_success" to "Cabang berhasil ditambahkan",
+            "branch_updated_success" to "Data cabang berhasil diperbarui",
+            "branch_deleted_success" to "berhasil dihapus",
+            "delete_failed" to "Gagal menghapus cabang",
+            "invalid_id" to "ID cabang tidak valid",
+            "edit_feature_soon" to "Fitur edit akan segera tersedia",
+            "error" to "Error"
+        ),
+        "en" to mapOf(
+            "title" to "Branch Data",
+            "search_hint" to "Search branch...",
+            "total_branch" to "Total Branch",
+            "currently_open" to "Currently Open",
+            "empty_title" to "No branch data yet",
+            "empty_subtitle" to "Add your first branch",
+            "add_branch" to "Add Branch",
+            "confirm_delete_title" to "Confirm Delete",
+            "confirm_delete_message" to "Are you sure you want to delete branch",
+            "delete" to "Delete",
+            "cancel" to "Cancel",
+            "branch_added_success" to "Branch successfully added",
+            "branch_updated_success" to "Branch data successfully updated",
+            "branch_deleted_success" to "successfully deleted",
+            "delete_failed" to "Failed to delete branch",
+            "invalid_id" to "Invalid branch ID",
+            "edit_feature_soon" to "Edit feature coming soon",
+            "error" to "Error"
+        )
+    )
+
     // Activity Result Launcher untuk menangani hasil dari TambahCabangActivity
     private val tambahCabangLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
         if (result.resultCode == RESULT_OK) {
-            Toast.makeText(this, "Cabang berhasil ditambahkan", Toast.LENGTH_SHORT).show()
+            val texts = languageTexts[currentLanguage] ?: languageTexts["id"]!!
+            Toast.makeText(this, texts["branch_added_success"], Toast.LENGTH_SHORT).show()
             // Data akan otomatis terupdate melalui Firebase listener
         }
     }
@@ -65,7 +121,8 @@ class DataCabangActivity : AppCompatActivity() {
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
         if (result.resultCode == RESULT_OK) {
-            Toast.makeText(this, "Data cabang berhasil diperbarui", Toast.LENGTH_SHORT).show()
+            val texts = languageTexts[currentLanguage] ?: languageTexts["id"]!!
+            Toast.makeText(this, texts["branch_updated_success"], Toast.LENGTH_SHORT).show()
             // Data akan otomatis terupdate melalui Firebase listener
         }
     }
@@ -74,11 +131,13 @@ class DataCabangActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_data_cabang)
 
+        initLanguageSupport()
         initViews()
         setupToolbar()
         setupRecyclerView()
         setupSearchListener()
         setupListeners()
+        updateAllTexts()
         getData()
         startRealTimeStatusUpdate()
 
@@ -89,8 +148,14 @@ class DataCabangActivity : AppCompatActivity() {
         }
     }
 
+    private fun initLanguageSupport() {
+        sharedPref = getSharedPreferences("language_pref", MODE_PRIVATE)
+        currentLanguage = sharedPref.getString("selected_language", "id") ?: "id"
+    }
+
     private fun initViews() {
         toolbar = findViewById(R.id.toolbar)
+        tilSearch = findViewById(R.id.tilSearch)
         etSearch = findViewById(R.id.etSearch)
         tvTotalCabang = findViewById(R.id.tvTotalCabang)
         tvCabangBuka = findViewById(R.id.tvCabangBuka)
@@ -98,6 +163,12 @@ class DataCabangActivity : AppCompatActivity() {
         layoutEmptyState = findViewById(R.id.layoutEmptyState)
         fabTambahCabang = findViewById(R.id.fabTambahCabang)
         progressBar = findViewById(R.id.progressBar)
+
+        // Perbaikan: Cari dari root view activity, bukan dari layoutEmptyState
+        tvTotalCabangLabel = findViewById(R.id.tvTotalCabangLabel)
+        tvCabangBukaLabel = findViewById(R.id.tvCabangBukaLabel)
+        tvEmptyTitle = findViewById(R.id.tvEmptyTitle)
+        tvEmptySubtitle = findViewById(R.id.tvEmptySubtitle)
     }
 
     private fun setupToolbar() {
@@ -134,6 +205,27 @@ class DataCabangActivity : AppCompatActivity() {
             val intent = Intent(this, TambahCabangActivity::class.java)
             tambahCabangLauncher.launch(intent)
         }
+    }
+
+    private fun updateAllTexts() {
+        val texts = languageTexts[currentLanguage] ?: languageTexts["id"]!!
+
+        // Update toolbar title
+        toolbar.title = texts["title"]
+
+        // Update search hint
+        tilSearch.hint = texts["search_hint"]
+
+        // Update FAB content description
+        fabTambahCabang.contentDescription = texts["add_branch"]
+
+        // Update stats labels
+        tvTotalCabangLabel.text = texts["total_branch"]
+        tvCabangBukaLabel.text = texts["currently_open"]
+
+        // Update empty state texts
+        tvEmptyTitle.text = texts["empty_title"]
+        tvEmptySubtitle.text = texts["empty_subtitle"]
     }
 
     private fun getData() {
@@ -196,7 +288,8 @@ class DataCabangActivity : AppCompatActivity() {
             override fun onCancelled(error: DatabaseError) {
                 showLoading(false)
                 android.util.Log.e("FirebaseDebug", "Database error: ${error.message}")
-                Toast.makeText(this@DataCabangActivity, "Error: ${error.message}", Toast.LENGTH_SHORT).show()
+                val texts = languageTexts[currentLanguage] ?: languageTexts["id"]!!
+                Toast.makeText(this@DataCabangActivity, "${texts["error"]}: ${error.message}", Toast.LENGTH_SHORT).show()
             }
         })
     }
@@ -297,39 +390,42 @@ class DataCabangActivity : AppCompatActivity() {
     }
 
     private fun showDeleteConfirmationDialog(cabang: modelCabang) {
+        val texts = languageTexts[currentLanguage] ?: languageTexts["id"]!!
+
         AlertDialog.Builder(this)
-            .setTitle("Konfirmasi Hapus")
-            .setMessage("Apakah Anda yakin ingin menghapus cabang '${cabang.namaCabang}'?")
+            .setTitle(texts["confirm_delete_title"])
+            .setMessage("${texts["confirm_delete_message"]} '${cabang.namaCabang}'?")
             .setIcon(R.drawable.ic_warning)
-            .setPositiveButton("Hapus") { _, _ ->
+            .setPositiveButton(texts["delete"]) { _, _ ->
                 hapusCabang(cabang)
             }
-            .setNegativeButton("Batal", null)
+            .setNegativeButton(texts["cancel"], null)
             .show()
     }
 
     private fun hapusCabang(cabang: modelCabang) {
+        val texts = languageTexts[currentLanguage] ?: languageTexts["id"]!!
+
         if (cabang.idCabang.isNotEmpty()) {
             showLoading(true)
 
             myRef.child(cabang.idCabang).removeValue()
                 .addOnSuccessListener {
                     showLoading(false)
-                    Toast.makeText(this, "Cabang '${cabang.namaCabang}' berhasil dihapus", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Cabang '${cabang.namaCabang}' ${texts["branch_deleted_success"]}", Toast.LENGTH_SHORT).show()
                 }
                 .addOnFailureListener { error ->
                     showLoading(false)
-                    Toast.makeText(this, "Gagal menghapus cabang: ${error.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "${texts["delete_failed"]}: ${error.message}", Toast.LENGTH_SHORT).show()
                 }
         } else {
-            Toast.makeText(this, "ID cabang tidak valid", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, texts["invalid_id"], Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun editCabang(cabang: modelCabang) {
-        // Untuk saat ini, kita bisa buat EditCabangActivity nanti
-        // Atau bisa menggunakan TambahCabangActivity dengan mode edit
-        Toast.makeText(this, "Fitur edit akan segera tersedia", Toast.LENGTH_SHORT).show()
+        val texts = languageTexts[currentLanguage] ?: languageTexts["id"]!!
+        Toast.makeText(this, texts["edit_feature_soon"], Toast.LENGTH_SHORT).show()
 
         // Contoh implementasi jika ingin menggunakan TambahCabangActivity untuk edit:
         /*
@@ -373,6 +469,14 @@ class DataCabangActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+
+        // Check if language has changed
+        val savedLanguage = sharedPref.getString("selected_language", "id") ?: "id"
+        if (savedLanguage != currentLanguage) {
+            currentLanguage = savedLanguage
+            updateAllTexts()
+        }
+
         // Refresh status ketika activity kembali aktif
         adapter?.refreshRealTimeStatus()
         updateStats()

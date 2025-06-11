@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".cabang.DataCabangActivity">
+
+    <!-- App Bar -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorBackground"
+        android:elevation="4dp"
+        app:title="Data Cabang"
+        app:titleTextColor="#FFFFFF"
+        app:navigationIcon="@drawable/ic_arrow_back_24"
+        app:navigationIconTint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Top Section Container -->
+    <LinearLayout
+        android:id="@+id/layoutTopSection"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <!-- Search Bar Container -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardSearch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:layout_marginEnd="12dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Cari cabang..."
+                app:startIconDrawable="@drawable/search"
+                app:startIconTint="#666666"
+                app:endIconMode="clear_text"
+                app:endIconTint="#666666"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:background="@android:color/transparent" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Stats Cards Container -->
+        <LinearLayout
+            android:id="@+id/layoutStats"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <!-- Total Cabang Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="6dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="3dp"
+                app:cardBackgroundColor="#4CAF50">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="12dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tvTotalCabang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFF" />
+
+                    <TextView
+                        android:id="@+id/tvTotalCabangLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total"
+                        android:textSize="10sp"
+                        android:textColor="#FFFFFF"
+                        android:alpha="0.9" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Cabang Buka Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="6dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="3dp"
+                app:cardBackgroundColor="#2196F3">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="12dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tvCabangBuka"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFF" />
+
+                    <TextView
+                        android:id="@+id/tvCabangBukaLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Buka"
+                        android:textSize="10sp"
+                        android:textColor="#FFFFFF"
+                        android:alpha="0.9" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- RecyclerView with Grid Layout -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCabang"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:clipToPadding="false"
+        android:paddingHorizontal="6dp"
+        android:paddingBottom="16dp"
+        app:spanCount="2"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutTopSection"
+        tools:listitem="@layout/card_data_cabang" />
+
+    <!-- Empty State -->
+    <LinearLayout
+        android:id="@+id/layoutEmptyState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutTopSection">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_business"
+            android:alpha="0.3"
+            android:layout_marginEnd="16dp"
+            app:tint="#CCCCCC" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvEmptyTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Belum ada data cabang"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#666666" />
+
+            <TextView
+                android:id="@+id/tvEmptySubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tambahkan cabang pertama Anda"
+                android:textSize="14sp"
+                android:textColor="#999999"
+                android:layout_marginTop="4dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Floating Action Button -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabTambahCabang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/add1"
+        android:contentDescription="Tambah Cabang"
+        android:backgroundTint="?attr/colorBackground"
+        app:tint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Progress Bar -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

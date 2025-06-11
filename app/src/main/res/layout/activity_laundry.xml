@@ -8,64 +8,82 @@
     android:background="?attr/colorBackground"
     tools:context=".Laundry">
 
+    <!-- Header Section with Name and Language Switch -->
     <LinearLayout
         android:id="@+id/line1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="20dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
-        android:text="Selamat Pagi Atha"
-        android:textAlignment="textStart"
-        android:textSize="20dp"
-        android:layout_weight="1"
-        android:textColor="?attr/colorTextPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:text="Selamat Pagi Atha"
+            android:textAlignment="textStart"
+            android:textSize="20sp"
+            android:layout_weight="1"
+            android:textColor="?attr/colorTextPrimary"
+            android:gravity="start|center_vertical" />
 
-        <ImageButton
-            android:id="@+id/signup"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/adduser"
-            android:background="?attr/colorBackground"
-            android:layout_gravity="end"
-            android:clickable="true"
-            />
+        <!-- Language Switch Section -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginEnd="20dp">
 
+            <TextView
+                android:id="@+id/language_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bahasa Indonesia"
+                android:textSize="12sp"
+                android:textColor="?attr/colorTextPrimary"
+                android:gravity="center" />
+
+            <Switch
+                android:id="@+id/switchLanguage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:thumbTint="@color/white"
+                android:trackTint="@color/white" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
-
-
-
-
+    <!-- Date Display -->
     <TextView
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="date"
+        android:textStyle="bold"
         android:textColor="?attr/colorTextPrimary"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/line1"
-        app:layout_constraintBottom_toTopOf="@+id/menu1"
-        android:layout_marginEnd="50dp"/>
+        app:layout_constraintTop_toBottomOf="@+id/line1" />
 
+    <!-- Main Menu Card -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/menu1"
-        android:layout_width="350dp"
+        android:layout_width="0dp"
         android:layout_height="180dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
         android:paddingBottom="10dp"
-        android:layout_marginTop="30dp"
         android:background="@drawable/rounded_bg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -76,10 +94,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:text="Estimasi Hari Ini"
             android:textColor="?attr/colorTextSecondary"
-            android:textSize="20dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -91,264 +110,324 @@
             android:layout_marginEnd="20dp"
             android:text="ᴿᵖ.212.000,-"
             android:textColor="?attr/colorTextSecondary"
-            android:textSize="15dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <View
             android:id="@+id/line"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="1dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:layout_marginTop="15dp"
             android:background="@android:color/darker_gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Estimasi" />
 
-        <ImageView
-            android:id="@+id/transaksi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/lending"
-            android:onClick="transaksi"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/customer"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/line" />
-
-        <TextView
-            android:id="@+id/transaksi_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Transaksi"
-            android:textStyle="normal"
-            android:textColor="?attr/colorTextSecondary"
-            app:layout_constraintTop_toBottomOf="@+id/transaksi"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/customer_txt"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-
-        <ImageView
-            android:id="@+id/customer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/customer"
+        <!-- Transaction Button -->
+        <LinearLayout
+            android:id="@+id/transaksi_layout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:gravity="center"
             android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground"
+            android:onClick="transaksi"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/customer_layout"
+            app:layout_constraintTop_toBottomOf="@+id/line"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageView
+                android:id="@+id/transaksi"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/lending"
+                android:contentDescription="Transaction" />
+
+            <TextView
+                android:id="@+id/transaksi_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Transaksi"
+                android:textStyle="normal"
+                android:textSize="14sp"
+                android:textColor="?attr/colorTextSecondary" />
+
+        </LinearLayout>
+
+        <!-- Customer Button -->
+        <LinearLayout
+            android:id="@+id/customer_layout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground"
             android:onClick="pelanggan"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/raport"
-            app:layout_constraintStart_toEndOf="@+id/transaksi"
-            app:layout_constraintTop_toBottomOf="@+id/line" />
+            app:layout_constraintStart_toEndOf="@+id/transaksi_layout"
+            app:layout_constraintEnd_toStartOf="@+id/report_layout"
+            app:layout_constraintTop_toBottomOf="@+id/line"
+            app:layout_constraintBottom_toBottomOf="parent">
 
-        <TextView
-            android:id="@+id/customer_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pelanggan"
-            android:textColor="?attr/colorTextSecondary"
-            android:textStyle="normal"
-            app:layout_constraintEnd_toStartOf="@+id/report_txt"
-            app:layout_constraintTop_toBottomOf="@+id/customer"
-            app:layout_constraintStart_toEndOf="@+id/transaksi_txt"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            <ImageView
+                android:id="@+id/customer"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/customer"
+                android:contentDescription="Customer" />
 
-        <ImageView
-            android:id="@+id/raport"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/report"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            <TextView
+                android:id="@+id/customer_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Pelanggan"
+                android:textColor="?attr/colorTextSecondary"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+        </LinearLayout>
+
+        <!-- Report Button -->
+        <LinearLayout
+            android:id="@+id/report_layout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground"
             android:onClick="laporan"
-            app:layout_constraintStart_toEndOf="@+id/customer"
-            app:layout_constraintTop_toBottomOf="@+id/line" />
-
-        <TextView
-            android:id="@+id/report_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Laporan"
-            android:textColor="?attr/colorTextSecondary"
-            android:textStyle="normal"
-            app:layout_constraintTop_toBottomOf="@+id/raport"
-            app:layout_constraintStart_toEndOf="@id/customer_txt"
+            app:layout_constraintStart_toEndOf="@+id/customer_layout"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@+id/line"
+            app:layout_constraintBottom_toBottomOf="parent">
 
+            <ImageView
+                android:id="@+id/raport"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/report"
+                android:contentDescription="Report" />
+
+            <TextView
+                android:id="@+id/report_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Laporan"
+                android:textColor="?attr/colorTextSecondary"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <!-- Motivational Text 1 -->
     <TextView
         android:id="@+id/txt1"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="30dp"
         android:text="Siap melayani pelanggan dengan setulus hati"
         android:textColor="?attr/colorTextPrimary"
         android:textAlignment="center"
         android:padding="5dp"
-        android:layout_margin="20dp"
         android:textStyle="bold"
-        android:textSize="20dp"
+        android:textSize="18sp"
         app:layout_constraintTop_toBottomOf="@+id/menu1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Motivational Text 2 -->
     <TextView
         android:id="@+id/txt2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="?attr/colorTextPrimary"
         android:text="Jangan kecewakan pelanggan!"
-        app:layout_constraintTop_toBottomOf="@+id/txt1"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="25dp"
         android:layout_marginTop="10dp"
-        android:textSize="15dp"
-        />
+        android:textSize="15sp"
+        app:layout_constraintTop_toBottomOf="@+id/txt1"
+        app:layout_constraintStart_toStartOf="parent" />
 
+    <!-- Grid Layout for Menu Items -->
     <GridLayout
+        android:id="@+id/menu_grid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
         android:rowCount="2"
         android:columnCount="3"
         android:alignmentMode="alignMargins"
         android:padding="10dp"
+        android:gravity="center"
         app:layout_constraintTop_toBottomOf="@+id/txt2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="16dp"
-        android:gravity="center">
+        app:layout_constraintBottom_toBottomOf="parent">
 
-        <!-- Gambar 1 -->
+        <!-- Account Menu Item -->
         <LinearLayout
             android:layout_width="100dp"
             android:layout_height="120dp"
             android:orientation="vertical"
             android:gravity="center"
             android:background="@drawable/rounded_bg"
-            android:layout_margin="8dp">
+            android:layout_margin="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="account">
 
-            <ImageButton
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:src="@drawable/user1"
-                android:background="@color/white"
-                android:onClick="account"
-                android:contentDescription="Gambar 1" />
+                android:contentDescription="Account" />
 
             <TextView
+                android:id="@+id/account_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:text="Akun"
                 android:textSize="14sp"
                 android:gravity="center"
                 android:textColor="?attr/colorTextSecondary" />
         </LinearLayout>
 
-        <!-- Gambar 2 -->
+        <!-- Service Menu Item -->
         <LinearLayout
             android:layout_width="100dp"
             android:layout_height="120dp"
             android:orientation="vertical"
             android:gravity="center"
             android:background="@drawable/rounded_bg"
-            android:layout_margin="8dp">
+            android:layout_margin="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="layanan">
 
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:src="@drawable/service1"
-                android:onClick="layanan"
-                android:clickable="true"
-                android:contentDescription="Gambar 2"
-                tools:ignore="OnClick" />
+                android:contentDescription="Service" />
 
             <TextView
+                android:id="@+id/layanan_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:text="Layanan"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:textColor="?attr/colorTextSecondary"/>
+                android:textColor="?attr/colorTextSecondary" />
         </LinearLayout>
 
-        <!-- Gambar 3 -->
+        <!-- Add Menu Item -->
         <LinearLayout
             android:layout_width="100dp"
             android:layout_height="120dp"
             android:orientation="vertical"
             android:gravity="center"
             android:background="@drawable/rounded_bg"
-            android:layout_margin="8dp">
+            android:layout_margin="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="layanantambahan">
 
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:onClick="layanantambahan"
                 android:src="@drawable/add1"
-                android:contentDescription="Gambar 3" />
+                android:contentDescription="Add Service" />
 
             <TextView
+                android:id="@+id/tambah_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:text="Tambah"
                 android:textSize="14sp"
                 android:gravity="center"
                 android:textColor="?attr/colorTextSecondary" />
         </LinearLayout>
 
-        <!-- Gambar 4 -->
+        <!-- Employee Menu Item -->
         <LinearLayout
             android:layout_width="100dp"
             android:layout_height="120dp"
             android:orientation="vertical"
             android:gravity="center"
             android:background="@drawable/rounded_bg"
-            android:layout_margin="8dp">
+            android:layout_margin="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="pegawai">
 
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:src="@drawable/division1"
-                android:clickable="true"
-                android:onClick="pegawai"
-                android:contentDescription="Gambar 4" />
+                android:contentDescription="Employee" />
 
             <TextView
+                android:id="@+id/pegawai_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:text="Pegawai"
                 android:textSize="14sp"
                 android:gravity="center"
                 android:textColor="?attr/colorTextSecondary" />
         </LinearLayout>
 
-        <!-- Gambar 5 -->
+        <!-- Branch Menu Item -->
         <LinearLayout
             android:layout_width="100dp"
             android:layout_height="120dp"
             android:orientation="vertical"
             android:gravity="center"
             android:background="@drawable/rounded_bg"
-            android:layout_margin="8dp">
+            android:layout_margin="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="Cabang">
 
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:src="@drawable/global1"
-                android:contentDescription="Gambar 5"
-                android:onClick="Cabang"/>
+                android:contentDescription="Branch" />
 
             <TextView
+                android:id="@+id/cabang_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:text="Cabang"
                 android:textSize="14sp"
                 android:gravity="center"
                 android:textColor="?attr/colorTextSecondary" />
         </LinearLayout>
 
-        <!-- Gambar 6 -->
+        <!-- Printer Menu Item -->
         <LinearLayout
             android:layout_width="100dp"
             android:layout_height="120dp"
@@ -361,25 +440,19 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:src="@drawable/printer1"
-                android:contentDescription="Gambar 6" />
+                android:contentDescription="Printer" />
 
             <TextView
+                android:id="@+id/printer_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:text="Printer"
                 android:textSize="14sp"
                 android:gravity="center"
                 android:textColor="?attr/colorTextSecondary" />
         </LinearLayout>
+
     </GridLayout>
-
-
-
-
-
-
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

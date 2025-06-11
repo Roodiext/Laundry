@@ -13,7 +13,6 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import com.google.android.material.appbar.MaterialToolbar
 import com.google.firebase.database.*
 import com.rudi.laundry.R
 import com.rudi.laundry.modeldata.modelLayanan
@@ -30,7 +29,6 @@ class EditLayananActivity : AppCompatActivity() {
     private val cabangRef: DatabaseReference = database.getReference("cabang")
 
     // Views
-    private lateinit var toolbar: MaterialToolbar
     private lateinit var tilNamaLayanan: TextInputLayout
     private lateinit var etNamaLayanan: TextInputEditText
     private lateinit var tilHargaLayanan: TextInputLayout
@@ -66,7 +64,6 @@ class EditLayananActivity : AppCompatActivity() {
         setContentView(R.layout.activity_edit_layanan)
 
         initViews()
-        setupToolbar()
         setupDropdowns()
         setupPriceFormatter()
         getDataFromIntent()
@@ -81,7 +78,6 @@ class EditLayananActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
-        toolbar = findViewById(R.id.toolbar)
         tilNamaLayanan = findViewById(R.id.tilNamaLayanan)
         etNamaLayanan = findViewById(R.id.etNamaLayanan)
         tilHargaLayanan = findViewById(R.id.tilHargaLayanan)
@@ -94,15 +90,6 @@ class EditLayananActivity : AppCompatActivity() {
         btnSimpanPerubahan = findViewById(R.id.btnSimpanPerubahan)
     }
 
-    private fun setupToolbar() {
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
-
-        toolbar.setNavigationOnClickListener {
-            onBackPressed()
-        }
-    }
 
     private fun setupDropdowns() {
         // Setup Jenis Layanan Dropdown

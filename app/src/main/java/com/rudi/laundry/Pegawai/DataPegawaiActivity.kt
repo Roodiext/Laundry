@@ -22,14 +22,46 @@ class DataPegawaiActivity : AppCompatActivity() {
     private var listPegawai = arrayListOf<modelPegawai>()
     private lateinit var adapter: AdapterDataPegawai
 
+    // Language support
+    private var currentLanguage = "id"
+
+    // Language texts
+    private val languageTexts = mapOf(
+        "id" to mapOf(
+            "add_employee" to "Tambah Pegawai",
+            "data_loaded" to "Data dimuat",
+            "employees" to "pegawai",
+            "no_employee_data" to "Belum ada data pegawai",
+            "error_loading_data" to "Error memuat data"
+        ),
+        "en" to mapOf(
+            "add_employee" to "Add Employee",
+            "data_loaded" to "Data loaded",
+            "employees" to "employees",
+            "no_employee_data" to "No employee data yet",
+            "error_loading_data" to "Error loading data"
+        )
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_data_pegawai)
 
+        loadCurrentLanguage()
         initViews()
         setupRecyclerView()
         setupListeners()
         getData()
+    }
+
+    private fun loadCurrentLanguage() {
+        val sharedPref = getSharedPreferences("language_pref", MODE_PRIVATE)
+        currentLanguage = sharedPref.getString("selected_language", "id") ?: "id"
+    }
+
+    private fun getText(key: String): String {
+        val texts = languageTexts[currentLanguage] ?: languageTexts["id"]!!
+        return texts[key] ?: key
     }
 
     private fun initViews() {
@@ -52,8 +84,8 @@ class DataPegawaiActivity : AppCompatActivity() {
     private fun setupListeners() {
         fabTambahPegawai.setOnClickListener {
             val intent = Intent(this, TambahPegawaiActivity::class.java)
-            // Tambahkan extra untuk menandai mode tambah
-            intent.putExtra("judul", "Tambah Pegawai")
+            // Tambahkan extra untuk menandai mode tambah dengan bahasa yang sesuai
+            intent.putExtra("judul", getText("add_employee"))
             startActivity(intent)
         }
     }
@@ -81,26 +113,36 @@ class DataPegawaiActivity : AppCompatActivity() {
                     // Update adapter dengan data baru
                     adapter.notifyDataSetChanged()
 
-                    // Log untuk debug
+                    // Log untuk debug dengan bahasa yang sesuai
                     Toast.makeText(this@DataPegawaiActivity,
-                        "Data dimuat: ${listPegawai.size} pegawai", Toast.LENGTH_SHORT).show()
+                        "${getText("data_loaded")}: ${listPegawai.size} ${getText("employees")}", Toast.LENGTH_SHORT).show()
                 } else {
                     // Jika tidak ada data
                     adapter.notifyDataSetChanged()
                     Toast.makeText(this@DataPegawaiActivity,
-                        "Belum ada data pegawai", Toast.LENGTH_SHORT).show()
+                        getText("no_employee_data"), Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
                 Toast.makeText(this@DataPegawaiActivity,
-                    "Error memuat data: ${error.message}", Toast.LENGTH_LONG).show()
+                    "${getText("error_loading_data")}: ${error.message}", Toast.LENGTH_LONG).show()
             }
         })
     }
 
     override fun onResume() {
         super.onResume()
+        // Check jika bahasa berubah
+        val sharedPref = getSharedPreferences("language_pref", MODE_PRIVATE)
+        val newLanguage = sharedPref.getString("selected_language", "id") ?: "id"
+
+        if (newLanguage != currentLanguage) {
+            currentLanguage = newLanguage
+            // Update adapter untuk refresh bahasa
+            adapter.updateLanguage()
+        }
+
         // Firebase listener sudah handle real-time updates
         // Tidak perlu refresh manual
     }

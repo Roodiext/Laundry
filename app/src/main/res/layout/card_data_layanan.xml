@@ -6,8 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="12dp"
     app:cardCornerRadius="16dp"
-    app:cardElevation="6dp"
-    android:foreground="?android:attr/selectableItemBackground">
+    app:cardElevation="6dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,7 +18,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorFirst"
+            android:background="?attr/colorBackground"
             android:orientation="horizontal"
             android:padding="16dp"
             android:gravity="center_vertical">
@@ -29,7 +28,7 @@
                 android:layout_height="24dp"
                 android:src="@drawable/ic_service"
                 android:layout_marginEnd="12dp"
-                android:tint="@color/black" />
+                android:tint="?attr/colorTextPrimary" />
 
             <TextView
                 android:id="@+id/tvHeaderTitle"
@@ -37,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/card_layanan_id"
-                android:textColor="@color/black"
+                android:textColor="?attr/colorTextPrimary"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:fontFamily="sans-serif-medium" />
@@ -73,6 +72,7 @@
                     android:tint="@color/colorFirst" />
 
                 <TextView
+                    android:id="@+id/tvServiceNameLabel"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -109,6 +109,7 @@
                     android:tint="#4CAF50" />
 
                 <TextView
+                    android:id="@+id/tvPriceLabel"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -145,6 +146,7 @@
                     android:tint="#FF9800" />
 
                 <TextView
+                    android:id="@+id/tvBranchLabel"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -187,16 +189,16 @@
                     android:layout_weight="1"
                     android:layout_marginEnd="8dp"
                     android:text="Lihat Detail"
-                    android:textColor="@color/colorFirst"
+                    android:textColor="?attr/colorBackground"
                     android:textSize="14sp"
                     android:textAllCaps="false"
                     android:fontFamily="sans-serif-medium"
-                    app:strokeColor="@color/colorFirst"
+                    app:strokeColor="?attr/colorBackground"
                     app:strokeWidth="2dp"
                     app:cornerRadius="12dp"
                     app:icon="@drawable/ic_visibility"
                     app:iconSize="18dp"
-                    app:iconTint="@color/colorFirst" />
+                    app:iconTint="?attr/colorBackground" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btLihat"
@@ -210,7 +212,7 @@
                     android:textSize="14sp"
                     android:textAllCaps="false"
                     android:fontFamily="sans-serif-medium"
-                    android:backgroundTint="@color/colorFirst"
+                    android:backgroundTint="?attr/colorBackground"
                     app:cornerRadius="12dp"
                     app:icon="@drawable/ic_phone"
                     app:iconSize="18dp"

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:background="?attr/colorBackground">
 
     <LinearLayout
         android:id="@+id/tambahpegawai"
@@ -21,13 +22,14 @@
             android:layout_marginBottom="32dp"
             app:cardCornerRadius="16dp"
             app:cardElevation="8dp"
-            app:cardBackgroundColor="@color/primary_color">
+           >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="24dp"
+
                 android:gravity="center">
 
                 <ImageView
@@ -35,22 +37,23 @@
                     android:layout_height="48dp"
                     android:src="@drawable/ic_badge"
                     android:layout_marginBottom="12dp"
-                    app:tint="@color/white" />
+                    android:textColor="?attr/colorTextThree" />
 
                 <TextView
                     android:id="@+id/tvjudul_tambah_pegawai"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Tambah Pegawai Baru"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorTextThree"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tv_subtitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Lengkapi data pegawai dengan benar"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorTextThree"
                     android:textSize="14sp"
                     android:alpha="0.9"
                     android:layout_marginTop="4dp" />
@@ -63,8 +66,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="20dp"
-            app:cardElevation="12dp"
-            app:cardBackgroundColor="@color/white">
+            app:cardElevation="12dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -74,6 +76,7 @@
 
                 <!-- Nama Lengkap -->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_nama"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
@@ -88,6 +91,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Nama Lengkap"
+                        android:textColor="?attr/colorTextThree"
                         android:inputType="textPersonName|textCapWords"
                         android:textSize="16sp" />
 
@@ -95,6 +99,7 @@
 
                 <!-- Alamat -->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_alamat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
@@ -109,6 +114,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Alamat Lengkap"
+                        android:textColor="?attr/colorTextThree"
                         android:inputType="textMultiLine|textCapSentences"
                         android:maxLines="3"
                         android:textSize="16sp" />
@@ -117,6 +123,7 @@
 
                 <!-- No HP -->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_nohp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
@@ -132,6 +139,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Nomor HP Aktif"
+                        android:textColor="?attr/colorTextThree"
                         android:inputType="phone"
                         android:textSize="16sp" />
 
@@ -139,6 +147,7 @@
 
                 <!-- Cabang -->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_cabang"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="32dp"
@@ -154,7 +163,10 @@
                         android:layout_height="wrap_content"
                         android:hint="Pilih Cabang"
                         android:inputType="none"
+                        android:textColor="?attr/colorTextThree"
                         android:textSize="16sp"
+                        app:iconTint="@color/white"
+                        android:drawableTint="@color/white"
                         android:completionThreshold="1"
                         android:dropDownHeight="200dp"
                         android:focusable="false"
@@ -178,11 +190,12 @@
                         android:layout_weight="1"
                         android:layout_marginEnd="8dp"
                         android:text="Batal"
+                        android:backgroundTint="@color/spinner_text_color"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                        app:strokeColor="@color/primary_color"
-                        android:textColor="@color/primary_color"
+
+                        android:textColor="@color/white"
                         app:cornerRadius="28dp" />
 
                     <com.google.android.material.button.MaterialButton
@@ -195,7 +208,7 @@
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:textColor="@color/white"
-                        app:backgroundTint="@color/primary_color"
+                        app:backgroundTint="#27AE60"
                         app:cornerRadius="28dp"
                         app:iconTint="@color/white" />
 

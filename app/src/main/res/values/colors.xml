@@ -1,15 +1,17 @@
 <resources>
     <!-- Light Mode Colors -->
-    <color name="background">#A5BFCC</color>
-    <color name="text_primary">#000000</color>
-    <color name="text_secondary">#666666</color>
+    <color name="background">#007AFF</color>
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#000000</color>
+    <color name="text_three">#000000</color>
     <color name="button">#FFFFFF</color>
     <color name="colorFirst">#AEB8FE</color>
 
     <!-- Dark Mode Colors -->
     <color name="background_dark">#2E5077</color>
     <color name="text_primary_dark">#FFFFFF</color>
-    <color name="text_secondary_dark">#CCCCCC</color>
+    <color name="text_secondary_dark">#000000</color>
+    <color name="text_three_dark">#ffff</color>
     <color name="button_dark">#FFFFFF</color>
     <color name="colorFirst_dark">#AEB8FE</color>
 
