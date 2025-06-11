@@ -59,22 +59,22 @@
 
 <table>
   <tr><th align="center">[Judul Transaksi 2]</th></tr>
-  <tr><td align="center"><img src="Asset/Transaksi1.png" width="400"/></td></tr>
+  <tr><td align="center"><img src="Asset/Transaksi1.jpg" width="400"/></td></tr>
 </table>
 
 <table>
   <tr><th align="center">[Judul Transaksi 3]</th></tr>
-  <tr><td align="center"><img src="Asset/Transaksi2.png" width="400"/></td></tr>
+  <tr><td align="center"><img src="Asset/Transaksi2.jpg" width="400"/></td></tr>
 </table>
 
 <table>
   <tr><th align="center">[Judul Transaksi 4]</th></tr>
-  <tr><td align="center"><img src="Asset/Transaksi3.png" width="400"/></td></tr>
+  <tr><td align="center"><img src="Asset/Transaksi3.jpg" width="400"/></td></tr>
 </table>
 
 <table>
   <tr><th align="center">[Judul Transaksi 5]</th></tr>
-  <tr><td align="center"><img src=Asset/Transaksi4.png" width="400"/></td></tr>
+  <tr><td align="center"><img src=Asset/Transaksi4.jpg" width="400"/></td></tr>
 </table>
 
 ---
@@ -83,22 +83,22 @@
 
 <table>
   <tr><th align="center">[Judul Konfirmasi 1]</th></tr>
-  <tr><td align="center"><img src="Asset/Konfirmasi.png" width="400"/></td></tr>
+  <tr><td align="center"><img src="Asset/Konfirmasi.jpg" width="400"/></td></tr>
 </table>
 
 <table>
   <tr><th align="center">[Judul Konfirmasi 2]</th></tr>
-  <tr><td align="center"><img src=Asset/Konfirmasi1.png" width="400"/></td></tr>
+  <tr><td align="center"><img src=Asset/Konfirmasi1.jpg" width="400"/></td></tr>
 </table>
 
 <table>
   <tr><th align="center">[Judul Konfirmasi 3]</th></tr>
-  <tr><td align="center"><img src=Asset/Konfirmasi2.png" width="400"/></td></tr>
+  <tr><td align="center"><img src=Asset/Konfirmasi2.jpg" width="400"/></td></tr>
 </table>
 
 <table>
   <tr><th align="center">[Judul Konfirmasi 4]</th></tr>
-  <tr><td align="center"><img src=Asset/Konfirmasi3.png" width="400"/></td></tr>
+  <tr><td align="center"><img src=Asset/Konfirmasi3.jpg" width="400"/></td></tr>
 </table>
 
 ---
@@ -107,7 +107,7 @@
 
 <table>
   <tr><th align="center">[Judul Invoice]</th></tr>
-  <tr><td align="center"><img src="Asset/Invoice.png" width="400"/></td></tr>
+  <tr><td align="center"><img src="Asset/Invoice.jpg" width="400"/></td></tr>
 </table>
 
 ---
@@ -116,17 +116,17 @@
 
 <table>
   <tr><th align="center">[Judul Pelanggan 1]</th></tr>
-  <tr><td align="center"><img src=Asset/pelanggan.png" width="400"/></td></tr>
+  <tr><td align="center"><img src=Asset/pelanggan.jpg" width="400"/></td></tr>
 </table>
 
 <table>
   <tr><th align="center">[Judul Pelanggan 2]</th></tr>
-  <tr><td align="center"><img src="Asset/pelanggan1.png" width="400"/></td></tr>
+  <tr><td align="center"><img src="Asset/pelanggan1.jpg" width="400"/></td></tr>
 </table>
 
 <table>
   <tr><th align="center">[Judul Pelanggan 3]</th></tr>
-  <tr><td align="center"><img src="assets/pelanggan2.png" width="400"/></td></tr>
+  <tr><td align="center"><img src="assets/pelanggan2.jpg" width="400"/></td></tr>
 </table>
 
 ---
@@ -135,17 +135,17 @@
 
 <table>
   <tr><th align="center">[Judul Laporan 1]</th></tr>
-  <tr><td align="center"><img src="assets/laporan1.png" width="400"/></td></tr>
+  <tr><td align="center"><img src="assets/laporan1.jpg" width="400"/></td></tr>
 </table>
 
 <table>
   <tr><th align="center">[Judul Laporan 2]</th></tr>
-  <tr><td align="center"><img src="assets/laporan2.png" width="400"/></td></tr>
+  <tr><td align="center"><img src="assets/laporan2.jpg" width="400"/></td></tr>
 </table>
 
 <table>
   <tr><th align="center">[Judul Laporan 3]</th></tr>
-  <tr><td align="center"><img src="assets/laporan3.png" width="400"/></td></tr>
+  <tr><td align="center"><img src="assets/laporan3.jpg" width="400"/></td></tr>
 </table>
 
 ---
@@ -154,7 +154,7 @@
 
 <table>
   <tr><th align="center">[Judul Akun]</th></tr>
-  <tr><td align="center"><img src="assets/akun.png" width="400"/></td></tr>
+  <tr><td align="center"><img src="assets/akun.jpg" width="400"/></td></tr>
 </table>
 
 ---
@@ -163,17 +163,17 @@
 
 <table>
   <tr><th align="center">[Judul Layanan 1]</th></tr>
-  <tr><td align="center"><img src="assets/layanan1.png" width="400"/></td></tr>
+  <tr><td align="center"><img src="assets/layanan1.jpg" width="400"/></td></tr>
 </table>
 
 <table>
   <tr><th align="center">[Judul Layanan 2]</th></tr>
-  <tr><td align="center"><img src="assets/layanan2.png" width="400"/></td></tr>
+  <tr><td align="center"><img src="assets/layanan2.jpg" width="400"/></td></tr>
 </table>
 
 <table>
   <tr><th align="center">[Judul Layanan 3]</th></tr>
-  <tr><td align="center"><img src="assets/layanan3.png" width="400"/></td></tr>
+  <tr><td align="center"><img src="assets/layanan3.jpg" width="400"/></td></tr>
 </table>
 
 ---
@@ -182,17 +182,17 @@
 
 <table>
   <tr><th align="center">[Judul Tambahan 1]</th></tr>
-  <tr><td align="center"><img src="assets/tambahan1.png" width="400"/></td></tr>
+  <tr><td align="center"><img src="assets/tambahan1.jpg" width="400"/></td></tr>
 </table>
 
 <table>
   <tr><th align="center">[Judul Tambahan 2]</th></tr>
-  <tr><td align="center"><img src="assets/tambahan2.png" width="400"/></td></tr>
+  <tr><td align="center"><img src="assets/tambahan2.jpg" width="400"/></td></tr>
 </table>
 
 <table>
   <tr><th align="center">[Judul Tambahan 3]</th></tr>
-  <tr><td align="center"><img src="assets/tambahan3.png" width="400"/></td></tr>
+  <tr><td align="center"><img src="assets/tambahan3.jpg" width="400"/></td></tr>
 </table>
 
 ---
@@ -201,17 +201,17 @@
 
 <table>
   <tr><th align="center">[Judul Pegawai 1]</th></tr>
-  <tr><td align="center"><img src="assets/pegawai1.png" width="400"/></td></tr>
+  <tr><td align="center"><img src="assets/pegawai1.jpg" width="400"/></td></tr>
 </table>
 
 <table>
   <tr><th align="center">[Judul Pegawai 2]</th></tr>
-  <tr><td align="center"><img src="assets/pegawai2.png" width="400"/></td></tr>
+  <tr><td align="center"><img src="assets/pegawai2.jpg" width="400"/></td></tr>
 </table>
 
 <table>
   <tr><th align="center">[Judul Pegawai 3]</th></tr>
-  <tr><td align="center"><img src="assets/pegawai3.png" width="400"/></td></tr>
+  <tr><td align="center"><img src="assets/pegawai3.jpg" width="400"/></td></tr>
 </table>
 
 ---
@@ -220,12 +220,12 @@
 
 <table>
   <tr><th align="center">[Judul Cabang 1]</th></tr>
-  <tr><td align="center"><img src="assets/cabang1.png" width="400"/></td></tr>
+  <tr><td align="center"><img src="assets/cabang1.jpg" width="400"/></td></tr>
 </table>
 
 <table>
   <tr><th align="center">[Judul Cabang 2]</th></tr>
-  <tr><td align="center"><img src="assets/cabang2.png" width="400"/></td></tr>
+  <tr><td align="center"><img src="assets/cabang2.jpg" width="400"/></td></tr>
 </table>
 
 ---
