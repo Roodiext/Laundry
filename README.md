@@ -62,10 +62,10 @@
 <table>
   <tr>
     <th align="center">Transaksi 1</th>
-    <th align="center">Transaksi 2</th>
-    <th align="center">Transaksi 3</th>
-    <th align="center">Transaksi 4</th>
-    <th align="center">Transaksi 5</th>
+    <th align="center">Pilih Pelanggan</th>
+    <th align="center">Pilih Layanan</th>
+    <th align="center">Transaksi Setelah di Input</th>
+    <th align="center">Pilih Layanan Tambahan</th>
   </tr>
   <tr>
     <td align="center"><img src="assets/transaksi1.jpg" width="200"/></td>
@@ -82,10 +82,10 @@
 
 <table>
   <tr>
-    <th align="center">Konfirmasi 1</th>
-    <th align="center">Konfirmasi 2</th>
-    <th align="center">Konfirmasi 3</th>
-    <th align="center">Konfirmasi 4</th>
+    <th align="center">Konfirmasi trnasaksi</th>
+    <th align="center">Konfirmasi Transkasi</th>
+    <th align="center">Konfirmasi Transaksi (setelah di input)</th>
+    <th align="center">Konfirmasi Transaksi (setelah di input)</th>
   </tr>
   <tr>
     <td align="center"><img src="assets/Konfirmasi1.jpg" width="200"/></td>
@@ -101,6 +101,7 @@
 
 <table>
   <tr>
+    <th align="center">Invoice</th>
     <th align="center">Invoice</th>
   </tr>
   <tr>
@@ -162,9 +163,9 @@
 
 <table>
   <tr>
-    <th align="center">Layanan 1</th>
-    <th align="center">Layanan 2</th>
-    <th align="center">Layanan 3</th>
+    <th align="center">Layanan</th>
+    <th align="center">Tambah Layanan</th>
+    
   </tr>
   <tr>
     <td align="center"><img src="assets/layanan1.jpg" width="200"/></td>
@@ -178,8 +179,8 @@
 
 <table>
   <tr>
-    <th align="center">Tambahan 1</th>
-    <th align="center">Tambahan 2</th>
+    <th align="center">Layanan Tambahan</th>
+    <th align="center">Tambah Layanan</th>
     <th align="center">Tambahan 3</th>
   </tr>
   <tr>
@@ -194,8 +195,8 @@
 
 <table>
   <tr>
-    <th align="center">Pegawai 1</th>
-    <th align="center">Pegawai 2</th>
+    <th align="center">Pegawai</th>
+    <th align="center">Tambah Pegawai 2</th>
     <th align="center">Pegawai 3</th>
   </tr>
   <tr>
@@ -210,8 +211,8 @@
 
 <table>
   <tr>
-    <th align="center">Cabang 1</th>
-    <th align="center">Cabang 2</th>
+    <th align="center">Cabang</th>
+    <th align="center">Tambah Cabang</th>
   </tr>
   <tr>
     <td align="center"><img src="assets/cabang1.jpg" width="250"/></td>
@@ -225,18 +226,6 @@
 
 | Frontend         | Backend               | Database            |
 | ---------------- | --------------------- | ------------------- |
-| HTML + Tailwind CSS | Firebase Authentication | Firebase Firestore  |
+| XML + Kotlin + Java | Firebase Authentication | Firebase Firestore  |
 
 ---
-
-## 🌐 Live Demo
-
-👉 [Klik di sini untuk mencoba Cleanify!](https://cleanify.vercel.app)
-
----
-
-## ⚙️ Cara Menjalankan
-
-1. Clone repositori:
-   ```bash
-   git clone https://github.com/username/cleanify.git
