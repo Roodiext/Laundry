@@ -112,9 +112,9 @@
 
 <table>
   <tr>
-    <th align="center">Pelanggan 1</th>
-    <th align="center">Pelanggan 2</th>
-    <th align="center">Pelanggan 3</th>
+    <th align="center">Data Pelanggan</th>
+    <th align="center">Tambah Pelanggan</th>
+    <th align="center">Edit Pelanggan 3</th>
   </tr>
   <tr>
     <td align="center"><img src="assets/pelanggan1.jpg" width="200"/></td>
@@ -161,11 +161,12 @@
   <tr>
     <th align="center">Layanan</th>
     <th align="center">Tambah Layanan</th>
-    
+    <th align="center">Edit Layanan</th>
   </tr>
   <tr>
     <td align="center"><img src="assets/layanan1.jpg" width="200"/></td>
     <td align="center"><img src="assets/layanan2.jpg" width="200"/></td>
+    <td align="center"><img src="assets/layanan3.jpg" width="200"/></td>
   </tr>
 </table>
 
@@ -176,12 +177,13 @@
 <table>
   <tr>
     <th align="center">Layanan Tambahan</th>
-    <th align="center">Tambah Layanan</th>
-    <th align="center">Tambahan 3</th>
+    <th align="center">Tambah Layanan Tambahan</th>
+    <th align="center">Edit Layanan Tambahan</th>
   </tr>
   <tr>
     <td align="center"><img src="assets/layanantambahan1.jpg" width="200"/></td>
     <td align="center"><img src="assets/layanantambahan2.jpg" width="200"/></td>
+    <td align="center"><img src="assets/layanantambahan3.jpg" width="200"/></td>
   </tr>
 </table>
 
@@ -193,11 +195,12 @@
   <tr>
     <th align="center">Pegawai</th>
     <th align="center">Tambah Pegawai 2</th>
-    <th align="center">Pegawai 3</th>
+    <th align="center">Edit Pegawai</th>
   </tr>
   <tr>
     <td align="center"><img src="assets/pegawai.jpg" width="200"/></td>
     <td align="center"><img src="assets/pegawai2.jpg" width="200"/></td>
+    <td align="center"><img src="assets/pegawai3.jpg" width="200"/></td>
   </tr>
 </table>
 
