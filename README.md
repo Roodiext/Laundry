@@ -26,60 +26,206 @@
 
 ## 🖼️ Tampilan Halaman
 
-### 🔐 Login & Register
-- ![Login](assets/login.png)
-- ![Register](assets/register.png)
+## 🔐 Login & Register
 
-### 🏠 Dashboard (Home)
-- ![Home](assets/home.png)
+<table>
+  <tr><th align="center">[Judul Login]</th></tr>
+  <tr><td align="center"><img src="assets/login.png" width="400"/></td></tr>
+</table>
 
-### 💼 Transaksi (5 Tampilan)
-- ![Transaksi 1](assets/transaksi1.png)
-- ![Transaksi 2](assets/transaksi2.png)
-- ![Transaksi 3](assets/transaksi3.png)
-- ![Transaksi 4](assets/transaksi4.png)
-- ![Transaksi 5](assets/transaksi5.png)
+<table>
+  <tr><th align="center">[Judul Register]</th></tr>
+  <tr><td align="center"><img src="assets/register.png" width="400"/></td></tr>
+</table>
 
-### ✅ Konfirmasi Transaksi (4 Tampilan)
-- ![Konfirmasi 1](assets/konfirmasi1.png)
-- ![Konfirmasi 2](assets/konfirmasi2.png)
-- ![Konfirmasi 3](assets/konfirmasi3.png)
-- ![Konfirmasi 4](assets/konfirmasi4.png)
+---
 
-### 🧾 Invoice
-- ![Invoice](assets/invoice.png)
+## 🏠 Home
 
-### 👥 Pelanggan (3 Tampilan)
-- ![Pelanggan 1](assets/pelanggan1.png)
-- ![Pelanggan 2](assets/pelanggan2.png)
-- ![Pelanggan 3](assets/pelanggan3.png)
+<table>
+  <tr><th align="center">[Judul Home]</th></tr>
+  <tr><td align="center"><img src="assets/home.png" width="400"/></td></tr>
+</table>
 
-### 📊 Laporan (3 Tampilan)
-- ![Laporan 1](assets/laporan1.png)
-- ![Laporan 2](assets/laporan2.png)
-- ![Laporan 3](assets/laporan3.png)
+---
 
-### ⚙️ Akun
-- ![Akun](assets/akun.png)
+## 💼 Transaksi (5 Foto)
 
-### 🧴 Layanan (3 Tampilan)
-- ![Layanan 1](assets/layanan1.png)
-- ![Layanan 2](assets/layanan2.png)
-- ![Layanan 3](assets/layanan3.png)
+<table>
+  <tr><th align="center">[Judul Transaksi 1]</th></tr>
+  <tr><td align="center"><img src="assets/transaksi1.png" width="400"/></td></tr>
+</table>
 
-### ➕ Layanan Tambahan (3 Tampilan)
-- ![Tambahan 1](assets/tambahan1.png)
-- ![Tambahan 2](assets/tambahan2.png)
-- ![Tambahan 3](assets/tambahan3.png)
+<table>
+  <tr><th align="center">[Judul Transaksi 2]</th></tr>
+  <tr><td align="center"><img src="assets/transaksi2.png" width="400"/></td></tr>
+</table>
 
-### 🧑‍💼 Pegawai (3 Tampilan)
-- ![Pegawai 1](assets/pegawai1.png)
-- ![Pegawai 2](assets/pegawai2.png)
-- ![Pegawai 3](assets/pegawai3.png)
+<table>
+  <tr><th align="center">[Judul Transaksi 3]</th></tr>
+  <tr><td align="center"><img src="assets/transaksi3.png" width="400"/></td></tr>
+</table>
 
-### 🏢 Cabang (2 Tampilan)
-- ![Cabang 1](assets/cabang1.png)
-- ![Cabang 2](assets/cabang2.png)
+<table>
+  <tr><th align="center">[Judul Transaksi 4]</th></tr>
+  <tr><td align="center"><img src="assets/transaksi4.png" width="400"/></td></tr>
+</table>
+
+<table>
+  <tr><th align="center">[Judul Transaksi 5]</th></tr>
+  <tr><td align="center"><img src="assets/transaksi5.png" width="400"/></td></tr>
+</table>
+
+---
+
+## ✅ Konfirmasi Transaksi (4 Foto)
+
+<table>
+  <tr><th align="center">[Judul Konfirmasi 1]</th></tr>
+  <tr><td align="center"><img src="assets/konfirmasi1.png" width="400"/></td></tr>
+</table>
+
+<table>
+  <tr><th align="center">[Judul Konfirmasi 2]</th></tr>
+  <tr><td align="center"><img src="assets/konfirmasi2.png" width="400"/></td></tr>
+</table>
+
+<table>
+  <tr><th align="center">[Judul Konfirmasi 3]</th></tr>
+  <tr><td align="center"><img src="assets/konfirmasi3.png" width="400"/></td></tr>
+</table>
+
+<table>
+  <tr><th align="center">[Judul Konfirmasi 4]</th></tr>
+  <tr><td align="center"><img src="assets/konfirmasi4.png" width="400"/></td></tr>
+</table>
+
+---
+
+## 🧾 Invoice
+
+<table>
+  <tr><th align="center">[Judul Invoice]</th></tr>
+  <tr><td align="center"><img src="assets/invoice.png" width="400"/></td></tr>
+</table>
+
+---
+
+## 👥 Pelanggan (3 Foto)
+
+<table>
+  <tr><th align="center">[Judul Pelanggan 1]</th></tr>
+  <tr><td align="center"><img src="assets/pelanggan1.png" width="400"/></td></tr>
+</table>
+
+<table>
+  <tr><th align="center">[Judul Pelanggan 2]</th></tr>
+  <tr><td align="center"><img src="assets/pelanggan2.png" width="400"/></td></tr>
+</table>
+
+<table>
+  <tr><th align="center">[Judul Pelanggan 3]</th></tr>
+  <tr><td align="center"><img src="assets/pelanggan3.png" width="400"/></td></tr>
+</table>
+
+---
+
+## 📊 Laporan (3 Foto)
+
+<table>
+  <tr><th align="center">[Judul Laporan 1]</th></tr>
+  <tr><td align="center"><img src="assets/laporan1.png" width="400"/></td></tr>
+</table>
+
+<table>
+  <tr><th align="center">[Judul Laporan 2]</th></tr>
+  <tr><td align="center"><img src="assets/laporan2.png" width="400"/></td></tr>
+</table>
+
+<table>
+  <tr><th align="center">[Judul Laporan 3]</th></tr>
+  <tr><td align="center"><img src="assets/laporan3.png" width="400"/></td></tr>
+</table>
+
+---
+
+## ⚙️ Akun
+
+<table>
+  <tr><th align="center">[Judul Akun]</th></tr>
+  <tr><td align="center"><img src="assets/akun.png" width="400"/></td></tr>
+</table>
+
+---
+
+## 🧴 Layanan (3 Foto)
+
+<table>
+  <tr><th align="center">[Judul Layanan 1]</th></tr>
+  <tr><td align="center"><img src="assets/layanan1.png" width="400"/></td></tr>
+</table>
+
+<table>
+  <tr><th align="center">[Judul Layanan 2]</th></tr>
+  <tr><td align="center"><img src="assets/layanan2.png" width="400"/></td></tr>
+</table>
+
+<table>
+  <tr><th align="center">[Judul Layanan 3]</th></tr>
+  <tr><td align="center"><img src="assets/layanan3.png" width="400"/></td></tr>
+</table>
+
+---
+
+## ➕ Layanan Tambahan (3 Foto)
+
+<table>
+  <tr><th align="center">[Judul Tambahan 1]</th></tr>
+  <tr><td align="center"><img src="assets/tambahan1.png" width="400"/></td></tr>
+</table>
+
+<table>
+  <tr><th align="center">[Judul Tambahan 2]</th></tr>
+  <tr><td align="center"><img src="assets/tambahan2.png" width="400"/></td></tr>
+</table>
+
+<table>
+  <tr><th align="center">[Judul Tambahan 3]</th></tr>
+  <tr><td align="center"><img src="assets/tambahan3.png" width="400"/></td></tr>
+</table>
+
+---
+
+## 👨‍💼 Pegawai (3 Foto)
+
+<table>
+  <tr><th align="center">[Judul Pegawai 1]</th></tr>
+  <tr><td align="center"><img src="assets/pegawai1.png" width="400"/></td></tr>
+</table>
+
+<table>
+  <tr><th align="center">[Judul Pegawai 2]</th></tr>
+  <tr><td align="center"><img src="assets/pegawai2.png" width="400"/></td></tr>
+</table>
+
+<table>
+  <tr><th align="center">[Judul Pegawai 3]</th></tr>
+  <tr><td align="center"><img src="assets/pegawai3.png" width="400"/></td></tr>
+</table>
+
+---
+
+## 🏢 Cabang (2 Foto)
+
+<table>
+  <tr><th align="center">[Judul Cabang 1]</th></tr>
+  <tr><td align="center"><img src="assets/cabang1.png" width="400"/></td></tr>
+</table>
+
+<table>
+  <tr><th align="center">[Judul Cabang 2]</th></tr>
+  <tr><td align="center"><img src="assets/cabang2.png" width="400"/></td></tr>
+</table>
 
 ---
 
